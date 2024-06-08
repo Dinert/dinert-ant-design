@@ -43,6 +43,8 @@ module.exports = {
   "no-undef-init": 2,
   "react/jsx-indent": [2, 4],
   "@typescript-eslint/no-var-requires": 0,
-  "@typescript-eslint/no-unused-vars": "error"
+  "@typescript-eslint/no-unused-vars": "error",
+  "@typescript-eslint/no-unnecessary-type-constraint": "off",
+  "@typescript-eslint/no-explicit-any": "off"
   },
 }

@@ -59,7 +59,7 @@ export default defineConfig({
     plugins: [react()],
     resolve: {
         alias: {
-            '@packages': `${path.resolve(__dirname, 'packages')}`,
+            '@packages': `${path.resolve(__dirname, './packages')}`,
         },
         extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx',]
     },
