@@ -35,16 +35,17 @@ export interface RewriteFormItemPropsMap<O = any[]>{
     // 'rate': RewriteRewriteRateProps<O>;
 }
 
-export interface CustomFormItemProps<D = any, O = any[], N extends keyof RewriteFormItemPropsMap = any> extends Partial<FormItemProps> {
+export interface CustomFormItemProps<D = any, O = any[], N extends keyof RewriteFormItemPropsMap = any>  extends Partial<FormItemProps>{
     key?: any;
     tempKey?: any;
-    type: N extends keyof RewriteFormItemPropsMap ? N : keyof RewriteFormItemPropsMap;
+    type?: N extends keyof RewriteFormItemPropsMap ? N : keyof RewriteFormItemPropsMap;
     show?: boolean | ((model: D) => boolean);
     vif?: boolean | ((model: D) => boolean);
     sort?: number;
     options?: RewriteFormItemPropsMap<O>[N];
     showLabel?: boolean;
     required?: boolean;
+    slot?: string | ((formItem: CustomFormItemProps<D, O, N>) => any)
 }
 
 type ToModelItem<D, FI> = D extends FI ? D : FI
@@ -55,5 +56,5 @@ type FormItemMap<D, FI> = {
 }
 
 export interface RewriteFormProps<D = any, FI = any> extends FormProps{
-    formItem: Partial<FormItemMap<D, FI>>
+    formItem: Partial<FormItemMap<D, FI>>,
 }

@@ -1,8 +1,7 @@
 import React from 'react'
-import { Form} from 'antd'
+import { Form, Input} from 'antd'
 
-import {RewriteFormProps, CustomFormItemProps} from '@packages/components/form/types/index'
-import RewriteInput from './input'
+import { CustomFormItemProps} from '@packages/components/form/types/index'
 
 const customPlaceholder = (type: string = 'input', label: string = '') => {
     const placeholder: {[key: string]: string} = {
@@ -13,11 +12,11 @@ const customPlaceholder = (type: string = 'input', label: string = '') => {
     return placeholder[type] + label || ''
 }
 
-const objToArr = (formItem: RewriteFormProps['formItem']) => {
+const objToArr = (formItem: CustomFormItemProps) => {
     let index = 0
     const result: any = []
     Object.keys(formItem).forEach(key => {
-        const value = formItem[key] as Partial<CustomFormItemProps>
+        const value = (formItem as any)[key] as Partial<CustomFormItemProps>
         const placeholderObj = {
             placeholder: customPlaceholder(value.type, value.label as string),
         }
@@ -40,27 +39,27 @@ const objToArr = (formItem: RewriteFormProps['formItem']) => {
 }
 
 const mapComponents = (item: CustomFormItemProps) => {
-    const {key, ...rest} = item
+    const {key, options} = item
     const obj: any = {
-        'input': <RewriteInput {...rest} tempKey={key}></RewriteInput>,
-        'input-search': <RewriteInput {...rest} tempKey={key}></RewriteInput>,
+        'input': <Input {...options} key={key}></Input>,
+        'input-search': <Input.Search {...options} key={key}></Input.Search>,
     }
 
     return obj[item.type]
 }
 
-const FormC: React.FC<RewriteFormProps['formItem']> = (formItem) => {
-  const {children, ...reset} = formItem
+const FormC: React.FC<CustomFormItemProps> = (formItem) => {
+  const {...reset} = formItem
   const formItemMap = objToArr(reset)
-  const slot: any = children || {}
   return (
       <>
           {
             formItemMap.map((item: CustomFormItemProps) => {
-                const slotformItem = slot['formitem_' + item.key]
+                const {slot, ...rest} = item
+                const slotformItem = typeof slot === 'function' ? slot(item) : slot
                 return (
-                    <Form.Item {...item} key={item.key}>
-                        {slotformItem ? typeof slotformItem === 'function' ? slotformItem(item) : slotformItem : mapComponents(item)}
+                    <Form.Item {...rest} key={item.key}>
+                        {slotformItem ? slotformItem : mapComponents(item)}
                     </Form.Item>
                 )
             })
