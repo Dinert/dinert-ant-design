@@ -1,17 +1,19 @@
 import React from 'react'
-import { Form, Input, InputNumber} from 'antd'
+import { Form, Input, InputNumber, Select, SelectProps} from 'antd'
 
 import { CustomFormItemProps, RewriteFormProps} from '@packages/components/form/types/index'
 import { dataTransformRod } from '@packages/utils/tools'
 
 const mapPlaceholder = (type: string = 'input', label: string = '') => {
-    const enterMesg = '请输入'
+    const enterMsg = '请输入'
+    const selectMsg = '请选择'
 
     const placeholder: {[key: string]: string} = {
-        'input': enterMesg,
-        'input-search':enterMesg,
-        'textarea': enterMesg,
-        'input-number': enterMesg
+        'input': enterMsg,
+        'input-search':enterMsg,
+        'textarea': enterMsg,
+        'input-number': enterMsg,
+        'select': selectMsg
     }
 
     return placeholder[type] + label || ''
@@ -57,10 +59,22 @@ const mapComponents = (item: CustomFormItemProps) => {
         'input': <Input {...options} key={key}></Input>,
         'input-search': <Input.Search {...options} key={key}></Input.Search>,
         'textarea': <Input.TextArea style={{height: '120px', ...options.style}} {...options} key={key} ></Input.TextArea>,
-        'input-number': <InputNumber style={{width: '100%', ...options.style}} {...options} key={key} ></InputNumber>
+        'input-number': <InputNumber style={{width: '100%', ...options.style}} {...options} key={key} ></InputNumber>,
+        'select': () => {
+            const selectOptions: any[] = options.options || []
+            return (<Select {...options} key={key}>
+                {
+                    (selectOptions as Omit<SelectProps['options'], 'children'>[]).map((item2: any) => {
+                        return (
+                            <Select.Option {...item2} key={item2.key}></Select.Option>
+                        )
+                    })
+                }
+            </Select>)
+        }
     }
 
-    return obj[item.type]
+    return typeof obj[item.type] === 'function' ? obj[item.type]() : obj[item.type]
 }
 
 const FormC: React.FC<RewriteFormProps> = (props) => {

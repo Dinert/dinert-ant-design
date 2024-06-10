@@ -11,6 +11,7 @@ function App() {
         name2: string;
         name3: string;
         name4: string;
+        name5: string;
     }
     const [dinertForm, setDinertForm] = useState<RewriteFormProps<Model>>({
         form: Form.useForm()[0],
@@ -47,6 +48,17 @@ function App() {
             name4: {
                 type: 'input-number',
                 label: '数据输入框'
+            },
+            name5: {
+                type: 'select',
+                label: '选择框',
+                options: {
+
+                    options: [
+                        {value: 1, label: '222'},
+                        {value: 2, label: '3333'},
+                    ]
+                }
             }
         }
     })
@@ -64,7 +76,7 @@ function App() {
     }
 
     const name = Form.useWatch('name', dinertForm.form)
-    const name2 = Form.useWatch('name2', dinertForm.form)
+    const name2 = Form.useWatch('name5', dinertForm.form)
   return (
       <>
 

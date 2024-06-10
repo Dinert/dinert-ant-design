@@ -2,7 +2,8 @@
 import {MergeProp} from './utils'
 import {
     InputProps,
-    InputNumberProps
+    InputNumberProps,
+    SelectProps
 } from 'antd'
 import { SearchProps } from 'antd/es/input/Search'
 
@@ -10,6 +11,7 @@ export type RewriteInputProps = Partial<InputProps>
 export type RewriteInputSearchProps = Partial<SearchProps>
 export type RewriteInputTextareaProps = Partial<InputProps>
 export type RewriteInputNumberProps = Partial<InputNumberProps>
+export type RewriteSelectPropsProps = Partial<SelectProps>
 
 // export type RewriteTextareaProps = Partial<InputProps & Pick<typeof ElInput, 'onInput'| CommonFn>>
 

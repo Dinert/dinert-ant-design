@@ -4,7 +4,8 @@ import {
     RewriteInputProps,
     RewriteInputSearchProps,
     RewriteInputTextareaProps,
-    RewriteInputNumberProps
+    RewriteInputNumberProps,
+    RewriteSelectPropsProps
 } from './components'
 
 
@@ -12,7 +13,7 @@ export interface RewriteFormItemPropsMap<O = any[]>{
     input: RewriteInputProps
     'input-search': RewriteInputSearchProps
     textarea: RewriteInputTextareaProps
-    // select: RewriteSelectProps<O>;
+    select: RewriteSelectPropsProps;
     // 'select-v2': RewriteSelectProps<O>;
     // custom: RewriteInputProps;
     // cascader: RewriteCascaderProps<O>;
