@@ -1,13 +1,17 @@
 import React from 'react'
-import { Form, Input} from 'antd'
+import { Form, Input, InputNumber} from 'antd'
 
 import { CustomFormItemProps, RewriteFormProps} from '@packages/components/form/types/index'
 import { dataTransformRod } from '@packages/utils/tools'
 
 const mapPlaceholder = (type: string = 'input', label: string = '') => {
+    const enterMesg = '请输入'
+
     const placeholder: {[key: string]: string} = {
-        'input': '请输入',
-        'input-search':'请输入'
+        'input': enterMesg,
+        'input-search':enterMesg,
+        'textarea': enterMesg,
+        'input-number': enterMesg
     }
 
     return placeholder[type] + label || ''
@@ -52,6 +56,8 @@ const mapComponents = (item: CustomFormItemProps) => {
     const obj: any = {
         'input': <Input {...options} key={key}></Input>,
         'input-search': <Input.Search {...options} key={key}></Input.Search>,
+        'textarea': <Input.TextArea style={{height: '120px', ...options.style}} {...options} key={key} ></Input.TextArea>,
+        'input-number': <InputNumber style={{width: '100%', ...options.style}} {...options} key={key} ></InputNumber>
     }
 
     return obj[item.type]

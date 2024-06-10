@@ -9,6 +9,8 @@ function App() {
     interface Model{
         name: string;
         name2: string;
+        name3: string;
+        name4: string;
     }
     const [dinertForm, setDinertForm] = useState<RewriteFormProps<Model>>({
         form: Form.useForm()[0],
@@ -17,23 +19,34 @@ function App() {
         //     // name: 333
         // },
         labelCol: {
-            span: 2
+            // span: 2
         },
         formItem: {
             name: {
                 type: 'input',
                 label: '输入框',
                 options: {
+
                 },
                 vif(model) {
                     return true
                 },
             },
-            'name2': {
+            name2: {
                 type: 'input-search',
                 label: '搜索框',
                 options: {
                 },
+            },
+            name3: {
+                type: 'textarea',
+                label: '文本域',
+                options: {
+                }
+            },
+            name4: {
+                type: 'input-number',
+                label: '数据输入框'
             }
         }
     })

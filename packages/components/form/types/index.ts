@@ -2,20 +2,22 @@ import {FormItemProps, FormProps } from 'antd'
 import {MergeProp} from './utils'
 import {
     RewriteInputProps,
-    RewriteInputSearchProps
+    RewriteInputSearchProps,
+    RewriteInputTextareaProps,
+    RewriteInputNumberProps
 } from './components'
 
 
 export interface RewriteFormItemPropsMap<O = any[]>{
     input: RewriteInputProps
     'input-search': RewriteInputSearchProps
+    textarea: RewriteInputTextareaProps
     // select: RewriteSelectProps<O>;
     // 'select-v2': RewriteSelectProps<O>;
     // custom: RewriteInputProps;
-    // textarea: RewriteTextareaProps;
     // cascader: RewriteCascaderProps<O>;
     // 'input-autocomplete': RewriteAutocompleteProps;
-    // 'input-number': RewriteInputNumberProps;
+    'input-number': RewriteInputNumberProps;
     // switch: RewriteSwitchProps;
     // datetime: RewriteDatePickerProps;
     // date: RewriteDatePickerProps;
