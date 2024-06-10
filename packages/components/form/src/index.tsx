@@ -4,7 +4,7 @@ import {RewriteFormProps} from '@packages/components/form/types/index'
 import FormItem from './formItem'
 
 const FormC: React.FC<RewriteFormProps> = (form) => {
-    const {formItem, ...reset} = form
+    const {formItem, showLabel, ...reset} = form
   return (
       <Form {...reset} >
           {

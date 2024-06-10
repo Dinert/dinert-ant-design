@@ -57,10 +57,10 @@ const mapComponents = (item: CustomFormItemProps) => {
     return obj[item.type]
 }
 
-const FormC: React.FC<any> = (props) => {
+const FormC: React.FC<RewriteFormProps> = (props) => {
     const {formItem, ...reset} = props
 
-    const formItemMap = objToArr(formItem, reset)
+    const formItemMap = objToArr(formItem, reset as RewriteFormProps)
     const values = reset.form?.getFieldsValue()
   return (
       <>
@@ -73,7 +73,7 @@ const FormC: React.FC<any> = (props) => {
                     }
 
                     if(showLabel) {
-                        slotformItem = dataTransformRod(slotformItem)
+                        slotformItem = dataTransformRod(reset.initialValues && reset.initialValues[item.key])
                     }
 
                     slotformItem = slotformItem ? slotformItem : mapComponents(rest)

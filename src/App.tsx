@@ -13,6 +13,9 @@ function App() {
     const [dinertForm, setDinertForm] = useState<RewriteFormProps<Model>>({
         form: Form.useForm()[0],
         scrollToFirstError: true,
+        // initialValues: {
+        //     // name: 333
+        // },
         labelCol: {
             span: 2
         },
@@ -20,30 +23,30 @@ function App() {
             name: {
                 type: 'input',
                 label: '输入框',
-                rules: [{required: true}],
                 options: {
                 },
                 vif(model) {
-                    console.log(model,'321321')
                     return true
-                }
-                // showLabel: true,
+                },
             },
             'name2': {
                 type: 'input-search',
                 label: '搜索框',
                 options: {
-                }
+                },
             }
         }
     })
-
+    // dinertForm.form?.setFieldsValue({
+    //     name: '1231'
+    // })
     const aaa = () => {
-        dinertForm.form?.setFieldsValue({
-            name: '1231'
-        })
-        console.log(dinertForm.form?.getFieldsValue(), 'dinertForm.form?.getFieldsValue()')
+
         dinertForm.form?.submit()
+        setDinertForm({
+            ...dinertForm,
+            initialValues: {name: 1231, name2: 222},
+        })
 
     }
 
