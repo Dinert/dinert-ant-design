@@ -56,5 +56,7 @@ type FormItemMap<D, FI> = {
 }
 
 export interface RewriteFormProps<D = any, FI = any> extends FormProps{
-    formItem: Partial<FormItemMap<D, FI>>,
+    formItem: Partial<FormItemMap<D, FI>>
+    required?: boolean
+    showLabel?: boolean
 }

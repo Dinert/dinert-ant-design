@@ -1,9 +1,10 @@
 import React from 'react'
 import { Form, Input} from 'antd'
 
-import { CustomFormItemProps} from '@packages/components/form/types/index'
+import { CustomFormItemProps, RewriteFormProps} from '@packages/components/form/types/index'
+import { dataTransformRod } from '@packages/utils/tools'
 
-const customPlaceholder = (type: string = 'input', label: string = '') => {
+const mapPlaceholder = (type: string = 'input', label: string = '') => {
     const placeholder: {[key: string]: string} = {
         'input': '请输入',
         'input-search':'请输入'
@@ -11,20 +12,28 @@ const customPlaceholder = (type: string = 'input', label: string = '') => {
 
     return placeholder[type] + label || ''
 }
-
-const objToArr = (formItem: CustomFormItemProps) => {
+const objToArr = (formItem: CustomFormItemProps, form: RewriteFormProps) => {
     let index = 0
     const result: any = []
     Object.keys(formItem).forEach(key => {
-        const value = (formItem as any)[key] as Partial<CustomFormItemProps>
-        const placeholderObj = {
-            placeholder: customPlaceholder(value.type, value.label as string),
-        }
 
+        const value = (formItem as any)[key] as Partial<CustomFormItemProps>
+
+        let rules = value.rules || []
+
+        const placeholderObj = {placeholder: mapPlaceholder(value.type, value.label as string)}
         value.options = value.options ? {...placeholderObj, ...value.options} : placeholderObj
+
+        value.required = value.required === undefined ? value.required || form.required : value.required
+        value.showLabel = value.showLabel === undefined ? value.showLabel || form.showLabel : value.showLabel
+
+        rules = value.required ? [{required: true}].concat(rules as any) : rules
+        rules = (value.showLabel || form.showLabel) ? [] : rules
+
 
         result.push({
             ...value,
+            rules,
             key: key,
             sort: typeof value.sort === 'undefined' ? index : value.sort,
         })
@@ -48,20 +57,38 @@ const mapComponents = (item: CustomFormItemProps) => {
     return obj[item.type]
 }
 
-const FormC: React.FC<CustomFormItemProps> = (formItem) => {
-  const {...reset} = formItem
-  const formItemMap = objToArr(reset)
+const FormC: React.FC<any> = (props) => {
+    const {formItem, ...reset} = props
+
+    const formItemMap = objToArr(formItem, reset)
+    const values = reset.form?.getFieldsValue()
   return (
       <>
           {
             formItemMap.map((item: CustomFormItemProps) => {
-                const {slot, ...rest} = item
-                const slotformItem = typeof slot === 'function' ? slot(item) : slot
-                return (
-                    <Form.Item {...rest} key={item.key}>
-                        {slotformItem ? slotformItem : mapComponents(item)}
-                    </Form.Item>
-                )
+                const {slot, showLabel, vif, ...rest} = item
+                let slotformItem = typeof slot === 'function' ? slot(rest) : slot
+                    if(!slotformItem && !showLabel) {
+                        rest.name = rest.key
+                    }
+
+                    if(showLabel) {
+                        slotformItem = dataTransformRod(slotformItem)
+                    }
+
+                    slotformItem = slotformItem ? slotformItem : mapComponents(rest)
+
+                    let vif2 = typeof vif === 'function' ? vif(values) : vif
+                        vif2 = vif2 === undefined ? true : vif2
+
+                    if(vif2) {
+                        return (
+                            <Form.Item {...rest} key={item.key}>
+                                {slotformItem}
+                            </Form.Item>
+                        )
+                    }
+
             })
         }
 

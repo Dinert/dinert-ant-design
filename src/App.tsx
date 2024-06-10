@@ -12,37 +12,53 @@ function App() {
     }
     const [dinertForm, setDinertForm] = useState<RewriteFormProps<Model>>({
         form: Form.useForm()[0],
+        scrollToFirstError: true,
+        labelCol: {
+            span: 2
+        },
         formItem: {
             name: {
                 type: 'input',
                 label: '输入框',
-                name: 'name',
                 rules: [{required: true}],
                 options: {
                 },
+                vif(model) {
+                    console.log(model,'321321')
+                    return true
+                }
+                // showLabel: true,
             },
-            name2: {
+            'name2': {
                 type: 'input-search',
                 label: '搜索框',
-                name: 'input-search',
                 options: {
                 }
-            },
+            }
         }
     })
 
     const aaa = () => {
+        dinertForm.form?.setFieldsValue({
+            name: '1231'
+        })
+        console.log(dinertForm.form?.getFieldsValue(), 'dinertForm.form?.getFieldsValue()')
         dinertForm.form?.submit()
+
     }
 
     const name = Form.useWatch('name', dinertForm.form)
+    const name2 = Form.useWatch('name2', dinertForm.form)
   return (
       <>
+
           <DinertForm {...dinertForm}>
 
           </DinertForm>
           <Button onClick={aaa}>修改</Button>
+
           <p>{name}</p>
+          <p>{name2}</p>
       </>
   )
 }
