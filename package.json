@@ -1,5 +1,5 @@
 {
-  "name": "dinert-ant-design",
+  "name": "@dinert/ant-design",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,13 +10,13 @@
     "preview": "vite preview"
   },
   "main": "lib/index.js",
-  "module": "es/packages/index.mjs",
+  "module": "es/index.mjs",
   "browser": "dist/dinert-ant-design.umd.js",
   "types": "es/src/index.d.ts",
   "exports": {
     ".": {
       "types": "./es/src/index.d.ts",
-      "import": "./es/packages/index.mjs",
+      "import": "./es/index.mjs",
       "require": "./lib/index.js"
     },
     "./style": {
