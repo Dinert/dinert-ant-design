@@ -66,7 +66,7 @@ const mapComponents = (item: CustomFormItemProps) => {
                 {
                     (selectOptions as Omit<SelectProps['options'], 'children'>[]).map((item2: any) => {
                         return (
-                            <Select.Option {...item2} key={item2.key}></Select.Option>
+                            <Select.Option {...item2} key={item2.value}></Select.Option>
                         )
                     })
                 }
@@ -77,7 +77,7 @@ const mapComponents = (item: CustomFormItemProps) => {
     return typeof obj[item.type] === 'function' ? obj[item.type]() : obj[item.type]
 }
 
-const FormC: React.FC<RewriteFormProps> = (props) => {
+const FormItemC: React.FC<RewriteFormProps> = (props) => {
     const {formItem, ...reset} = props
 
     const formItemMap = objToArr(formItem, reset as RewriteFormProps)
@@ -116,4 +116,4 @@ const FormC: React.FC<RewriteFormProps> = (props) => {
   )
 }
 
-export default FormC
+export default FormItemC

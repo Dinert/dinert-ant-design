@@ -9,7 +9,7 @@ import {
 } from './components'
 
 
-export interface RewriteFormItemPropsMap<O = any[]>{
+export interface RewriteFormItemPropsMap{
     input: RewriteInputProps
     'input-search': RewriteInputSearchProps
     textarea: RewriteInputTextareaProps
@@ -45,7 +45,7 @@ export interface CustomFormItemProps<D = any, O = any[], N extends keyof Rewrite
     show?: boolean | ((model: D) => boolean);
     vif?: boolean | ((model: D) => boolean);
     sort?: number;
-    options?: RewriteFormItemPropsMap<O>[N];
+    options?: RewriteFormItemPropsMap[N];
     showLabel?: boolean;
     required?: boolean;
     slot?: string | ((formItem: CustomFormItemProps<D, O, N>) => any)

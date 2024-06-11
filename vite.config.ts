@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import dts from 'vite-plugin-dts'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,7 +14,7 @@ export default defineConfig({
         // minify: false,
         rollupOptions: {
             // 忽略打包vue文件
-            external: ['vue', 'element-plus', 'lodash'],
+            external: ['react', 'antd', 'react-dom', 'react/jsx-runtime'],
             input: ['./packages/index.ts'],
 
             output: [
@@ -43,11 +44,12 @@ export default defineConfig({
                     format: 'umd',
                     exports: 'named',
                     dir: 'dist',
-                    name: 'dinert-element-plus',
+                    name: 'dinert-ant-design',
                     globals: {
-                        'vue': 'Vue',
-                        'ElementPlus': 'element-plus',
-                        'lodash': 'lodash'
+                        'react': 'react',
+                        'antd': 'antd',
+                        'react-dom': 'ReactDOM',
+                        'react/jsx-runtime': 'react/jsx-runtime'
                     },
                 }
             ],
@@ -56,7 +58,17 @@ export default defineConfig({
             entry: './index.ts',
         },
     },
-    plugins: [react()],
+    plugins: [
+        react(),
+        dts({
+            entryRoot: './packages',
+
+            outDir: ['./es/src', './lib/src'],
+
+            // 指定使用的tsconfig.json为我们整个项目根目录下,如果不配置,你也可以在components下新建tsconfig.json
+            tsconfigPath: './tsconfig.json',
+        }),
+    ],
     resolve: {
         alias: {
             '@packages': `${path.resolve(__dirname, './packages')}`,

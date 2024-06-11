@@ -1,5 +1,5 @@
 
-import {MergeProp} from './utils'
+// import {MergeProp} from './utils'
 import {
     InputProps,
     InputNumberProps,

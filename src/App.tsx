@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 
 import DinertForm from '../packages/components/form/src/index'
 import {Button, Form } from 'antd'
@@ -29,7 +29,7 @@ function App() {
                 options: {
 
                 },
-                vif(model) {
+                vif() {
                     return true
                 },
             },

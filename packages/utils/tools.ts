@@ -73,7 +73,7 @@ export const dataTransformRod = (data: any, errData: any = '-') => {
     return [null, undefined, ''].includes(data) ? errData : data
 }
 
-function findNode(tree) {
+function findNode(tree: any) {
     // 如果当前节点为目标节点，返回 true
     if (tree.checked === false) {
         return true
