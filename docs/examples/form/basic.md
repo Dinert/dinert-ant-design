@@ -7,7 +7,7 @@
 
 Form/basic/index
 :::
-
+<!--
 ## 不同布局的组件
 :::demo
 
@@ -48,7 +48,7 @@ Form/basic/custom
 :::demo
 
 Form/basic/vaildate
-:::
+::: -->
 
 <!-- @include: ./explain.md -->
 

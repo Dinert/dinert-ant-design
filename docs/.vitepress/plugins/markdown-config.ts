@@ -19,13 +19,13 @@ export const mdPlugin = (md) => {
               if (sourceFileToken.type === 'inline') {
 
                 source = fs.readFileSync(
-                  path.resolve('components', `${sourceFile}.vue`),
+                  path.resolve('components', `${sourceFile}.tsx`),
                   'utf-8'
                 );
               }
               if (!source) throw new Error(`Incorrect source file: ${sourceFile}`);
               return `<DinertDemo source="${encodeURIComponent(
-                highlight(source, 'vue')
+                highlight(source, 'react')
               )}" path="${sourceFile}" raw-source="${encodeURIComponent(
                 source
               )}" description="${encodeURIComponent(localMd.render(description))}">`;

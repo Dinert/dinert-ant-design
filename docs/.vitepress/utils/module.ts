@@ -1,6 +1,6 @@
 export const getModule = (path: string) => {
-    const moduleObj = (import.meta as any).glob('../../components/**/*.vue')
-    const initializePath = `../../components/${path}.vue`
+    const moduleObj = (import.meta as any).glob('../../components/**/*.tsx')
+    const initializePath = `../../components/${path}.tsx`
     if (moduleObj[initializePath]) {
         return moduleObj[initializePath]
     } else {
