@@ -10,7 +10,7 @@ import {useClipboard} from '@vueuse/core'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import {VueLive} from 'vue-live'
 import 'vue-live/style.css'
-import {TablePage} from '../../../../../packages'
+// import {TablePage} from '../../../../../packages'
 
 import {
     EditPen,
@@ -179,7 +179,6 @@ const copyCode = async () => {
                         <vue-live
                             v-if="editDialogVisible"
                             :code="decodeRawSource"
-                            :requires="{'@dinert/element-plus': {TablePage}}"
                             @error="(e) => console.error('Error on first example', e)"
                         />
                     </div>
