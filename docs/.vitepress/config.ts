@@ -10,7 +10,7 @@ function _resolve(dir: string) {
     return path.resolve(__dirname, dir)
 }
 export default defineConfig({
-    base: process.env.NODE_ENV === 'production' ? '/dinert-element-plus/' : '/',
+    base: process.env.NODE_ENV === 'production' ? '/dinert-ant-design/' : '/',
     vite: {
         resolve: {
             alias: {
@@ -25,13 +25,13 @@ export default defineConfig({
     },
 
     themeConfig: {
-        siteTitle: 'dinert-element-plus',
+        siteTitle: 'dinert-ant-design',
         nav: [
             {text: '指南', link: '/guide/installation'},
             {text: '组件', link: '/examples/form/basic'},
         ],
         socialLinks: [
-            {icon: 'github', link: 'https://github.com/Dinert/dinert-element-plus'},
+            {icon: 'github', link: 'https://github.com/Dinert/dinert-ant-design'},
         ],
         sidebar: {
             '/guide/': [

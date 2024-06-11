@@ -1,7 +1,7 @@
 
 # 快速开始
 
-本节将介绍如何在项目中使用 <el-link type="primary" :underline="false" href="https://github.com/Dinert/dinert-element-plus">Dinert Element Plus。</el-link>
+本节将介绍如何在项目中使用 <el-link type="primary" :underline="false" href="https://github.com/Dinert/dinert-ant-design">Dinert Element Plus。</el-link>
 
 ## 完整引入
 

@@ -14,7 +14,7 @@ hero:
       link: /guide/installation
     - theme: alt
       text: 在 github 上查看
-      link: https://github.com/Dinert/dinert-element-plus
+      link: https://github.com/Dinert/dinert-ant-design
 
 features:
   - icon: 💡
