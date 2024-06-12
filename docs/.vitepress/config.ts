@@ -1,8 +1,9 @@
 
 import path from 'path'
 import {defineConfig} from 'vitepress'
+import react from '@vitejs/plugin-react'
 
-import vueJsx from '@vitejs/plugin-vue-jsx' // 添加这一句
+// import vueJsx from '@vitejs/plugin-vue-jsx' // 添加这一句
 import {mdPlugin} from './plugins/markdown-config'
 
 
@@ -19,7 +20,8 @@ export default defineConfig({
             }
         },
         plugins: [
-            vueJsx() as any,
+            // vueJsx() as any,
+            react()
         ],
 
     },

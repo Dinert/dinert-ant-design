@@ -11,6 +11,9 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import {VueLive} from 'vue-live'
 import 'vue-live/style.css'
 // import {TablePage} from '../../../../../packages'
+import VueResolver from '../vue-wrap/vue-resolver'
+import VueWrap from '../vue-wrap/index'
+import AAA from '../../../../components/Form/basic/index'
 
 import {
     EditPen,
@@ -45,6 +48,8 @@ const packagesReg = /\.\.\/.*?packages/g
 
 onMounted(async () => {
     demoComponents.value = defineAsyncComponent(getModule(props.path))
+    // demoComponents.value = VueResolver(demoComponents.value)
+    // console.log(demoComponents.value,AAA, 'demoComponents.valuedemoComponents.value')
 })
 
 const {isSupported, copy} = useClipboard({
@@ -108,9 +113,10 @@ const copyCode = async () => {
                 <p text="dinertDemo-sm" v-html="decodedDescription"></p>
                 <div class="dinertDemo-example">
                     <div class="dinertDemo-example-component">
-                        <component :is="demoComponents" v-if="demoComponents"
+                        <!-- <component :is="demoComponents" v-if="demoComponents"
                             v-bind="$attrs"
-                        />
+                        /> -->
+                        <VueWrap :component="VueWrap"></VueWrap>
                     </div>
                     <ElDivider class="m-0"/>
                     <div class="dinertDemo-example-operations">
@@ -176,11 +182,11 @@ const copyCode = async () => {
                     width="90%"
                 >
                     <div class="edit-code">
-                        <vue-live
+                        <!-- <vue-live
                             v-if="editDialogVisible"
                             :code="decodeRawSource"
                             @error="(e) => console.error('Error on first example', e)"
-                        />
+                        /> -->
                     </div>
                 </el-dialog>
             </div>
