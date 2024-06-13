@@ -1,4 +1,5 @@
 import { Form } from 'antd'
+import React from 'react'
 
 import {RewriteFormProps} from '@packages/components/form/types/index'
 import FormItem from './formItem'

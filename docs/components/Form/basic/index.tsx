@@ -1,10 +1,10 @@
 import {DinertForm, RewriteFormProps} from '../../../../packages'
 
-import { useState } from 'react'
+import React, { forwardRef, useState } from 'react'
 
-import {Button, Form } from 'antd'
+import {Form } from 'antd'
 
-function App() {
+const  App = () => {
 
     interface Model{
         name: string;
@@ -16,11 +16,8 @@ function App() {
     const [dinertForm, setDinertForm] = useState<RewriteFormProps<Model>>({
         form: Form.useForm()[0],
         scrollToFirstError: true,
-        // initialValues: {
-        //     // name: 333
-        // },
         labelCol: {
-            // span: 2
+            span: 3
         },
         formItem: {
             name: {
@@ -78,12 +75,9 @@ function App() {
     const name = Form.useWatch('name', dinertForm.form)
     const name2 = Form.useWatch('name5', dinertForm.form)
   return (
-
       <DinertForm {...dinertForm}>
-
       </DinertForm>
-
   )
 }
 
-export default App
+export default forwardRef<any, any>(App)

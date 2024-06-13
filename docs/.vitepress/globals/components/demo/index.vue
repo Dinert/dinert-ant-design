@@ -38,7 +38,7 @@ const props = withDefaults(defineProps<PropsType>(), {
 })
 
 const {description, source, rawSource} = toRefs(props)
-const demoComponents = shallowRef()
+const demoComponents = ref()
 const sourceVisible = ref(false)
 const editDialogVisible = ref(false)
 // const oldRawSource = ref(rawSource.value)
@@ -47,9 +47,7 @@ const editDialogVisible = ref(false)
 const packagesReg = /\.\.\/.*?packages/g
 
 onMounted(async () => {
-    demoComponents.value = defineAsyncComponent(getModule(props.path))
-    // demoComponents.value = VueResolver(demoComponents.value)
-    // console.log(demoComponents.value,AAA, 'demoComponents.valuedemoComponents.value')
+    demoComponents.value = getModule(props.path)
 })
 
 const {isSupported, copy} = useClipboard({
@@ -116,7 +114,7 @@ const copyCode = async () => {
                         <!-- <component :is="demoComponents" v-if="demoComponents"
                             v-bind="$attrs"
                         /> -->
-                        <VueWrap :component="VueWrap"></VueWrap>
+                        <VueWrap :component="demoComponents"></VueWrap>
                     </div>
                     <ElDivider class="m-0"/>
                     <div class="dinertDemo-example-operations">
