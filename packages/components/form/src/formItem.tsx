@@ -56,13 +56,13 @@ const objToArr = (formItem: CustomFormItemProps, form: RewriteFormProps) => {
 const mapComponents = (item: CustomFormItemProps) => {
     const {key, options} = item
     const obj: any = {
-        'input': <Input {...options} key={key}></Input>,
-        'input-search': <Input.Search {...options} key={key}></Input.Search>,
-        'textarea': <Input.TextArea style={{height: '120px', ...options.style}} {...options} key={key} ></Input.TextArea>,
-        'input-number': <InputNumber style={{width: '100%', ...options.style}} {...options} key={key} ></InputNumber>,
+        'input': <Input {...options} allowClear key={key}></Input>,
+        'input-search': <Input.Search {...options} allowClear key={key}></Input.Search>,
+        'textarea': <Input.TextArea style={{height: '120px', ...options.style}} {...options} allowClear key={key} ></Input.TextArea>,
+        'input-number': <InputNumber style={{width: '100%', ...options.style}} {...options} allowClear key={key} ></InputNumber>,
         'select': () => {
             const selectOptions: any[] = options.options || []
-            return (<Select {...options} key={key}>
+            return (<Select {...options} allowClear key={key}>
                 {
                     (selectOptions as Omit<SelectProps['options'], 'children'>[]).map((item2: any) => {
                         return (
