@@ -1,8 +1,9 @@
 import { createElement } from "react"
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom/client'
 import { defineComponent, h, onMounted, ref } from "vue"
 
 // Vue 组件
+// eslint-disable-next-line react-refresh/only-export-components
 export default defineComponent({
     props: ['component'],
     setup(props, ctx) {

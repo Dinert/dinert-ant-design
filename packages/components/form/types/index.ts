@@ -62,4 +62,7 @@ export interface RewriteFormProps<D = any, FI = any> extends FormProps{
     formItem: Partial<FormItemMap<D, FI>>
     required?: boolean
     showLabel?: boolean
+    name?: 'search' | 'horizontal';
+    onSearch?: () => void
+    onReset?: () => void
 }

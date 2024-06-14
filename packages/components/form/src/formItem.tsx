@@ -79,7 +79,6 @@ const mapComponents = (item: CustomFormItemProps) => {
 
 const FormItemC: React.FC<RewriteFormProps> = (props) => {
     const {formItem, ...reset} = props
-
     const formItemMap = objToArr(formItem, reset as RewriteFormProps)
     const values = reset.form?.getFieldsValue()
   return (

@@ -118,7 +118,7 @@ const copyCode = async () => {
                     </div>
                     <ElDivider class="m-0"/>
                     <div class="dinertDemo-example-operations">
-                        <ElTooltip
+                        <!-- <ElTooltip
                             content="编辑代码"
                             :show-arrow="false"
                             :trigger="['hover', 'focus']"
@@ -126,7 +126,7 @@ const copyCode = async () => {
                             <ElIcon class="op-btn" @click="editCode">
                                 <edit-pen/>
                             </ElIcon>
-                        </ElTooltip>
+                        </ElTooltip> -->
                         <ElTooltip
                             content="复制代码"
                             :show-arrow="false"

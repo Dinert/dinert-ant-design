@@ -9,15 +9,13 @@ const  App = () => {
     interface Model{
         name: string;
         name2: string;
-        name3: string;
-        name4: string;
-        name5: string;
     }
     const [dinertForm, setDinertForm] = useState<RewriteFormProps<Model>>({
         form: Form.useForm()[0],
+        layout: 'inline',
+        name: 'search',
         scrollToFirstError: true,
         labelCol: {
-            span: 3
         },
         formItem: {
             name: {
@@ -31,22 +29,6 @@ const  App = () => {
                 },
             },
             name2: {
-                type: 'input-search',
-                label: '搜索框',
-                options: {
-                },
-            },
-            name3: {
-                type: 'textarea',
-                label: '文本域',
-                options: {
-                }
-            },
-            name4: {
-                type: 'input-number',
-                label: '数据输入框'
-            },
-            name5: {
                 type: 'select',
                 label: '选择框',
                 options: {
@@ -57,23 +39,20 @@ const  App = () => {
                     ]
                 }
             }
+        },
+        onSearch() {
+            console.log('查询')
+        },
+        onReset() {
+            console.log('重置')
         }
     })
-    // dinertForm.form?.setFieldsValue({
-    //     name: '1231'
-    // })
-    const aaa = () => {
 
-        dinertForm.form?.submit()
-        setDinertForm({
-            ...dinertForm,
-            initialValues: {name: 1231, name2: 222},
+    setTimeout(() => {
+        setDinertForm((form) => {
+            return {...form, layout: 'horizontal'}
         })
-
-    }
-
-    const name = Form.useWatch('name', dinertForm.form)
-    const name2 = Form.useWatch('name5', dinertForm.form)
+    }, 3000)
   return (
       <DinertForm {...dinertForm}>
       </DinertForm>
