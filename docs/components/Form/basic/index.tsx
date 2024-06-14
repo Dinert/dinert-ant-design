@@ -28,17 +28,17 @@ const  App = () => {
                     return true
                 },
             },
-            name2: {
-                type: 'select',
-                label: '选择框',
-                options: {
+            // name2: {
+            //     type: 'select',
+            //     label: '选择框',
+            //     options: {
 
-                    options: [
-                        {value: 1, label: '222'},
-                        {value: 2, label: '3333'},
-                    ]
-                }
-            }
+            //         options: [
+            //             {value: 1, label: '222'},
+            //             {value: 2, label: '3333'},
+            //         ]
+            //     }
+            // }
         },
         onSearch() {
             console.log('查询')
