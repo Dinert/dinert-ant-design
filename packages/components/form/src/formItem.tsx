@@ -102,7 +102,7 @@ const FormItemC: React.FC<RewriteFormProps> = (props) => {
 
                     if(vif2) {
                         return (
-                            <Form.Item {...rest} key={item.key}>
+                            <Form.Item className={[item.type, item.key] as any} {...rest} key={item.key}>
                                 {slotformItem}
                             </Form.Item>
                         )

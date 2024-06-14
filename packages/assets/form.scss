@@ -1,0 +1,19 @@
+.ant-form{
+    display: flex;
+    overflow: hidden;
+    padding: 0;
+    min-height: 50px;
+    border-radius: 4px;
+    transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    box-sizing: content-box;
+
+    &.search{
+        .ant-form-item-control-input{
+            width: 210px;
+        }
+    }
+
+    &.packUp {
+        max-height: 50px;
+    }
+}

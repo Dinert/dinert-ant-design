@@ -47,12 +47,7 @@ const  App = () => {
             console.log('重置')
         }
     })
-
-    setTimeout(() => {
-        setDinertForm((form) => {
-            return {...form, layout: 'horizontal'}
-        })
-    }, 3000)
+   
   return (
       <DinertForm {...dinertForm}>
       </DinertForm>
