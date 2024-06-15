@@ -12,7 +12,7 @@ const FormC: React.FC<RewriteFormProps> = (form) => {
   const {formItem, showLabel, name, onSearch, onReset, ...reset} = form
   const formClass = 'form_' + getUuid()
 
-  const [packUp, setPackUp] = useState(false)
+  const [packUp, setPackUp] = useState(true)
   const [isArrow, setIsArrow] = useState(false)
 
   const resizeForm = () => {
