@@ -19,8 +19,10 @@ function App() {
         // initialValues: {
         //     // name: 333
         // },
+        layout:'inline',
+        name: 'search',
         labelCol: {
-            // span: 2
+            // span: 8
         },
         formItem: {
             name: {
@@ -40,7 +42,7 @@ function App() {
                 },
             },
             name3: {
-                type: 'textarea',
+                type: 'input',
                 label: '文本域',
                 options: {
                 }
@@ -83,10 +85,6 @@ function App() {
           <DinertForm {...dinertForm}>
 
           </DinertForm>
-          <Button onClick={aaa}>修改</Button>
-
-          <p>{name}</p>
-          <p>{name2}</p>
       </>
   )
 }

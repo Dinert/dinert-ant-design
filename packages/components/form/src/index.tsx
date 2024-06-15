@@ -5,12 +5,35 @@ import {RewriteFormProps} from '@packages/components/form/types/index'
 import FormItem from './formItem'
 import '@packages/assets/form.scss'
 import {DownOutlined, UpOutlined} from '@ant-design/icons'
+import useWindowResize from '@packages/hooks/useWindowResize'
+import {getUuid} from '@packages/utils/tools'
 
 const FormC: React.FC<RewriteFormProps> = (form) => {
   const {formItem, showLabel, name, onSearch, onReset, ...reset} = form
+  const formClass = 'form_' + getUuid()
 
   const [packUp, setPackUp] = useState(false)
   const [isArrow, setIsArrow] = useState(false)
+
+  const resizeForm = () => {
+    let elFormLeft = document.querySelectorAll(`.${formClass} .ant-form-item > div`) as any
+    if (elFormLeft[0]) {
+            const firstTop = elFormLeft[0].getBoundingClientRect().top
+            const lastTop = elFormLeft[elFormLeft.length - 1].getBoundingClientRect().top
+            const isHeight = firstTop !== lastTop
+            if (isHeight) {
+                setIsArrow(true)
+            } else {
+                if (!packUp) {
+                    setPackUp(true)
+                }
+                setIsArrow(false)
+            }
+
+    }
+    elFormLeft = null
+}
+
 
   const searchFn = () => {
     onSearch && onSearch()
@@ -19,21 +42,36 @@ const FormC: React.FC<RewriteFormProps> = (form) => {
     onReset && onReset()
   }
 
+  const unfold = () => {
+     setPackUp(!packUp)
+  }
+
+    setTimeout(() => {
+        resizeForm()
+    })
+
+    useWindowResize(() => {
+        resizeForm()
+    }, 100)
+
 
   return (
-      <Form {...reset} className={['dinert-form', name, packUp ? '' : 'packUp'] as any}>
-          {
-              <FormItem {...form}></FormItem>
+      <div className="dinert-form">
+          <Form {...reset} className={[name, packUp ? '' : 'packUp', formClass] as any}>
+              {
+                  <FormItem {...form}></FormItem>
           }
+          </Form>
           {
              name === 'search' &&
-              (<div className={'operations'}>
-                  {isArrow && <Button type="link" icon={packUp ? <UpOutlined/> : <DownOutlined/>}>{packUp ? '收起' : '展开'}</Button>}
+              (<div className={'dinert-form-operations'}>
+                  {isArrow && <Button onClick={unfold} type="link" icon={packUp ? <UpOutlined/> : <DownOutlined/>}>{packUp ? '收起' : '展开'}</Button>}
                   <Button type="primary" onClick={searchFn}>查询</Button>
                   <Button type="default" onClick={resetFn} style={{marginLeft: '12px'}}>重置</Button>
               </div>)
           }
-      </Form>
+      </div>
+
   )
 }
 
