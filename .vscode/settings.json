@@ -1,0 +1,11 @@
+{
+    "editor.formatOnSave": false,
+    "eslint.validate": ["javascript", "html", "typescript", "cjs"],
+    "editor.detectIndentation": false,
+    "files.trimTrailingWhitespace": true,
+    "stylelint.validate": ["css", "scss", "sass", "html"],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit",
+        "source.fixAll.stylelint": "explicit"
+    }
+}

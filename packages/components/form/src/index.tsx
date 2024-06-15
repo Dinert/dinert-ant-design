@@ -28,10 +28,10 @@ const FormC: React.FC<RewriteFormProps> = (form) => {
           {
              name === 'search' &&
               (<div className={'operations'}>
-                {isArrow && <Button type="link" icon={packUp ? <UpOutlined/> : <DownOutlined/>}>{packUp ? '收起' : '展开'}</Button>}
-                 <Button type="primary" onClick={searchFn}>查询</Button>
-                 <Button type="default" onClick={resetFn} style={{marginLeft: '12px'}}>重置</Button>
-             </div>)
+                  {isArrow && <Button type="link" icon={packUp ? <UpOutlined/> : <DownOutlined/>}>{packUp ? '收起' : '展开'}</Button>}
+                  <Button type="primary" onClick={searchFn}>查询</Button>
+                  <Button type="default" onClick={resetFn} style={{marginLeft: '12px'}}>重置</Button>
+              </div>)
           }
       </Form>
   )
