@@ -9,10 +9,10 @@ import useWindowResize from '@packages/hooks/useWindowResize'
 import {getUuid} from '@packages/utils/tools'
 
 const FormC: React.FC<RewriteFormProps> = (form) => {
-  const {formItem, showLabel, name, onSearch, onReset, ...reset} = form
+  const {formItem, showLabel, name, onSearch, onReset, packUp: packUp2, ...reset} = form
   const formClass = 'form_' + getUuid()
 
-  const [packUp, setPackUp] = useState(true)
+  const [packUp, setPackUp] = useState(packUp2)
   const [isArrow, setIsArrow] = useState(false)
 
   const resizeForm = () => {
@@ -64,7 +64,7 @@ const FormC: React.FC<RewriteFormProps> = (form) => {
           </Form>
           {
              name === 'search' &&
-              (<div className={'dinert-form-operations'}>
+              (<div className={['dinert-form-operations', isArrow ? 'isArrow' : ''].join(' ')}>
                   {isArrow && <Button onClick={unfold} type="link" icon={packUp ? <UpOutlined/> : <DownOutlined/>}>{packUp ? '收起' : '展开'}</Button>}
                   <Button type="primary" onClick={searchFn}>查询</Button>
                   <Button type="default" onClick={resetFn} style={{marginLeft: '12px'}}>重置</Button>

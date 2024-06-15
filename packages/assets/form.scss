@@ -11,6 +11,8 @@
         box-sizing: content-box;
 
         &.search{
+            max-height: 300px;
+
             .ant-form-item-control-input{
                 width: 210px;
             }
@@ -29,7 +31,10 @@
     }
 
     &-operations{
-        width: 225px;
-        flex: 0 0 225px;
+        margin-left: 24px;
+        &.isArrow{
+            width: 225px;
+            flex: 0 0 225px;
+        }
     }
 }

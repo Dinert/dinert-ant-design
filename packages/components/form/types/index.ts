@@ -63,6 +63,7 @@ export interface RewriteFormProps<D = any, FI = any> extends FormProps{
     required?: boolean
     showLabel?: boolean
     name?: 'search' | 'horizontal';
+    packUp?: boolean;
     onSearch?: () => void
     onReset?: () => void
 }

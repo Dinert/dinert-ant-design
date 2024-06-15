@@ -15,6 +15,7 @@ const  App = () => {
         layout: 'inline',
         name: 'search',
         scrollToFirstError: true,
+        packUp: false,
         labelCol: {
         },
         formItem: {

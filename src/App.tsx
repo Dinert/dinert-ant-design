@@ -19,6 +19,7 @@ function App() {
         // initialValues: {
         //     // name: 333
         // },
+        packUp: true,
         layout:'inline',
         name: 'search',
         labelCol: {
