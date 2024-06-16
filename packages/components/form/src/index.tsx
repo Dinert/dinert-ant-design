@@ -1,5 +1,5 @@
 import { Form, Button } from 'antd'
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 
 import {RewriteFormProps} from '@packages/components/form/types/index'
 import FormItem from './formItem'
