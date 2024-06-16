@@ -15,13 +15,16 @@ const useWindowResize = (resize: () => void, delay: number = 0, immediate: boole
     }, delay)
 
     if (immediate) {
-        handleResize() // 手动触发一次
+        useEffect(() => {
+            handleResize() // 手动触发一次
+        }, [])
     }
 
     useEffect(() => {
-        window.addEventListener('resize', onResize)
 
-        return () => window.removeEventListener('resize', onResize)
+        window.addEventListener('resize', onResize, false)
+
+        return () => window.removeEventListener('resize', onResize, false)
     })
 }
 

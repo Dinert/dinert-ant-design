@@ -1,5 +1,5 @@
 import { Form, Button } from 'antd'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
 import {RewriteFormProps} from '@packages/components/form/types/index'
 import FormItem from './formItem'
@@ -9,13 +9,14 @@ import useWindowResize from '@packages/hooks/useWindowResize'
 import {getUuid} from '@packages/utils/tools'
 
 const FormC: React.FC<RewriteFormProps> = (form) => {
-  const {formItem, showLabel, name, onSearch, onReset, packUp: packUp2, ...reset} = form
+  const {formItem, showLabel, name, onSearch, onReset, packUp: packUp2,  ...reset} = form
   const formClass = 'form_' + getUuid()
 
   const [packUp, setPackUp] = useState(packUp2)
   const [isArrow, setIsArrow] = useState(false)
 
   const resizeForm = () => {
+
     let elFormLeft = document.querySelectorAll(`.${formClass} .ant-form-item > div`) as any
     if (elFormLeft[0]) {
             const firstTop = elFormLeft[0].getBoundingClientRect().top
@@ -29,7 +30,6 @@ const FormC: React.FC<RewriteFormProps> = (form) => {
                 }
                 setIsArrow(false)
             }
-
     }
     elFormLeft = null
 }
@@ -46,13 +46,12 @@ const FormC: React.FC<RewriteFormProps> = (form) => {
      setPackUp(!packUp)
   }
 
-    setTimeout(() => {
-        resizeForm()
-    })
-
     useWindowResize(() => {
-        resizeForm()
-    }, 100)
+        setIsArrow(false)
+        setTimeout(() => {
+            resizeForm()
+        })
+    }, 100, true)
 
 
   return (
