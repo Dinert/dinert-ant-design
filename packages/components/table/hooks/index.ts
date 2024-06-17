@@ -28,7 +28,6 @@ export const resizeTaleHeight = (scroll: RewriteTableProps['scroll'], tableClass
             }
         })
         height = tableParentHeight - tableDomSilingHeight - headHeight - footerHeight - footerMT - footerBT
-        console.log(height, 'heightheight')
         footerDom = null as any
         headDom = null as any
         tableDom = null
