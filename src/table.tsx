@@ -16,7 +16,7 @@ function App() {
     // title: () => {
     //     return <Button type="primary" icon={<PlusOutlined />}>新增</Button>
     // },
-    scroll: {y: 300},
+    scroll: {y: 'auto'},
     dataSource: [
         {
           firstName: 'John',

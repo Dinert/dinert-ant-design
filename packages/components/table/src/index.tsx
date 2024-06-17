@@ -12,12 +12,16 @@ import useWindowResize from '@packages/hooks/useWindowResize'
 const  App: React.FC<RewriteTableProps>  = (props) => {
     const {tableColumns, ...reset} = props
     const [tableClass] = useState('table_' + getUuid())
+    const [scrollY, setScrollY] = useState(0)
+
     useWindowResize(() => {
-        resizeTaleHeight(tableClass)
+        const y = resizeTaleHeight(reset.scroll, tableClass)
+        console.log(y, 'y')
+        setScrollY(y)
     }, 100, true)
 
     return (
-        <Table {...reset} className={tableClass}>
+        <Table {...{...reset, scroll: {...reset.scroll, y: scrollY || '100%'}}} className={tableClass}>
             {RecuveTableColumn(props)}
         </Table>
     )
