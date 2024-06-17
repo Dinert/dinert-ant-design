@@ -30,7 +30,7 @@ module.exports = {
   "no-spaced-func": 2,
   "jsx-quotes": [2, "prefer-double"],
   "no-trailing-spaces": 1,
-  "no-use-before-define": 2,
+  "no-use-before-define": 'off',
   "no-multiple-empty-lines": [2, {
       "max": 2
     }],
