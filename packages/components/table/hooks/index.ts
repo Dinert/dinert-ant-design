@@ -5,15 +5,15 @@ export const resizeTaleHeight = (scroll: RewriteTableProps['scroll'], tableClass
     let height = 0
 
     if(scroll && scroll.y === 'auto') {
-        const tableDom = document.querySelector('.' + tableClass)
-        const tableParentDom = tableDom?.parentElement
+        let tableDom = document.querySelector('.' + tableClass)
+        let tableParentDom = tableDom?.parentElement
         tableParentDom?.classList.add('wrap_' + tableClass)
-        const tableParentChildrenAllDom = document.querySelectorAll('.wrap_' + tableClass + " > *") as any
+        let tableParentChildrenAllDom = document.querySelectorAll('.wrap_' + tableClass + " > *") as any
 
-        const headDom = tableDom?.querySelector('.ant-table-header') as HTMLElement
+        let headDom = tableDom?.querySelector('.ant-table-header') as HTMLElement
         const headHeight = headDom.offsetHeight || 0
 
-        const footerDom = tableDom?.querySelector('.ant-table-pagination') as HTMLElement
+        let footerDom = tableDom?.querySelector('.ant-table-pagination') as HTMLElement
         const footerHeight = footerDom.offsetHeight || 0
 
         const footerMT = parseInt(window.getComputedStyle(footerDom, null).marginTop) || 0
@@ -29,6 +29,11 @@ export const resizeTaleHeight = (scroll: RewriteTableProps['scroll'], tableClass
         })
         height = tableParentHeight - tableDomSilingHeight - headHeight - footerHeight - footerMT - footerBT
         console.log(height, 'heightheight')
+        footerDom = null as any
+        headDom = null as any
+        tableDom = null
+        tableParentDom=  null
+        tableParentChildrenAllDom = null
         return height
     }
     return height

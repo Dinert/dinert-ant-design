@@ -12,11 +12,10 @@ import useWindowResize from '@packages/hooks/useWindowResize'
 const  App: React.FC<RewriteTableProps>  = (props) => {
     const {tableColumns, ...reset} = props
     const [tableClass] = useState('table_' + getUuid())
-    const [scrollY, setScrollY] = useState(0)
+    const [scrollY, setScrollY] = useState(1)
 
     useWindowResize(() => {
         const y = resizeTaleHeight(reset.scroll, tableClass)
-        console.log(y, 'y')
         setScrollY(y)
     }, 100, true)
 

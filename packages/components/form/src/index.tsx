@@ -49,7 +49,7 @@ const FormC: React.FC<RewriteFormProps> = (form) => {
     useWindowResize(() => {
         setIsArrow(false)
         resizeForm()
-    }, 100, true)
+    }, 50, true)
 
 
   return (
