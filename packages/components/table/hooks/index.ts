@@ -11,13 +11,17 @@ export const resizeTaleHeight = (scroll: RewriteTableProps['scroll'], tableClass
         let tableParentChildrenAllDom = document.querySelectorAll('.wrap_' + tableClass + " > *") as any
 
         let headDom = tableDom?.querySelector('.ant-table-header') as HTMLElement
-        const headHeight = headDom.offsetHeight || 0
+        const headHeight = (headDom && headDom.offsetHeight) || 0
 
         let footerDom = tableDom?.querySelector('.ant-table-pagination') as HTMLElement
-        const footerHeight = footerDom.offsetHeight || 0
+        const footerHeight = (footerDom && footerDom.offsetHeight) || 0
+        const footerMT = (footerDom && parseInt(window.getComputedStyle(footerDom, null).marginTop)) || 0
+        const footerBT = (footerDom && parseInt(window.getComputedStyle(footerDom, null).marginBottom)) || 0
 
-        const footerMT = parseInt(window.getComputedStyle(footerDom, null).marginTop) || 0
-        const footerBT = parseInt(window.getComputedStyle(footerDom, null).marginBottom) || 0
+        let titleDom = tableDom?.querySelector('.ant-table-title') as HTMLElement
+        const titleHeight = (titleDom && titleDom.offsetHeight) || 0
+        const titleMT = (titleDom && parseInt(window.getComputedStyle(titleDom, null).marginTop)) || 0
+        const titleBT = (titleDom && parseInt(window.getComputedStyle(titleDom, null).marginBottom)) || 0
 
         const tableParentHeight = tableParentDom?.offsetHeight || 0
 
@@ -27,12 +31,13 @@ export const resizeTaleHeight = (scroll: RewriteTableProps['scroll'], tableClass
                 tableDomSilingHeight += item.offsetHeight || 0
             }
         })
-        height = tableParentHeight - tableDomSilingHeight - headHeight - footerHeight - footerMT - footerBT
+        height = tableParentHeight - tableDomSilingHeight - headHeight - footerHeight - footerMT - footerBT -titleHeight - titleMT - titleBT
         footerDom = null as any
         headDom = null as any
         tableDom = null
         tableParentDom=  null
         tableParentChildrenAllDom = null
+        titleDom = null as any
         return height
     }
     return height
