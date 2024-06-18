@@ -10,9 +10,7 @@ function App() {
         // hideSelectAll: true
     },
     tableLayout: 'fixed',
-    rowKey(row)  {
-        return row.age
-    },
+
     // title: () => {
     //     return <Button type="primary" icon={<PlusOutlined />}>新增</Button>
     // },
@@ -306,7 +304,9 @@ function App() {
           tags: ['nice', 'developer'],
         },
 
-      ],
+      ].map((item: any, index) => {
+        item.key = index
+        return item}),
     tableColumns: [
         {
             title: 'Name',

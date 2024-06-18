@@ -24,14 +24,19 @@ export const resizeTaleHeight = (scroll: RewriteTableProps['scroll'], tableClass
         const titleBT = (titleDom && parseInt(window.getComputedStyle(titleDom, null).marginBottom)) || 0
 
         const tableParentHeight = tableParentDom?.offsetHeight || 0
+        const tableParentPT = (tableParentDom && parseInt(window.getComputedStyle(tableParentDom, null).paddingTop)) || 0
+        const tableParentPB = (tableParentDom && parseInt(window.getComputedStyle(tableParentDom, null).paddingBottom)) || 0
 
         let tableDomSilingHeight = 0
         ;[...tableParentChildrenAllDom].map((item: HTMLElement) => {
             if(item !== tableDom) {
-                tableDomSilingHeight += item.offsetHeight || 0
+                const itemMT = (item && parseInt(window.getComputedStyle(item, null).marginTop)) || 0
+                const itemMB = (item && parseInt(window.getComputedStyle(item, null).marginBottom)) || 0
+                const itemHeight = item.offsetHeight || 0
+                tableDomSilingHeight += itemHeight + itemMT + itemMB
             }
         })
-        height = tableParentHeight - tableDomSilingHeight - headHeight - footerHeight - footerMT - footerBT -titleHeight - titleMT - titleBT
+        height = tableParentHeight - tableDomSilingHeight - tableParentPT -tableParentPB - headHeight - footerHeight - footerMT - footerBT -titleHeight - titleMT - titleBT
         footerDom = null as any
         headDom = null as any
         tableDom = null
