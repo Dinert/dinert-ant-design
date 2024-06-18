@@ -2,6 +2,7 @@ import React from 'react'
 
 import DinertForm from './form'
 import DinertTable from './table'
+import DinertTablePage from './table-page'
 import './app.scss'
 
 function App() {
@@ -9,10 +10,11 @@ function App() {
 
   return (
       <>
-          <DinertForm>
+          {/* <DinertForm>
 
           </DinertForm>
-          <DinertTable></DinertTable>
+          <DinertTable></DinertTable> */}
+          <DinertTablePage></DinertTablePage>
       </>
   )
 }

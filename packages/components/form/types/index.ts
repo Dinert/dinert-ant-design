@@ -66,4 +66,5 @@ export interface RewriteFormProps<D = any, FI = any> extends FormProps{
     packUp?: boolean;
     onSearch?: () => void
     onReset?: () => void
+    onUnFold?: () => void
 }

@@ -9,7 +9,7 @@ import useWindowResize from '@packages/hooks/useWindowResize'
 import {getUuid} from '@packages/utils/tools'
 
 const FormC: React.FC<RewriteFormProps> = (form) => {
-  const {formItem, showLabel, name, onSearch, onReset, packUp: packUp2,  ...reset} = form
+  const {formItem, showLabel, name, onSearch, onReset, packUp: packUp2, onUnFold,  ...reset} = form
   const [formClass] = useState('form_' + getUuid())
 
   const [packUp, setPackUp] = useState(packUp2)
@@ -44,6 +44,7 @@ const FormC: React.FC<RewriteFormProps> = (form) => {
 
   const unfold = () => {
      setPackUp(!packUp)
+     onUnFold && onUnFold()
   }
 
     useWindowResize(() => {
