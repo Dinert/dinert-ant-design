@@ -10,12 +10,12 @@ import { resizeTaleHeight } from '../hooks'
 import useWindowResize from '@packages/hooks/useWindowResize'
 import { TableRef } from 'antd/es/table'
 
-export interface IProps {
+export interface TableResultProps {
     resizeTable:() => void,
     tableRef: TableRef
 }
 
-const  DinertTable = forwardRef<IProps, RewriteTableProps>(function (props: RewriteTableProps, ref) {
+const  DinertTable = forwardRef<TableResultProps, RewriteTableProps>(function (props: RewriteTableProps, ref) {
     const {tableColumns, ...reset} = props
     const [tableClass] = useState('table_' + getUuid())
     const [scrollY, setScrollY] = useState(10)

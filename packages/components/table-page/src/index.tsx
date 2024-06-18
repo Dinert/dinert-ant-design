@@ -3,23 +3,22 @@ import React, { useEffect, useRef, useState, useImperativeHandle, forwardRef} fr
 import {RewriteFormProps} from '@packages/components/form/types/index'
 import {RewriteTableProps} from '@packages/components/table/types/index'
 import { DinertForm } from '@packages/components/form'
-import { DinertTable, IProps as TableIProps } from '@packages/components/table'
+import { DinertTable, TableResultProps } from '@packages/components/table'
 
-interface TablePageProps {
+export interface TablePageProps {
     form: RewriteFormProps
     table: RewriteTableProps
 }
 
-interface IProps extends TableIProps{
+export interface IProps extends TableResultProps{
 
 }
 
 const TablePageC = forwardRef<IProps, TablePageProps>(function (props, ref) {
     const {form, table} = props
-    const dinertTable = useRef<TableIProps>(null)
+    const dinertTable = useRef<TableResultProps>(null)
     const onUnFold = () => {
         form.onUnFold && form.onUnFold()
-        console.log(dinertTable.current, 'dinertTable.current')
         setTimeout(() => {
             dinertTable.current?.resizeTable()
         }, 300)

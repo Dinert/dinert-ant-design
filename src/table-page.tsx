@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import DinertTablePage from '../packages/components/table-page/src/index'
+import {DinertTablePage} from '../packages/components/index'
 import type {RewriteTableProps} from '@packages/components/table/types/index'
 import {RewriteFormProps} from '@packages/components/form/types/index'
 
