@@ -12,6 +12,8 @@ interface Model{
     name3: string;
     name4: string;
     name5: string;
+    name6: string;
+    name7: string;
 }
 
 function App() {
@@ -360,7 +362,7 @@ function App() {
     form: Form.useForm()[0],
     scrollToFirstError: true,
     // initialValues: {
-    //     // name: 333
+    //     name7: 1
     // },
     packUp: true,
     layout:'inline',
@@ -386,7 +388,7 @@ function App() {
             },
         },
         name3: {
-            type: 'input',
+            type: 'textarea',
             label: '文本域',
             options: {
             }
@@ -399,7 +401,26 @@ function App() {
             type: 'select',
             label: '选择框',
             options: {
-
+                options: [
+                    {value: 1, label: '222'},
+                    {value: 2, label: '3333'},
+                ]
+            }
+        },
+        name6: {
+            type: 'radio',
+            label: '选择框',
+            options: {
+                options: [
+                    {value: 1, label: '222'},
+                    {value: 2, label: '3333'},
+                ]
+            }
+        },
+        name7: {
+            type: 'radio-button',
+            label: '选择框',
+            options: {
                 options: [
                     {value: 1, label: '222'},
                     {value: 2, label: '3333'},

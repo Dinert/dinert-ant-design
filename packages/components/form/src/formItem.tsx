@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Input, InputNumber, Select, SelectProps} from 'antd'
+import { Form, Input, InputNumber, Radio, Select, SelectProps, RadioProps} from 'antd'
 
 import { CustomFormItemProps, RewriteFormProps} from '@packages/components/form/types/index'
 import { dataTransformRod } from '@packages/utils/tools'
@@ -66,11 +66,31 @@ const mapComponents = (item: CustomFormItemProps) => {
                 {
                     (selectOptions as Omit<SelectProps['options'], 'children'>[]).map((item2: any) => {
                         return (
-                            <Select.Option {...item2} key={item2.value}></Select.Option>
+                            <Select.Option {...item2} key={item2[options.value || 'value']}></Select.Option>
                         )
                     })
                 }
             </Select>)
+        },
+        'radio': () => {
+            const radioOptions: RadioProps[] = options.options || []
+            return (
+                <Radio.Group {...options}>
+                    {radioOptions.map((item2: any) => {
+                        return <Radio {...item2} key={item2[options.value || 'value']}></Radio>
+                    })}
+                </Radio.Group>
+            )
+        },
+        'radio-button': () => {
+            const radioOptions: RadioProps[] = options.options || []
+            return (
+                <Radio.Group {...options} optionType={'button'}>
+                    {radioOptions.map((item2: any) => {
+                        return <Radio.Button {...item2} key={item2[options.value || 'value']}></Radio.Button>
+                    })}
+                </Radio.Group>
+            )
         }
     }
 

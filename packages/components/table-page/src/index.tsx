@@ -10,11 +10,11 @@ export interface TablePageProps {
     table: RewriteTableProps
 }
 
-export interface IProps extends TableResultProps{
+export interface TablePageResultProps extends TableResultProps{
 
 }
 
-const TablePageC = forwardRef<IProps, TablePageProps>(function (props, ref) {
+const TablePageC = forwardRef<TablePageResultProps, TablePageProps>(function (props, ref) {
     const {form, table} = props
     const dinertTable = useRef<TableResultProps>(null)
     const onUnFold = () => {

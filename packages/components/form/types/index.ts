@@ -5,7 +5,8 @@ import {
     RewriteInputSearchProps,
     RewriteInputTextareaProps,
     RewriteInputNumberProps,
-    RewriteSelectPropsProps
+    RewriteSelectPropsProps,
+    RewriteRadioGroupProps
 } from './components'
 
 
@@ -30,11 +31,11 @@ export interface RewriteFormItemPropsMap{
     // datetimerange: RewriteDatePickerProps;
     // daterange: RewriteDatePickerProps;
     // monthrange: RewriteDatePickerProps;
-    // radio: RewriteRadioGroupProps<O>;
+    radio: RewriteRadioGroupProps;
+    'radio-button': RewriteRadioGroupProps;
     // checkbox: RewriteCheckboxGroupProps<O>;
     // 'checkbox-button': RewriteCheckboxGroupProps<O>;
     // 'tree-select': RewriteTreeSelectProps<O>;
-    // 'radio-button': RewriteRadioGroupProps<O>;
     // 'rate': RewriteRewriteRateProps<O>;
 }
 

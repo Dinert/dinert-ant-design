@@ -3,7 +3,8 @@
 import {
     InputProps,
     InputNumberProps,
-    SelectProps
+    SelectProps,
+    RadioGroupProps
 } from 'antd'
 import { SearchProps } from 'antd/es/input/Search'
 
@@ -12,6 +13,7 @@ export type RewriteInputSearchProps = Partial<SearchProps>
 export type RewriteInputTextareaProps = Partial<InputProps>
 export type RewriteInputNumberProps = Partial<InputNumberProps>
 export type RewriteSelectPropsProps = Partial<SelectProps>
+export type RewriteRadioGroupProps = Partial<RadioGroupProps>
 
 // export type RewriteTextareaProps = Partial<InputProps & Pick<typeof ElInput, 'onInput'| CommonFn>>
 
