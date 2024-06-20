@@ -1,6 +1,6 @@
 
 
-import React, { forwardRef, useState,useImperativeHandle, useRef } from 'react'
+import React, { forwardRef, useState, useImperativeHandle, useRef } from 'react'
 import type {RewriteTableProps} from '@packages/components/table/types/index'
 import {Table} from 'antd'
 
@@ -15,7 +15,7 @@ export interface TableResultProps {
     tableRef: TableRef
 }
 
-const  DinertTable = forwardRef<TableResultProps, RewriteTableProps>(function (props: RewriteTableProps, ref) {
+const DinertTable = forwardRef<TableResultProps, RewriteTableProps>((props: RewriteTableProps, ref) => {
     const {tableColumns, ...reset} = props
     const [tableClass] = useState('table_' + getUuid())
     const [scrollY, setScrollY] = useState(10)
