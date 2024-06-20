@@ -214,7 +214,6 @@ module.exports = {
         'no-unsafe-negation': 'error',
         'no-unused-expressions': ['warn', {allowShortCircuit: true}],
         'no-unused-labels': 'error',
-        'no-unused-vars': 'error',
         'no-use-before-define': 'off',
         'no-useless-call': 'warn',
         'no-useless-computed-key': 'error',
@@ -305,5 +304,19 @@ module.exports = {
         'wrap-regex': 'off',
         'yield-star-spacing': 'off',
         'yoda': 'warn',
+        'no-unused-vars': 'off',
+        '@typescript-eslint/no-unused-vars': [
+            'error',
+            {
+                vars: 'all',
+                'args': 'after-used',
+                'argsIgnorePattern': '^_',
+                'caughtErrors': 'all',
+                'caughtErrorsIgnorePattern': '^_',
+                'destructuredArrayIgnorePattern': '^_',
+                'varsIgnorePattern': '^_',
+                'ignoreRestSiblings': true
+            }
+        ]
     },
 }

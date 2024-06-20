@@ -11,8 +11,7 @@ import globals from '../globals'
 export default {
     ...DefaultTheme,
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    enhanceApp: async ({app, router, siteData}) => {
+    enhanceApp: async ({app}) => {
     // app is the Vue 3 app instance from `createApp()`. router is VitePress'
     // custom router. `siteData`` is a `ref`` of current site-level metadata.
         app.use(elementplus)
