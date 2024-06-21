@@ -4,7 +4,7 @@ import React, { forwardRef, useState } from 'react'
 
 import {Form } from 'antd'
 
-const  App = () => {
+const App = () => {
 
     interface Model{
         name: string;
@@ -49,10 +49,10 @@ const  App = () => {
         }
     })
 
-  return (
-      <DinertForm {...dinertForm}>
-      </DinertForm>
-  )
+    return (
+        <DinertForm {...dinertForm}>
+        </DinertForm>
+    )
 }
 
 export default forwardRef<any, any>(App)

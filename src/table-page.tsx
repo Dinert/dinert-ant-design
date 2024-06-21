@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 
 import {DinertTablePage} from '../packages/components/index'
-import type {RewriteTableProps} from '@packages/components/table/types/index'
 import {RewriteFormProps} from '@packages/components/form/types/index'
 
-import { Button, Table, Form } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
+import { Form } from 'antd'
+import TablePage from '@packages/hooks/TablePage'
 interface Model{
     name: string;
     name2: string;
@@ -17,346 +16,7 @@ interface Model{
 }
 
 function App() {
-    const [table] = useState<RewriteTableProps>({
-        rowSelection: {
-        // hideSelectAll: true
-        },
-        tableLayout: 'fixed',
 
-        // title: () => {
-        //     return <Button type="primary" icon={<PlusOutlined />}>新增</Button>
-        // },
-        scroll: {y: 'auto'},
-        dataSource: [
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-            {
-                firstName: 'John',
-                lastName: 'Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
-
-        ].map((item: any, index) => {
-            item.key = index
-            return item}),
-        tableColumns: [
-            {
-                title: 'Name',
-                dataIndex: 'name',
-                children: [
-                    {
-                        title: () => {
-                            return <div className="firstName">FirstName</div>
-                        },
-                        dataIndex: 'firstName',
-                    },
-                    {
-                        title: 'lastName',
-                        dataIndex: 'lastName',
-                    }
-                ],
-            },
-            {
-                title: 'Age',
-                dataIndex: 'age',
-            },
-            {
-                title: 'Address',
-                dataIndex: 'address',
-            },
-            {
-                title: 'Tags',
-                dataIndex: 'tags',
-            },
-            {
-                title: 'Action',
-                dataIndex: 'action',
-            }
-        ],
-        pagination: {
-            pageSize: 80
-        }
-    })
 
     const [dinertForm, setDinertForm] = useState<RewriteFormProps<Model>>({
         form: Form.useForm()[0],
@@ -430,10 +90,195 @@ function App() {
         }
     })
 
+    const tablePage = new TablePage<any, any>({
+        form: {
+            formItem: {}
+        },
+        table: {
+            scroll: {y: 'auto'},
+            tableColumns: [
+                {
+                    title: 'Name',
+                    dataIndex: 'name',
+                    children: [
+                        {
+                            title: () => {
+                                return <div className="firstName">FirstName</div>
+                            },
+                            dataIndex: 'firstName',
+                        },
+                        {
+                            title: 'lastName',
+                            dataIndex: 'lastName',
+                        }
+                    ],
+                },
+                {
+                    title: 'Age',
+                    dataIndex: 'age',
+                },
+                {
+                    title: 'Address',
+                    dataIndex: 'address',
+                },
+                {
+                    title: 'Tags',
+                    dataIndex: 'tags',
+                },
+                {
+                    title: 'Action',
+                    dataIndex: 'action',
+                }
+            ],
+            dataSource: [],
+            pagination: {
+            }
+        }
+    })
+    const {table} = tablePage
+    const [getTable, setTable] = table
+    setTimeout(() => {
+        setTable({
+            ...getTable,
+            dataSource: [
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                }
+            ].map((item, index) => {
+                item.id = index
+                return item
+            })
+        })
+    }, 5000)
+
+
     return (
         <>
 
-            <DinertTablePage table={table} form={dinertForm}>
+            <DinertTablePage table={getTable} form={dinertForm}>
 
             </DinertTablePage>
         </>

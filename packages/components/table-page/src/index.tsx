@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useImperativeHandle, forwardRef} from 'react'
+import React, { useRef, useImperativeHandle, forwardRef} from 'react'
 
 import {RewriteFormProps} from '@packages/components/form/types/index'
 import {RewriteTableProps} from '@packages/components/table/types/index'
@@ -14,7 +14,7 @@ export interface TablePageResultProps extends TableResultProps{
 
 }
 
-const TablePageC = forwardRef<TablePageResultProps, TablePageProps>(function (props, ref) {
+const TablePageC = forwardRef<TablePageResultProps, TablePageProps>((props, ref) => {
     const {form, table} = props
     const dinertTable = useRef<TableResultProps>(null)
     const onUnFold = () => {
@@ -27,7 +27,7 @@ const TablePageC = forwardRef<TablePageResultProps, TablePageProps>(function (pr
     useImperativeHandle(ref, () => {
         // 在这里返回的内容，都可以被父组件的REF对象获取到
         return {
-          ...dinertTable.current as any
+            ...dinertTable.current as any
         }
     })
 

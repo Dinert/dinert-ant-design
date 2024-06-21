@@ -1,7 +1,9 @@
 
-import type {DinertTablePageProps, AjaxTableProps} from './types'
-import { useState, Dispatch } from 'react'
+import type {DinertTablePageProps} from './types'
+import { useState, Dispatch, MutableRefObject, useRef } from 'react'
 import lodash from 'lodash'
+import {TablePageResultProps} from '@packages/components/table-page/index'
+
 
 class TablePage<T, D = any, FI = any, P = object, R = any> {
     table: [DinertTablePageProps<T, D, FI>['table'], Dispatch<DinertTablePageProps<T, D, FI>['table']>]
@@ -17,6 +19,8 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
 
     params: P | any
     oldParams: P | any
+
+    tablePageRef: MutableRefObject<TablePageResultProps | null> = useRef(null)
 
 
     private readonly defaultOptions: DinertTablePageProps<T, D, FI> = {
@@ -52,7 +56,12 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
 
         this.params = {}
         this.oldParams = {}
+
     }
+
+    // 获取请求参数
+    getTableParams: (params: P) => (Partial<P>) = () => ({} as P)
+    ajaxTableDataAfter: (res: R) => void = () => undefined
 }
 
 

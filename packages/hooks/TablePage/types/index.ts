@@ -34,7 +34,7 @@ export interface Scope<T = any>{
     column?: RewriteTableColumnCtx<T>;
     data?: RewriteTableColumnCtx<T>;
     row?: T;
-    store?: TableInstance;
+    // store?: TableInstance;
     _self?: any;
 }
 
