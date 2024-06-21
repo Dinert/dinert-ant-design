@@ -3,8 +3,11 @@ import React, { useState } from 'react'
 import {DinertTablePage} from '../packages/components/index'
 import {RewriteFormProps} from '@packages/components/form/types/index'
 
-import { Form } from 'antd'
+import { Form, Button } from 'antd'
 import TablePage from '@packages/hooks/TablePage'
+import {useImmer} from 'use-immer'
+
+
 interface Model{
     name: string;
     name2: string;
@@ -90,9 +93,67 @@ function App() {
         }
     })
 
-    const tablePage = new TablePage<any, any>({
+    const tablePage = new TablePage<any, any, any>({
         form: {
-            formItem: {}
+            name: 'search',
+            formItem: {
+                name: {
+                    type: 'input',
+                    label: '输入框',
+                    options: {
+
+                    },
+                    vif() {
+                        return true
+                    },
+                },
+                name2: {
+                    type: 'input-search',
+                    label: '搜索框',
+                    options: {
+                    },
+                },
+                name3: {
+                    type: 'textarea',
+                    label: '文本域',
+                    options: {
+                    }
+                },
+                name4: {
+                    type: 'input-number',
+                    label: '数据输入框'
+                },
+                name5: {
+                    type: 'select',
+                    label: '选择框',
+                    options: {
+                        options: [
+                            {value: 1, label: '222'},
+                            {value: 2, label: '3333'},
+                        ]
+                    }
+                },
+                name6: {
+                    type: 'radio',
+                    label: '选择框',
+                    options: {
+                        options: [
+                            {value: 1, label: '222'},
+                            {value: 2, label: '3333'},
+                        ]
+                    }
+                },
+                name7: {
+                    type: 'radio-button',
+                    label: '选择框',
+                    options: {
+                        options: [
+                            {value: 1, label: '222'},
+                            {value: 2, label: '3333'},
+                        ]
+                    }
+                }
+            }
         },
         table: {
             scroll: {y: 'auto'},
@@ -132,153 +193,35 @@ function App() {
             ],
             dataSource: [],
             pagination: {
-            }
+            },
+            rowKey: 'age'
         }
     })
-    const {table} = tablePage
-    const [getTable, setTable] = table
-    setTimeout(() => {
-        setTable({
-            ...getTable,
-            dataSource: [
-                {
-                    firstName: 'John',
-                    lastName: 'Brown',
-                    age: 32,
-                    address: 'New York No. 1 Lake Park',
-                    tags: ['nice', 'developer'],
-                },
-                {
-                    firstName: 'John',
-                    lastName: 'Brown',
-                    age: 32,
-                    address: 'New York No. 1 Lake Park',
-                    tags: ['nice', 'developer'],
-                },
-                {
-                    firstName: 'John',
-                    lastName: 'Brown',
-                    age: 32,
-                    address: 'New York No. 1 Lake Park',
-                    tags: ['nice', 'developer'],
-                },
-                {
-                    firstName: 'John',
-                    lastName: 'Brown',
-                    age: 32,
-                    address: 'New York No. 1 Lake Park',
-                    tags: ['nice', 'developer'],
-                },
-                {
-                    firstName: 'John',
-                    lastName: 'Brown',
-                    age: 32,
-                    address: 'New York No. 1 Lake Park',
-                    tags: ['nice', 'developer'],
-                },
-                {
-                    firstName: 'John',
-                    lastName: 'Brown',
-                    age: 32,
-                    address: 'New York No. 1 Lake Park',
-                    tags: ['nice', 'developer'],
-                },
-                {
-                    firstName: 'John',
-                    lastName: 'Brown',
-                    age: 32,
-                    address: 'New York No. 1 Lake Park',
-                    tags: ['nice', 'developer'],
-                },
-                {
-                    firstName: 'John',
-                    lastName: 'Brown',
-                    age: 32,
-                    address: 'New York No. 1 Lake Park',
-                    tags: ['nice', 'developer'],
-                },
-                {
-                    firstName: 'John',
-                    lastName: 'Brown',
-                    age: 32,
-                    address: 'New York No. 1 Lake Park',
-                    tags: ['nice', 'developer'],
-                },
-                {
-                    firstName: 'John',
-                    lastName: 'Brown',
-                    age: 32,
-                    address: 'New York No. 1 Lake Park',
-                    tags: ['nice', 'developer'],
-                },
-                {
-                    firstName: 'John',
-                    lastName: 'Brown',
-                    age: 32,
-                    address: 'New York No. 1 Lake Park',
-                    tags: ['nice', 'developer'],
-                },
-                {
-                    firstName: 'John',
-                    lastName: 'Brown',
-                    age: 32,
-                    address: 'New York No. 1 Lake Park',
-                    tags: ['nice', 'developer'],
-                },
-                {
-                    firstName: 'John',
-                    lastName: 'Brown',
-                    age: 32,
-                    address: 'New York No. 1 Lake Park',
-                    tags: ['nice', 'developer'],
-                },
-                {
-                    firstName: 'John',
-                    lastName: 'Brown',
-                    age: 32,
-                    address: 'New York No. 1 Lake Park',
-                    tags: ['nice', 'developer'],
-                },
-                {
-                    firstName: 'John',
-                    lastName: 'Brown',
-                    age: 32,
-                    address: 'New York No. 1 Lake Park',
-                    tags: ['nice', 'developer'],
-                },
-                {
-                    firstName: 'John',
-                    lastName: 'Brown',
-                    age: 32,
-                    address: 'New York No. 1 Lake Park',
-                    tags: ['nice', 'developer'],
-                },
-                {
-                    firstName: 'John',
-                    lastName: 'Brown',
-                    age: 32,
-                    address: 'New York No. 1 Lake Park',
-                    tags: ['nice', 'developer'],
-                },
-                {
-                    firstName: 'John',
-                    lastName: 'Brown',
-                    age: 32,
-                    address: 'New York No. 1 Lake Park',
-                    tags: ['nice', 'developer'],
-                }
-            ].map((item, index) => {
-                item.id = index
-                return item
+    const {stateTable, updateTable, stateForm, updateForm} = tablePage
+
+    const handleClick = () => updateTable(draft => {
+        draft.dataSource = [{
+            firstName: 'John',
+            lastName: 'Brown',
+            age: 32,
+            address: 'New York No. 1 Lake Park',
+            tags: ['nice', 'developer'],
+        }]
+
+        updateForm(draft => {
+            stateForm.form?.setFieldsValue({
+                name: 1111
             })
+            const values = draft.form?.getFieldsValue()
+            console.log(values, 'valueeeeeeeee')
         })
-    }, 5000)
+    })
 
 
     return (
         <>
-
-            <DinertTablePage table={getTable} form={dinertForm}>
+            <Button onClick={handleClick}></Button>
+            <DinertTablePage table={stateTable} form={dinertForm}>
 
             </DinertTablePage>
         </>

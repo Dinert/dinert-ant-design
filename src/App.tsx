@@ -8,15 +8,15 @@ import './app.scss'
 function App() {
 
 
-  return (
-      <>
-          {/* <DinertForm>
+    return (
+        <>
+            {/* <DinertForm>
 
           </DinertForm>
           <DinertTable></DinertTable> */}
-          <DinertTablePage></DinertTablePage>
-      </>
-  )
+            <DinertTablePage></DinertTablePage>
+        </>
+    )
 }
 
 export default App

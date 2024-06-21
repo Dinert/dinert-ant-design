@@ -20,7 +20,7 @@ function App() {
         //     // name: 333
         // },
         packUp: true,
-        layout:'inline',
+        layout: 'inline',
         name: 'search',
         labelCol: {
             // span: 8
@@ -80,14 +80,14 @@ function App() {
 
     const name = Form.useWatch('name', dinertForm.form)
     const name2 = Form.useWatch('name5', dinertForm.form)
-  return (
-      <>
+    return (
+        <>
 
-          <DinertForm {...dinertForm}>
+            <DinertForm {...dinertForm}>
 
-          </DinertForm>
-      </>
-  )
+            </DinertForm>
+        </>
+    )
 }
 
 export default App

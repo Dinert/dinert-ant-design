@@ -19,7 +19,7 @@ export const firstUpperCase = (str: string) => {
 }
 
 // 重写判断类型
-export const type = (type: any) => {
+export const myType = (type: any) => {
     return Object.prototype.toString
         .call(type)
         .split(' ')[1]
