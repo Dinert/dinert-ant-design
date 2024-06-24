@@ -27,18 +27,19 @@ const objToArr = (formItem: CustomFormItemProps, form: RewriteFormProps) => {
 
         let rules = value.rules || []
         const placeholderObj = {placeholder: mapPlaceholder(value.type, value.label as string)}
+        const valueOptions = value.options ? {...placeholderObj, ...value.options} : placeholderObj
+        let valueRequired = value.required === undefined ? value.required || form.required : value.required
+        valueRequired = valueRequired === undefined ? valueRequired || form.required : valueRequired
+        const valueShowLabel = value.showLabel === undefined ? value.showLabel || form.showLabel : value.showLabel
 
-        value.options = value.options ? {...placeholderObj, ...value.options} : placeholderObj
-
-        value.required = value.required === undefined ? value.required || form.required : value.required
-        value.showLabel = value.showLabel === undefined ? value.showLabel || form.showLabel : value.showLabel
-
-        rules = value.required ? [{required: true}].concat(rules as any) : rules
-        rules = (value.showLabel || form.showLabel) ? [] : rules
+        rules = valueRequired ? [{required: true}].concat(rules as any) : rules
+        rules = (valueShowLabel || form.showLabel) ? [] : rules
 
 
         result.push({
             ...value,
+            options: valueOptions,
+            required: valueRequired,
             rules,
             key: key,
             sort: typeof value.sort === 'undefined' ? index : value.sort,
@@ -55,11 +56,12 @@ const objToArr = (formItem: CustomFormItemProps, form: RewriteFormProps) => {
 
 const mapComponents = (item: CustomFormItemProps) => {
     const {key, options} = item
+
     const obj: any = {
         'input': <Input {...options} allowClear key={key}></Input>,
         'input-search': <Input.Search {...options} allowClear key={key}></Input.Search>,
-        'textarea': <Input.TextArea style={{height: '120px', ...options.style}} {...options} allowClear key={key} ></Input.TextArea>,
-        'input-number': <InputNumber style={{width: '100%', ...options.style}} {...options} key={key} ></InputNumber>,
+        'textarea': <Input.TextArea style={{height: '120px'}} {...options} allowClear key={key} ></Input.TextArea>,
+        'input-number': <InputNumber style={{width: '100%'}} {...options} key={key} ></InputNumber>,
         'select': () => {
             const selectOptions: any[] = options.options || []
             return (<Select {...options} allowClear key={key}>
@@ -104,6 +106,7 @@ const FormItemC: React.FC<RewriteFormProps> = props => {
     return (
         <>
             {
+                // eslint-disable-next-line array-callback-return, consistent-return
                 formItemMap.map((item: CustomFormItemProps) => {
                     const {slot, showLabel, vif, ...rest} = item
                     let slotformItem = typeof slot === 'function' ? slot(rest) : slot
@@ -127,7 +130,6 @@ const FormItemC: React.FC<RewriteFormProps> = props => {
                             </Form.Item>
                         )
                     }
-
                 })
             }
 

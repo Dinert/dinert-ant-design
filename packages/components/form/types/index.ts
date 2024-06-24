@@ -39,7 +39,7 @@ export interface RewriteFormItemPropsMap{
     // 'rate': RewriteRewriteRateProps<O>;
 }
 
-export interface CustomFormItemProps<D = any, O = any[], N extends keyof RewriteFormItemPropsMap = any>  extends Partial<FormItemProps>{
+export interface CustomFormItemProps<D = any, O = any[], N extends keyof RewriteFormItemPropsMap = any> extends Partial<FormItemProps>{
     key?: any;
     tempKey?: any;
     type?: N extends keyof RewriteFormItemPropsMap ? N : keyof RewriteFormItemPropsMap;

@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 
-import {DinertTablePage} from '../packages/components/index'
+import {DinertForm, DinertTablePage} from '../packages/components/index'
 import {RewriteFormProps} from '@packages/components/form/types/index'
 
 import { Form, Button } from 'antd'
 import TablePage from '@packages/hooks/TablePage'
 import {useImmer} from 'use-immer'
+import { myType } from '@packages/utils/tools'
 
 
 interface Model{
@@ -95,7 +96,10 @@ function App() {
 
     const tablePage = new TablePage<any, any, any>({
         form: {
+            scrollToFirstError: true,
+            packUp: true,
             name: 'search',
+            layout: 'inline',
             formItem: {
                 name: {
                     type: 'input',
@@ -154,6 +158,7 @@ function App() {
                     }
                 }
             }
+
         },
         table: {
             scroll: {y: 'auto'},
@@ -197,31 +202,42 @@ function App() {
             rowKey: 'age'
         }
     })
-    const {stateTable, updateTable, stateForm, updateForm} = tablePage
+    const {stateTable, updateTable, stateForm, formInstance, updateForm} = tablePage
 
-    const handleClick = () => updateTable(draft => {
-        draft.dataSource = [{
-            firstName: 'John',
-            lastName: 'Brown',
-            age: 32,
-            address: 'New York No. 1 Lake Park',
-            tags: ['nice', 'developer'],
-        }]
+    const name = Form.useWatch('name', formInstance)
+    const handleClick = () => {
+        console.log(dinertForm, stateForm, '132131')
 
-        updateForm(draft => {
-            stateForm.form?.setFieldsValue({
-                name: 1111
-            })
-            const values = draft.form?.getFieldsValue()
-            console.log(values, 'valueeeeeeeee')
+
+        formInstance?.setFieldsValue({
+            name: '1321'
         })
-    })
+        const values = formInstance?.getFieldsValue()
+        console.log(values, 'valuesvalues')
+
+
+        updateTable(draft => {
+            if (draft.dataSource?.length === 0) {
+                draft.dataSource = [{
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 32,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                }]
+            } else {
+                draft.dataSource = []
+            }
+
+        })
+
+    }
 
 
     return (
         <>
-            <Button onClick={handleClick}></Button>
-            <DinertTablePage table={stateTable} form={dinertForm}>
+            <Button onClick={handleClick}>{name}</Button>
+            <DinertTablePage table={stateTable} form={{...stateForm, form: formInstance}}>
 
             </DinertTablePage>
         </>
