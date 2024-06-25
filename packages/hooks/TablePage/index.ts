@@ -1,12 +1,20 @@
 
 import type {DinertTablePageProps, AjaxTableProps} from './types'
-import { MutableRefObject, useRef } from 'react'
+import { MutableRefObject, useRef, useState, Dispatch, useEffect } from 'react'
 import lodash from 'lodash'
 import {TablePageResultProps} from '@packages/components/table-page/index'
 import {MergeProp} from '@packages/components/form/types/utils'
 import { useImmer, Updater } from 'use-immer'
 import {Form} from 'antd'
 import { myType } from '@packages/utils/tools'
+
+/**
+ * T 表格data数据格式
+ * D 表单model的数据格式
+ * FI 表单formItem的数据格式
+ * P 发起请求的数据格式
+ * R 请求回来的数据格式
+ */
 
 class TablePage<T, D = any, FI = any, P = object, R = any> {
     table: [DinertTablePageProps<T, D, FI>['table'], Updater<DinertTablePageProps<T, D, FI>['table']>]
@@ -20,10 +28,13 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
 
     options: DinertTablePageProps<T, D, FI>
 
-    ids: [string[], Updater<string[]>] = useImmer<string[]>([])
+    ids: [string[], Updater<string[]>]
+    stateIds: string[]
+    updateIds: Updater<string[]>
 
-    selecTableDatas: [T[], Updater<T[]>] = useImmer<T[]>([])
-    lastSelectDatas: [T[], Updater<T[]>] = useImmer<T[]>([])
+    selecTableDatas: [T[], Dispatch<T[]>]
+    stateSelecTableDatas: T[]
+    updateSelecTableDatas: Dispatch<T[]>
 
     params: P | any
     oldParams: P | any
@@ -33,18 +44,30 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
 
     private readonly defaultOptions: DinertTablePageProps<T, D, FI> = {
         table: {
+            rowSelection: {
+                onChange: (selectedRowKeys, selectedRows) => {
+                    this.updateIds(() => [...selectedRowKeys])
+                    this.updateSelecTableDatas([...selectedRows])
+                }
+            },
             tableColumns: [],
             dataSource: [],
-            rowKey: 'id'
+            rowKey: 'id',
+            pagination: {
+                current: 2
+            }
         },
         form: {
-            // form: Form.useForm()[0],
-            formItem: {}
+            initialValues: {},
+            formItem: {},
+            onSearch: () => this.search(),
+            onReset: () => this.resetSearch()
         }
     }
 
     private readonly firstOptions: DinertTablePageProps<T, D, FI> = {
         table: {
+            rowSelection: {},
             tableColumns: [],
             dataSource: [],
             rowKey: 'id'
@@ -70,6 +93,13 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
 
         this.formInstance = Form.useForm()[0]
 
+        this.ids = useImmer<string[]>([])
+        this.stateIds = this.ids[0]
+        this.updateIds = this.ids[1]
+
+        this.selecTableDatas = useState<T[]>([])
+        this.stateSelecTableDatas = this.selecTableDatas[0]
+        this.updateSelecTableDatas = this.selecTableDatas[1]
 
         this.params = {}
         this.oldParams = {}
@@ -84,6 +114,7 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
 
         if (typeof this.stateTable.pagination !== 'boolean' && this.stateTable.pagination) {
             const pageSize = this.stateTable.pagination.pageSize
+            console.log(pageSize, 'pageSizepageSize')
             this.updateTable(draft => {
                 (draft.pagination as any).pageSize = size
             })
@@ -105,12 +136,11 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
         if (options.name === 'search') {
             if (!isSame) {
                 this.updateTable(draft => {
-                    if (typeof this.stateTable.pagination !== 'boolean' && this.stateTable.pagination) {
-                        (draft.pagination as any).current = 1
+                    if (typeof draft.pagination !== 'boolean' && draft.pagination) {
+                        draft.pagination.current = 1
                     }
                     this.params = this.getTableParams(options)
                 })
-
             }
 
             this.oldParams = lodash.cloneDeep(this.params)
@@ -126,52 +156,15 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
                 }
                 this.params = this.getTableParams(options)
             }
-        } else if (options.name === 'current') {
-            if (this.oldParams.data && this.oldParams.data.pageNum) {
-                this.oldParams.data.pageNum = options.currentPage
-            } else if (this.oldParams.data && this.oldParams.data.page) {
-                this.oldParams.data.page = options.currentPage
-            } else if (this.oldParams.params && this.oldParams.params.page) {
-                this.oldParams.params.page = options.currentPage
-            } else if (this.oldParams.params && this.oldParams.params.pageNum) {
-                this.oldParams.params.pageNum = options.currentPage
-            }
-
-            if (this.oldParams.data && this.oldParams.data.pageSize) {
-                this.oldParams.data.pageSize = this.table.value.pagination.pageSize
-            } else if (this.oldParams.params && this.oldParams.params.pageSize) {
-                this.oldParams.params.pageSize = this.table.value.pagination.pageSize
-            }
-
-            this.params = lodash.cloneDeep(this.oldParams)
-        } else if (options.name === 'size') {
-            if (this.oldParams.data && this.oldParams.data.pageSize) {
-                this.oldParams.data.pageSize = options.pageSize
-            } else if (this.oldParams.params && this.oldParams.params.pageSize) {
-                this.oldParams.params.pageSize = options.pageSize
-            }
-
-            this.params = lodash.cloneDeep(this.oldParams)
+        } else if (['current', 'size', 'reset'].includes(options.name)) {
+            this.oldParams = lodash.cloneDeep(this.params)
         }
-        if (!['size', 'current'].includes(options.name || '') || !this.table.value.rowKey) {
-            this.selecTableDatas.value = []
+
+        if (!['size', 'current'].includes(options.name) || !this.stateTable.rowKey) {
+            this.updateSelecTableDatas([])
         }
 
         return this.params
-    }
-
-    // 查询
-    search(options: (P & AjaxTableProps) | any = {name: 'search'}) {
-
-        for (const prop in this.stateForm?.form) {
-            if ([null, undefined, ''].includes((this.stateForm?.form as any)[prop])) {
-                this.updateForm(draft => {
-                    delete (draft.form as any)[prop]
-                })
-            }
-        }
-
-        return this.getTableData(options)
     }
 
     async getTableData(options: (MergeProp<P, AjaxTableProps>)) {
@@ -191,11 +184,51 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
         })
     }
 
+    // 改变表格的参数
+    changeTableData(res: R | any) {
+        if (res && res.data && res.data.length) {
+            for (let i = 0; i < res.data.length; i++) {
+                res.data[i].index = i + 1 + (res.pageNum as number) * (res.pageSize as number)
+            }
+            this.updateTable(draft => {
+                draft.dataSource = res.data
+                if (draft.pagination && typeof draft.pagination !== 'boolean') {
+                    draft.pagination!.total = res.total
+                }
+            })
+        }
+    }
+
+    // 查询
+    search(options: (P & AjaxTableProps) | any = {name: 'search'}) {
+        console.log('aa')
+
+        return this.getTableData(options)
+    }
+
+    // 重置查询
+    resetSearch(options: (P & AjaxTableProps) | any = {name: 'reset'}) {
+        this.resetParams()
+        this.search(options)
+    }
+
+    // 重置表格请求参数
+    resetParams() {
+        this.formInstance?.resetFields()
+    }
+
+
     // 重置分页参数
     resetPagination() {
         this.updateTable(draft => {
-            draft.pagination = this.defaultOptions.table.pagination
+            draft.pagination = {...this.defaultOptions.table.pagination}
         })
+    }
+
+    // 根据key获取表格中的数据
+    getTableDataKeys(key: string) {
+        const ids = this.stateTable.dataSource?.map(item => (item as any)[key || (this.stateTable.rowKey as any)])
+        return ids
     }
 }
 

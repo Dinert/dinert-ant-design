@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {DinertForm, DinertTablePage} from '../packages/components/index'
 import {RewriteFormProps} from '@packages/components/form/types/index'
@@ -94,8 +94,9 @@ function App() {
         }
     })
 
-    const tablePage = new TablePage<any, any, any>({
+    const tablePage = new TablePage<Model, Model, any>({
         form: {
+            initialValues: {name: '1111'},
             scrollToFirstError: true,
             packUp: true,
             name: 'search',
@@ -161,6 +162,10 @@ function App() {
 
         },
         table: {
+            rowSelection: {
+                selections: false,
+                defaultSelectedRowKeys: [32]
+            },
             scroll: {y: 'auto'},
             tableColumns: [
                 {
@@ -202,11 +207,23 @@ function App() {
             rowKey: 'age'
         }
     })
-    const {stateTable, updateTable, stateForm, formInstance, updateForm} = tablePage
 
+    tablePage.getTableParams = () => {
+        console.log(stateTable.pagination, 'ccc')
+        return {
+            params: {
+                ...formInstance?.getFieldsValue()
+            },
+            condition: {
+                current: stateTable.pagination.current
+            }
+        }
+    }
+
+    const {stateTable, updateTable, stateForm, formInstance, updateForm, stateIds, stateSelecTableDatas} = tablePage
     const name = Form.useWatch('name', formInstance)
     const handleClick = () => {
-        console.log(dinertForm, stateForm, '132131')
+        console.log(stateIds, stateTable, '132131')
 
 
         formInstance?.setFieldsValue({
@@ -224,6 +241,20 @@ function App() {
                     age: 32,
                     address: 'New York No. 1 Lake Park',
                     tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 33,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
+                },
+                {
+                    firstName: 'John',
+                    lastName: 'Brown',
+                    age: 34,
+                    address: 'New York No. 1 Lake Park',
+                    tags: ['nice', 'developer'],
                 }]
             } else {
                 draft.dataSource = []
@@ -237,6 +268,9 @@ function App() {
     return (
         <>
             <Button onClick={handleClick}>{name}</Button>
+            {stateIds.join()}
+            {stateTable.pagination.current}
+            {JSON.stringify(stateSelecTableDatas)}
             <DinertTablePage table={stateTable} form={{...stateForm, form: formInstance}}>
 
             </DinertTablePage>
