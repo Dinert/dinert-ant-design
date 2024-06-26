@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import {DinertForm, DinertTablePage} from '../packages/components/index'
 import {RewriteFormProps} from '@packages/components/form/types/index'
@@ -210,22 +210,24 @@ function App() {
     })
 
     tablePage.getTableParams = () => {
-        console.log(stateTable, 'ccc')
+        const pagination = stateTableRef.current.pagination || {}
         return {
             params: {
                 ...formInstance?.getFieldsValue()
             },
             condition: {
-                current: stateTable.pagination.current
+                current: pagination.current
             }
         }
     }
 
-    const {stateTable, updateTable, stateForm, formInstance, updateForm, stateIds, stateSelecTableDatas} = tablePage
-    const name = Form.useWatch('name', formInstance)
+    const {
+        stateTable, stateTableRef, updateTable,
+        stateForm, formInstance, updateForm
+    } = tablePage
     const handleClick = () => {
-        console.log(stateIds, stateTable, '132131')
 
+        console.log(stateTable, '132131')
 
         formInstance?.setFieldsValue({
             name: '1321'
@@ -268,10 +270,7 @@ function App() {
 
     return (
         <>
-            <Button onClick={handleClick}>{name}</Button>
-            {stateIds.join()}
-            {stateTable.pagination.current}
-            {JSON.stringify(stateSelecTableDatas)}
+            <Button onClick={handleClick}>增加表格数据</Button>
             <DinertTablePage table={stateTable} form={{...stateForm, form: formInstance}}>
 
             </DinertTablePage>

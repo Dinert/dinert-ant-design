@@ -20,21 +20,25 @@ import { myType } from '@packages/utils/tools'
 class TablePage<T, D = any, FI = any, P = object, R = any> {
     table: [DinertTablePageProps<T, D, FI>['table'], Updater<DinertTablePageProps<T, D, FI>['table']>]
     stateTable: DinertTablePageProps<T, D, FI>['table']
+    stateTableRef: MutableRefObject<DinertTablePageProps<T, D, FI>['table']>
     updateTable: Updater<DinertTablePageProps<T, D, FI>['table']>
 
     form: [DinertTablePageProps<T, D, FI>['form'], Updater<DinertTablePageProps<T, D, FI>['form']>]
     formInstance: DinertTablePageProps<T, D, FI>['form']['form']
     stateForm: DinertTablePageProps<T, D, FI>['form']
+    stateFormRef: MutableRefObject<DinertTablePageProps<T, D, FI>['form']>
     updateForm: Updater<DinertTablePageProps<T, D, FI>['form']>
 
     options: DinertTablePageProps<T, D, FI>
 
     ids: [string[], Updater<string[]>]
     stateIds: string[]
+    stateIdsRef: MutableRefObject<string[]>
     updateIds: Updater<string[]>
 
     selecTableDatas: [T[], Dispatch<T[]>]
     stateSelecTableDatas: T[]
+    stateSelecTableDatasRef: MutableRefObject<T[]>
     updateSelecTableDatas: Dispatch<T[]>
 
     params: P | any
@@ -55,7 +59,10 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
             dataSource: [],
             rowKey: 'id',
             pagination: {
-                // current: 2
+                current: 1,
+                pageSize: 10,
+                total: 0,
+                pageSizeOptions: [10, 20, 30, 50, 100]
             }
         },
         form: {
@@ -87,23 +94,43 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
         this.table = useImmer<DinertTablePageProps<T, D, FI>['table']>(this.options.table)
         this.stateTable = this.table[0]
         this.updateTable = this.table[1]
+        this.stateTableRef = useRef({tableColumns: []})
 
         this.form = useImmer<DinertTablePageProps<T, D, FI>['form']>(this.options.form)
         this.stateForm = this.form[0]
+        this.stateFormRef = useRef({formItem: {}})
         this.updateForm = this.form[1]
 
         this.formInstance = Form.useForm()[0]
 
         this.ids = useImmer<string[]>([])
         this.stateIds = this.ids[0]
+        this.stateIdsRef = useRef([])
         this.updateIds = this.ids[1]
 
         this.selecTableDatas = useState<T[]>([])
         this.stateSelecTableDatas = this.selecTableDatas[0]
+        this.stateSelecTableDatasRef = useRef([])
         this.updateSelecTableDatas = this.selecTableDatas[1]
 
         this.params = {}
         this.oldParams = {}
+
+        useEffect(() => {
+            this.stateTableRef.current = this.stateTable
+        }, [this.stateTable])
+
+        useEffect(() => {
+            this.stateFormRef.current = this.stateForm
+        }, [this.stateForm])
+
+        useEffect(() => {
+            this.stateIdsRef.current = this.stateIds
+        }, [this.stateIds])
+
+        useEffect(() => {
+            this.stateSelecTableDatasRef.current = this.stateSelecTableDatas
+        }, [this.stateSelecTableDatas])
 
 
     }
@@ -114,12 +141,12 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
 
     sizeChange(size: number) {
 
-        if (typeof this.stateTable.pagination !== 'boolean' && this.stateTable.pagination) {
-            const pageSize = this.stateTable.pagination.pageSize
+        if (typeof this.stateTableRef.current.pagination !== 'boolean' && this.stateTableRef.current.pagination) {
+            const pageSize = (this.stateTableRef.current as any).pagination.pageSize
             this.updateTable(draft => {
                 (draft.pagination as any).pageSize = size
             })
-            const pagination = this.stateTable.pagination
+            const pagination = (this.stateTableRef.current as any).pagination
 
             if ((pageSize as any) > size || (pagination.current as any) <= Math.ceil((pagination.total as any) / (pagination.pageSize as any))) {
                 this.search({name: 'size', pageSize: size})
@@ -133,7 +160,6 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
         this.params = this.getTableParams(options)
 
         const isSame = lodash.isEqual(this.params, this.oldParams) // 判断当前提交的参数和上一次提交的参数是否相同
-
         if (options.name === 'search') {
             if (!isSame) {
                 this.updateTable(draft => {
@@ -152,10 +178,12 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
 
         } else if (options.name === 'delete') {
             if (this.stateTable.dataSource && this.stateTable.dataSource.length) {
-                if (this.stateTable.dataSource.length === 1 && myType(this.stateTable.pagination) === 'object' && (this.stateTable as any).pagination.current > 1) {
-                    (this.stateTable.pagination as any).current = 2
-                }
-                this.params = this.getTableParams(options)
+                this.updateTable(draft => {
+                    if (typeof draft.pagination !== 'boolean' && draft.pagination && (draft.pagination as any).current > 1) {
+                        draft.pagination.current = (draft.pagination as any).current - 1
+                    }
+                    this.params = this.getTableParams(options)
+                })
             }
         } else if (['current', 'size', 'reset'].includes(options.name)) {
             this.oldParams = lodash.cloneDeep(this.params)
@@ -202,7 +230,6 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
 
     // 查询
     search(options: (P & AjaxTableProps) | any = {name: 'search'}) {
-
         return this.getTableData(options)
     }
 
