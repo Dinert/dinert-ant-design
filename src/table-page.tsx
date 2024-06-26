@@ -7,6 +7,7 @@ import { Form, Button } from 'antd'
 import TablePage from '@packages/hooks/TablePage'
 import {useImmer} from 'use-immer'
 import { myType } from '@packages/utils/tools'
+import { table } from 'console'
 
 
 interface Model{
@@ -209,7 +210,7 @@ function App() {
     })
 
     tablePage.getTableParams = () => {
-        console.log(stateTable.pagination, 'ccc')
+        console.log(stateTable, 'ccc')
         return {
             params: {
                 ...formInstance?.getFieldsValue()

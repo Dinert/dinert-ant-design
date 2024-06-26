@@ -105,6 +105,10 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
         this.params = {}
         this.oldParams = {}
 
+        useEffect(() => {
+            console.log(this.stateTable, '11111111111111')
+        }, [this.stateTable])
+
 
     }
 
