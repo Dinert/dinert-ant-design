@@ -1,30 +1,30 @@
-# React + TypeScript + Vite
+# Vue3 components based on AntDesign secondary encapsulation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Tech Stack
+<a href="https://cn.vitejs.dev/">
+    <img src="https://img.shields.io/badge/vite-5.2.0-brightgreen" alt="vite">
+<a href="https://zh-hans.react.dev/">
+    <img src="https://img.shields.io/badge/react-18.2.0-brightgreen" alt="react">
+</a>
+</a>
+<a href="https://ant.design/index-cn">
+    <img src="https://img.shields.io/badge/AntDesign-5.18.0-brightgreen" alt="AntDesign">
+</a>
+<a href="https://lodash.com/docs/4.17.21">
+    <img src="https://img.shields.io/badge/lodash-4.17.21-brightgreen" alt="lodash">
+</a>
 
-Currently, two official plugins are available:
+## Getting Started
+https://dinert.github.io/dinert-ant-design/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+#### Using npm:
+```shell
+$ npm i lodash antd @dinert/ant-design
+$ yarn add lodash antd @dinert/ant-design
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### 交流
+
+- [点击链接加入群聊【dinert-ant-desgin交流群】：698069400](https://qm.qq.com/q/EPvdDeeVjM)
