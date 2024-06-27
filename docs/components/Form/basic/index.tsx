@@ -18,6 +18,7 @@ const App = () => {
         packUp: false,
         labelCol: {
         },
+        initialValues: {name: '222'},
         formItem: {
             name: {
                 type: 'input',
@@ -27,7 +28,7 @@ const App = () => {
                 },
                 vif() {
                     return true
-                },
+                }
             },
             name2: {
                 type: 'select',

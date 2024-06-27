@@ -109,7 +109,7 @@ const FormItemC: React.FC<RewriteFormProps> = props => {
                 // eslint-disable-next-line array-callback-return, consistent-return
                 formItemMap.map((item: CustomFormItemProps) => {
                     const {slot, showLabel, vif, ...rest} = item
-                    let slotformItem = typeof slot === 'function' ? slot(rest) : slot
+                    let slotformItem = typeof slot === 'function' ? slot({...rest, initialValues: reset.initialValues}) : slot
                     if (!slotformItem && !showLabel) {
                         rest.name = rest.key
                     }
