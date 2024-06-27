@@ -2,11 +2,11 @@
 layout: home
 
 title: Dinert
-titleTemplate: ElementPlus组件库
+titleTemplate: AntDesign组件库
 
 hero:
-  name: DinertElementPlus
-  text: 基于ElementPlus二次封装的组件库
+  name: DinertAntDesign
+  text: 基于AntDesign二次封装的组件库
   tagline: 开源、规范、可视化、可扩展
   actions:
     - theme: brand

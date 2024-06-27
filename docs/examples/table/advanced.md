@@ -8,7 +8,7 @@
     - ajaxTableData是获取你请求数据的参数
     - changeTableData改变自已的data数据还有分页的参数
 ```ts
-import {TablePage, DinertTablePageProps, AjaxTableProps} from '@dinert/element-plus'
+import {TablePage, DinertTablePageProps, AjaxTableProps} from '@dinert/ant-design'
 import axios from 'axios'
 
 

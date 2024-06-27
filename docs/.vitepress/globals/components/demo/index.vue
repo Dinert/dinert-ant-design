@@ -60,7 +60,7 @@ const decodedDescription = computed(() =>
 
 const decodeSource = computed(() => {
     let result = decodeURIComponent(source.value)
-    result = result.replace(packagesReg, '@dinert/element-plus')
+    result = result.replace(packagesReg, '@dinert/ant-design')
     return result
 })
 
@@ -70,7 +70,7 @@ const decodeRawSource = computed(() => {
         result = result.split('\n').join('')
     }
     // result = result.replace(packagesLine, '');
-    result = result.replace(packagesReg, '@dinert/element-plus')
+    result = result.replace(packagesReg, '@dinert/ant-design')
 
     return result
 })
@@ -80,7 +80,7 @@ const decodeCodeRawSource = computed(() => {
     if (process.env.NODE_ENV !== 'production') {
         result = result.split('\n').join('')
     }
-    result = result.replace(packagesReg, '@dinert/element-plus')
+    result = result.replace(packagesReg, '@dinert/ant-design')
     return result
 })
 

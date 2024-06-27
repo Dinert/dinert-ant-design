@@ -1,5 +1,5 @@
 import { Form, Button } from 'antd'
-import React, {useState} from 'react'
+import React, { useState} from 'react'
 
 import {RewriteFormProps} from '@packages/components/form/types/index'
 import FormItem from './formItem'
@@ -13,10 +13,9 @@ const FormC: React.FC<RewriteFormProps> = form => {
     const [formClass] = useState('form_' + getUuid())
 
     const [packUp, setPackUp] = useState(packUp2)
-    const [isArrow, setIsArrow] = useState(true)
+    const [isArrow, setIsArrow] = useState(false)
 
     const resizeForm = () => {
-
         let elFormLeft = document.querySelectorAll(`.${formClass} .ant-form-item > div`) as any
         if (elFormLeft[0]) {
             const firstTop = elFormLeft[0].getBoundingClientRect().top
@@ -46,10 +45,14 @@ const FormC: React.FC<RewriteFormProps> = form => {
         setPackUp(!packUp)
         onUnFold && onUnFold()
     }
-
+    let timer: any = null
     useWindowResize(() => {
         setIsArrow(false)
-        resizeForm()
+        timer = setTimeout(() => {
+            resizeForm()
+            clearTimeout(timer)
+            timer = null
+        })
     }, 50, true)
 
     return (
