@@ -1,10 +1,11 @@
 
-import { ForwardedRef, forwardRef } from "react"
+import React from 'react'
+import { ForwardedRef, forwardRef } from 'react'
 interface myRef<T> {
-  /**用myRef来代替原本的ref  */
+  /** 用myRef来代替原本的ref  */
   myRef?: ForwardedRef<T>;
 }
-/**创建使用forwardref的组件，且保留原组件的泛型。 代价是传递ref，得通过props - myRef
+/** 创建使用forwardref的组件，且保留原组件的泛型。 代价是传递ref，得通过props - myRef
  * - 使用 forwardRef 包裹后，泛型将丢失，所以多包裹一层，只是为了保留泛型。但是想传递ref就只能通过myRef传递，不能直接使用ref属性 ，因为会报错"ref不是props"
  * @param originalComponent 原组件，需要两个参数，第一个参数是props，第二个参数是ref。
  * @template T props的类型
@@ -20,11 +21,11 @@ interface myRef<T> {
  * 需要暴露数据给外部，就：
  * useImperativeHandle(ref, () => ({ xxxx })); //暴露出内部方法
  */
-const myForwardref = function <T, D>(originalComponent: (props: T, ref: ForwardedRef<D>) => JSX.Element) {
-  const ForwardRefComponent = forwardRef(originalComponent)
-  ForwardRefComponent.displayName = "ForwardRefComponent"
-  return function NewComponent(props: T & myRef<D>) {
-    return <ForwardRefComponent {...(props as any)} ref={props.myRef} />
-  }
+const myForwardref = function <T, D> (originalComponent: (props: T, ref: ForwardedRef<D>) => JSX.Element) {
+    const ForwardRefComponent = forwardRef(originalComponent)
+    ForwardRefComponent.displayName = 'ForwardRefComponent'
+    return function NewComponent(props: T & myRef<D>) {
+        return <ForwardRefComponent {...(props as any)} ref={props.myRef} />
+    }
 }
 export default myForwardref

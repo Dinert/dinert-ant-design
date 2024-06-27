@@ -6,7 +6,6 @@ import {TablePageResultProps} from '@packages/components/table-page/index'
 import {MergeProp} from '@packages/components/form/types/utils'
 import { useImmer, Updater } from 'use-immer'
 import {Form} from 'antd'
-import { myType } from '@packages/utils/tools'
 
 /**
  * T 表格data数据格式
@@ -73,23 +72,23 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
         }
     }
 
-    private readonly firstOptions: DinertTablePageProps<T, D, FI> = {
-        table: {
-            rowSelection: {},
-            tableColumns: [],
-            dataSource: [],
-            rowKey: 'id'
-        },
-        form: {
-            formItem: {}
-        }
-    }
+    // private readonly firstOptions: DinertTablePageProps<T, D, FI> = {
+    //     table: {
+    //         rowSelection: {},
+    //         tableColumns: [],
+    //         dataSource: [],
+    //         rowKey: 'id'
+    //     },
+    //     form: {
+    //         formItem: {}
+    //     }
+    // }
 
 
     constructor(options: DinertTablePageProps<T, D, FI>) {
         this.options = lodash.defaultsDeep(lodash.cloneDeep(options), this.defaultOptions)
 
-        this.firstOptions = lodash.cloneDeep(this.options)
+        // this.firstOptions = lodash.cloneDeep(this.options)
 
         this.table = useImmer<DinertTablePageProps<T, D, FI>['table']>(this.options.table)
         this.stateTable = this.table[0]

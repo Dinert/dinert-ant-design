@@ -8,11 +8,11 @@
 # 选择一个你喜欢的包管理器
 
 # NPM
-$ npm install lodash element-plus @dinert/ant-design
+$ npm install lodash ant-design @dinert/ant-design
 
 # Yarn
-$ yarn add lodash element-plus @dinert/ant-design
+$ yarn add lodash ant-design @dinert/ant-design
 
 # pnpm
-$ pnpm install lodash element-plus @dinert/ant-design
+$ pnpm install lodash ant-design @dinert/ant-design
 ```

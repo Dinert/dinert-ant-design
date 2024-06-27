@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 
 import DinertTable from '../packages/components/table/src/index'
 import type {RewriteTableProps} from '@packages/components/table/types/index'
-import { Button, Table } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
+
 function App() {
     const [talbe] = useState<RewriteTableProps>({
         rowSelection: {
