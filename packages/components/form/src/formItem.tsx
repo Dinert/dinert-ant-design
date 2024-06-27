@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import React from 'react'
 import { Form, Input, InputNumber, Radio, Select, SelectProps, RadioProps} from 'antd'
 
@@ -106,16 +107,15 @@ const FormItemC: React.FC<RewriteFormProps> = props => {
     return (
         <>
             {
-                // eslint-disable-next-line array-callback-return, consistent-return
                 formItemMap.map((item: CustomFormItemProps) => {
                     const {slot, showLabel, vif, ...rest} = item
-                    let slotformItem = typeof slot === 'function' ? slot({...rest, initialValues: reset.initialValues}) : slot
+                    let slotformItem = typeof slot === 'function' ? slot({...rest, initialValues: values}) : slot
                     if (!slotformItem && !showLabel) {
                         rest.name = rest.key
                     }
 
                     if (showLabel) {
-                        slotformItem = dataTransformRod(reset.initialValues && reset.initialValues[item.key])
+                        slotformItem = dataTransformRod(values && values[item.key])
                     }
 
                     slotformItem = slotformItem ? slotformItem : mapComponents(rest)
@@ -130,6 +130,7 @@ const FormItemC: React.FC<RewriteFormProps> = props => {
                             </Form.Item>
                         )
                     }
+                    return null
                 })
             }
 

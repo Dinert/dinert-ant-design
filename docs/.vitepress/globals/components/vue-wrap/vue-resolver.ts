@@ -1,7 +1,7 @@
-import { defineComponent, h } from "vue"
-import VueWrapper from "./index"
+import { defineComponent, h } from 'vue'
+import VueWrapper from './index'
 
-const VueResolver = (component) => {
+const VueResolver = component => {
     console.log(component, 'componenttt')
     return defineComponent({
         inheritAttrs: false,
