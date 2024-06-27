@@ -3,7 +3,7 @@
 # 开关
 
 ## 基础用法
-:::demo
+// :::demo
 
 Form/switch/index
 :::

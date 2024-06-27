@@ -4,7 +4,7 @@
 
 
 ## 基础用法
-:::demo
+// :::demo
 
 table-page/basic/index
 :::

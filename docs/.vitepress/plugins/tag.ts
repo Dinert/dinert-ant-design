@@ -1,4 +1,4 @@
-export default (md) => {
+export default md => {
     /**
      * To enable the plugin to be parsed in the demo description, the content is rendered as span instead of ElTag.
      */
@@ -17,12 +17,12 @@ export default (md) => {
         const tagRegExp = /^\^\(([^)]*)\)/
         const str = state.src.slice(state.pos, state.posMax)
 
-        if (!tagRegExp.test(str)) return false
-        if (silent) return true
+        if (!tagRegExp.test(str)) {return false}
+        if (silent) {return true}
 
         const result = str.match(tagRegExp)
 
-        if (!result) return false
+        if (!result) {return false}
 
         const token = state.push('tag', 'tag', 0)
         token.content = result[1].trim()

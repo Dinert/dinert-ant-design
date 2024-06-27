@@ -7,6 +7,7 @@ import '../assets/globals.scss'
 
 import VueDOMPurifyHTML from 'vue-dompurify-html'
 import globals from '../globals'
+import Icons from '@ant-design/icons/lib/icons'
 
 export default {
     ...DefaultTheme,
@@ -16,6 +17,7 @@ export default {
     // custom router. `siteData`` is a `ref`` of current site-level metadata.
         app.use(elementplus)
         app.use(VueDOMPurifyHTML)
+        app.use(Icons)
         app.use(globals)
     },
 }

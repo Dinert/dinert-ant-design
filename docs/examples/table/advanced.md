@@ -58,7 +58,7 @@ export default RewriteTablePage
 
 ## 配合TablePage使用
 - 当你调用tablePage.search这个方法后，一个表格查询页面就完成了，无需在分页时自已编写额外的逻辑
-:::demo
+// :::demo
 
 table/advanced/index
 

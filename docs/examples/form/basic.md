@@ -3,49 +3,49 @@
 # 基础用法
 
 ## 查询栏
-:::demo
+// :::demo
 
 Form/basic/index
 :::
 <!--
 ## 不同布局的组件
-:::demo
+// :::demo
 
 Form/basic/dialog
 :::
 
 ## 显示值
-:::demo
+// :::demo
 
 Form/basic/show-value
 :::
 
 ## 显示组件
-:::demo
+// :::demo
 
 Form/basic/linkage
 :::
 
 ## 禁用组件
-:::demo
+// :::demo
 
 Form/basic/disabled
 :::
 
 ## 组件排序
-:::demo
+// :::demo
 
 Form/basic/sort
 :::
 
 ## 自定义组件
-:::demo
+// :::demo
 
 Form/basic/custom
 :::
 
 ## 验证
-:::demo
+// :::demo
 
 Form/basic/vaildate
 ::: -->

@@ -3,7 +3,7 @@
 # 树型选择
 
 ## 基础用法
-:::demo
+// :::demo
 
 Form/tree-select/index
 :::

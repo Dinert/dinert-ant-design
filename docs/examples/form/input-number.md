@@ -3,7 +3,7 @@
 # 数字输入框
 
 ## 基础用法
-:::demo
+// :::demo
 
 Form/input-number/index
 :::
