@@ -175,11 +175,11 @@ const copyCode = async () => {
                     width="90%"
                 >
                     <div class="edit-code">
-                        <!-- <vue-live
+                        <vue-live
                             v-if="editDialogVisible"
                             :code="decodeRawSource"
                             @error="(e) => console.error('Error on first example', e)"
-                        /> -->
+                        />
                     </div>
                 </el-dialog>
             </div>

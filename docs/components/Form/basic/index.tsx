@@ -10,7 +10,13 @@ const App = () => {
         name: string;
         name2: string;
     }
-    const [dinertForm, setDinertForm] = useState<RewriteFormProps<Model>>({
+
+    interface FormItemProps{
+        name: 'input',
+        name2: 'select'
+    }
+
+    const [dinertForm, setDinertForm] = useState<RewriteFormProps<Model, FormItemProps>>({
         form: Form.useForm()[0],
         layout: 'inline',
         name: 'search',
@@ -24,7 +30,6 @@ const App = () => {
                 type: 'input',
                 label: '输入框',
                 options: {
-
                 },
                 vif() {
                     return true
