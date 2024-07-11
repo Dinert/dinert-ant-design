@@ -2,10 +2,7 @@
 import path from 'path'
 import {defineConfig} from 'vitepress'
 import react from '@vitejs/plugin-react'
-
-// import vueJsx from '@vitejs/plugin-vue-jsx' // 添加这一句
 import {mdPlugin} from './plugins/markdown-config'
-
 
 function _resolve(dir: string) {
     return path.resolve(__dirname, dir)
@@ -20,10 +17,11 @@ export default defineConfig({
             }
         },
         plugins: [
-            // vueJsx() as any,
-            react()
+            react(),
         ],
-
+        server: {
+            port: 8955
+        }
     },
 
     themeConfig: {

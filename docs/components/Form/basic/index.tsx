@@ -34,7 +34,6 @@ const App = () => {
                 type: 'select',
                 label: '选择框',
                 options: {
-
                     options: [
                         {value: 1, label: '222'},
                         {value: 2, label: '3333'},

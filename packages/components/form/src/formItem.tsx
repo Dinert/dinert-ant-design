@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import React from 'react'
-import { Form, Input, InputNumber, Radio, Select, SelectProps, RadioProps} from 'antd'
+import { Form, Input, InputNumber, Radio, Select, RadioProps} from 'antd'
 
 import { CustomFormItemProps, RewriteFormProps} from '@packages/components/form/types/index'
 import { dataTransformRod } from '@packages/utils/tools'
@@ -64,10 +64,10 @@ const mapComponents = (item: CustomFormItemProps) => {
         'textarea': <Input.TextArea style={{height: '120px'}} {...options} allowClear key={key} ></Input.TextArea>,
         'input-number': <InputNumber style={{width: '100%'}} {...options} key={key} ></InputNumber>,
         'select': () => {
-            const selectOptions: any[] = options.options || []
-            return (<Select {...options} allowClear key={key}>
+            const {options: selectOptions, ...resetSelect} = options
+            return (<Select {...resetSelect} allowClear key={key}>
                 {
-                    (selectOptions as Omit<SelectProps['options'], 'children'>[]).map((item2: any) => {
+                    selectOptions.map((item2: any) => {
                         return (
                             <Select.Option {...item2} key={item2[options.value || 'value']}></Select.Option>
                         )
@@ -97,7 +97,8 @@ const mapComponents = (item: CustomFormItemProps) => {
         }
     }
 
-    return typeof obj[item.type] === 'function' ? obj[item.type]() : obj[item.type]
+    const Com = typeof obj[item.type] === 'function' ? obj[item.type]() : obj[item.type]
+    return Com
 }
 
 const FormItemC: React.FC<RewriteFormProps> = props => {

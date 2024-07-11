@@ -1,6 +1,6 @@
-import { createElement } from "react"
+import { createElement } from 'react'
 import ReactDOM from 'react-dom/client'
-import { defineComponent, h, onMounted, ref } from "vue"
+import { defineComponent, h, onMounted, ref } from 'vue'
 
 // Vue 组件
 // eslint-disable-next-line react-refresh/only-export-components
@@ -11,7 +11,8 @@ export default defineComponent({
         const reactInstance = ref() // react dom root
         const { component, ...rest } = props // 接收的 React 组件
 
-        const setReactRef = ref => { react.value = ref }
+        // eslint-disable-next-line max-statements-per-line
+        const setReactRef = ref => {react.value = ref}
 
         onMounted(() => {
             // 创建 react 实例

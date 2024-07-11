@@ -10,9 +10,6 @@ import {useClipboard} from '@vueuse/core'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import {VueLive} from 'vue-live'
 import 'vue-live/style.css'
-// import {TablePage} from '../../../../../packages'
-import VueResolver from '../vue-wrap/vue-resolver'
-import VueWrap from '../vue-wrap/index'
 
 import {
     EditPen,
@@ -37,7 +34,7 @@ const props = withDefaults(defineProps<PropsType>(), {
 })
 
 const {description, source, rawSource} = toRefs(props)
-const demoComponents = ref()
+const demoComponents = shallowRef()
 const sourceVisible = ref(false)
 const editDialogVisible = ref(false)
 // const oldRawSource = ref(rawSource.value)
@@ -110,10 +107,9 @@ const copyCode = async () => {
                 <p text="dinertDemo-sm" v-html="decodedDescription"></p>
                 <div class="dinertDemo-example">
                     <div class="dinertDemo-example-component">
-                        <!-- <component :is="demoComponents" v-if="demoComponents"
+                        <component :is="demoComponents" v-if="demoComponents"
                             v-bind="$attrs"
-                        /> -->
-                        <VueWrap :component="demoComponents"></VueWrap>
+                        />
                     </div>
                     <ElDivider class="m-0"/>
                     <div class="dinertDemo-example-operations">
