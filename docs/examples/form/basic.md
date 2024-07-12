@@ -7,13 +7,14 @@
 
 Form/basic/index
 :::
-<!--
+
 ## 不同布局的组件
-// :::demo
+:::demo
 
 Form/basic/dialog
 :::
 
+<!--
 ## 显示值
 // :::demo
 

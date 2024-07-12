@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import React from 'react'
-import { Form, Input, InputNumber, Radio, Select, RadioProps} from 'antd'
+import { Form, Input, InputNumber, Radio, Select, RadioProps, Row, Col} from 'antd'
 
 import { CustomFormItemProps, RewriteFormProps} from '@packages/components/form/types/index'
 import { dataTransformRod } from '@packages/utils/tools'
@@ -106,7 +106,7 @@ const FormItemC: React.FC<RewriteFormProps> = props => {
     const formItemMap = objToArr(formItem, reset as RewriteFormProps)
     const values = reset.form?.getFieldsValue()
     return (
-        <>
+        <Row {...reset.row} className="dinert-form-row">
             {
                 formItemMap.map((item: CustomFormItemProps) => {
                     const {slot, showLabel, vif, ...rest} = item
@@ -126,16 +126,18 @@ const FormItemC: React.FC<RewriteFormProps> = props => {
 
                     if (vif2) {
                         return (
-                            <Form.Item className={[item.type, item.key] as any} {...rest} key={item.key}>
-                                {slotformItem}
-                            </Form.Item>
+                            <Col {...{span: reset.name !== 'search' ? 24 : undefined, ...reset.col, ...item.col}} key={item.key} className="dinert-form-row-col">
+                                <Form.Item className={[item.type, item.key] as any} {...rest} key={item.key}>
+                                    {slotformItem}
+                                </Form.Item>
+                            </Col>
                         )
                     }
                     return null
                 })
             }
+        </Row>
 
-        </>
     )
 }
 

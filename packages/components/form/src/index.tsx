@@ -1,4 +1,4 @@
-import { Form, Button } from 'antd'
+import { Form, Button} from 'antd'
 import React, { useState} from 'react'
 
 import {RewriteFormProps} from '@packages/components/form/types/index'
@@ -55,22 +55,21 @@ const FormC: React.FC<RewriteFormProps> = form => {
         })
     }, 50, true)
 
+    const packUpClass = name === 'search' ? packUp ? '' : 'packUp' : ''
     return (
-        <div className="dinert-form">
-            <Form {...reset} form={formInstance} className={[name, packUp ? '' : 'packUp', formClass] as any}>
-                {
-                    <FormItem {...form}></FormItem>
-                }
-            </Form>
+        <Form {...reset} form={formInstance} className={['dinert-form', name, packUpClass, formClass] as any}>
+            {
+                <FormItem {...form}></FormItem>
+            }
             {
                 name === 'search'
               && (<div className={['dinert-form-operations', isArrow ? 'isArrow' : ''].join(' ')}>
-                  {isArrow && <Button className="dinert-form-operations-isArrow" onClick={unfold} type="link" icon={packUp ? <UpOutlined/> : <DownOutlined/>}>{packUp ? '收起' : '展开'}</Button>}
+                  {isArrow && <Button className="dinert-form-operations-isArrow" onClick={unfold} type="link" icon={packUp ? <UpOutlined/>   : <DownOutlined/>}>{packUp ? '收起' : '展开'}</Button>}
                   <Button type="primary" onClick={searchFn}>查询</Button>
                   <Button type="default" onClick={resetFn} style={{marginLeft: '12px'}}>重置</Button>
               </div>)
             }
-        </div>
+        </Form>
 
     )
 }

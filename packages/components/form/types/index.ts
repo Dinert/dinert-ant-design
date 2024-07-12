@@ -1,4 +1,4 @@
-import {FormItemProps, FormProps } from 'antd'
+import {ColProps, FormItemProps, FormProps, RowProps } from 'antd'
 import {MergeProp} from './utils'
 import {
     RewriteInputProps,
@@ -49,6 +49,7 @@ export interface CustomFormItemProps<D = any, O = any[], N extends keyof Rewrite
     showLabel?: boolean;
     required?: boolean;
     initialValues?: D
+    col?: ColProps
     slot?: string | ((formItem: CustomFormItemProps<D, O, N>) => any)
 }
 
@@ -64,6 +65,8 @@ export interface RewriteFormProps<D = any, FI = any> extends FormProps{
     required?: boolean
     showLabel?: boolean
     name?: 'search' | 'horizontal';
+    row?: RowProps;
+    col?: ColProps;
     packUp?: boolean;
     onSearch?: () => void
     onReset?: () => void
