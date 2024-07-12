@@ -11,9 +11,26 @@
         &.ant-form-horizontal{
             width: 100%;
         }
-
+        .ant-col-24{
+            display: flex;
+        }
         .ant-form-item{
             width: 100%;
+            flex: 0 0 100%;
+            .ant-form-item-label{
+                // flex: 0 0 auto;
+                // display: block;
+                // width: auto;
+                label{
+                    // width: auto;
+                    // overflow: hidden;
+                    // white-space: wrap;
+                    // text-overflow: ellipsis;
+                }
+            }
+            // .ant-form-item-control{
+            //     flex: 1 1 auto;
+            // }
         }
 
 

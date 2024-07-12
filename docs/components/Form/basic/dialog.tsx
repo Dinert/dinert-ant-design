@@ -31,7 +31,6 @@ const App = () => {
         labelCol: {
         },
         wrapperCol: {
-            // flex: 'auto'
         },
         formItem: {
             name: {
@@ -57,7 +56,7 @@ const App = () => {
             },
             status: {
                 type: 'select',
-                label: '选择框哈哈哈',
+                label: '选择框哈',
                 options: {
                     options: [
                         {value: 1, label: '222'},

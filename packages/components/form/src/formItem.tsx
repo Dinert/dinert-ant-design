@@ -106,7 +106,7 @@ const FormItemC: React.FC<RewriteFormProps> = props => {
     const formItemMap = objToArr(formItem, reset as RewriteFormProps)
     const values = reset.form?.getFieldsValue()
     return (
-        <Row {...reset.row} className="dinert-form-row">
+        <Row {...{gutter: 24, ...reset.row}} className="dinert-form-row">
             {
                 formItemMap.map((item: CustomFormItemProps) => {
                     const {slot, showLabel, vif, ...rest} = item
