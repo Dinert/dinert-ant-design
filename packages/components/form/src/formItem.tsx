@@ -105,9 +105,7 @@ const FormItemC: React.FC<RewriteFormProps> = props => {
     const {formItem, ...reset} = props
     const formItemMap = objToArr(formItem, reset as RewriteFormProps)
 
-    const values = Form.useWatch(values => {
-        return {...reset.initialValues, ...reset.form?.getFieldsValue(), ...values}
-    }, reset.form) || {}
+    const values = Form.useWatch(values => values, reset.form) || {}
 
     return (
         <Row {...{gutter: reset.name === 'search' ? 0 : 24, ...reset.row}} className="dinert-form-row">
