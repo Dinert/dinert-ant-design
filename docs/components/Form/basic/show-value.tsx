@@ -10,26 +10,25 @@ const App = () => {
         name: string;
         name2: string;
         name3: string;
-        status: string;
+        status: number;
     }
 
     interface FormItemProps{
         name: 'input';
         name2: 'input';
         name3: 'input';
-        status: 'select'
+        status: 'select';
+        status2: 'input';
     }
 
     const [dinertForm, setDinertForm] = useState<RewriteFormProps<Model, FormItemProps>>({
-        form: Form.useForm()[0],
+        form: Form.useForm<Model>()[0],
         scrollToFirstError: true,
         packUp: false,
-        initialValues: {},
-        col: {
-        },
-        labelCol: {
-        },
-        wrapperCol: {
+        initialValues: {
+            name: '123',
+            name3: '哈哈',
+            status: 1
         },
         formItem: {
             name: {
@@ -40,34 +39,34 @@ const App = () => {
             },
             name2: {
                 type: 'input',
-                label: '名称2',
+                label: '无值',
                 options: {
                 },
-                col: {
-                    span: 12
-                }
+                showLabel: true
             },
             name3: {
                 type: 'input',
-                label: '名称3',
+                label: '显示值',
                 options: {
                 },
-                col: {
-                    span: 12
-                }
+                showLabel: true
             },
             status: {
                 type: 'select',
-                label: '选择框哈',
+                label: '组件联动',
                 options: {
                     options: [
                         {value: 1, label: '222'},
                         {value: 2, label: '3333'},
                     ]
                 },
-                col: {
-                    span: 24
-                }
+            },
+            status2: {
+                type: 'input',
+                label: '显示',
+                vif(model) {
+                    return model.status === 1
+                },
             }
         },
         onSearch() {
@@ -77,10 +76,21 @@ const App = () => {
             console.log('重置')
         }
     })
+    setTimeout(() => {
+        setDinertForm({
+            ...dinertForm,
+        })
+        dinertForm.form?.setFieldsValue({
+            status: 2,
+        })
+    }, 3000)
 
     return (
-        <DinertForm {...dinertForm}>
-        </DinertForm>
+        <>
+            <DinertForm {...dinertForm}>
+
+            </DinertForm>
+        </>
     )
 }
 

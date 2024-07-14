@@ -109,7 +109,8 @@ function App() {
                     options: {
 
                     },
-                    vif() {
+                    vif(model) {
+                        console.log(model, 'modellllllllll')
                         return true
                     },
                 },

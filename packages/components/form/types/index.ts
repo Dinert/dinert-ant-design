@@ -60,8 +60,9 @@ type FormItemMap<D, FI> = {
     [P in keyof ToModelItem<D, FI>]: CustomFormItemProps<MergeProp<D, FI>, any[], ToModelItem<D, FI>[P] extends keyof RewriteFormItemPropsMap ? ToModelItem<D, FI>[P] : keyof RewriteFormItemPropsMap>;
 }
 
-export interface RewriteFormProps<D = any, FI = any> extends FormProps{
+export interface RewriteFormProps<D = any, FI = any> extends Omit<FormProps, 'initialValues'>{
     formItem: Partial<FormItemMap<D, FI>>
+    initialValues: Partial<D>,
     required?: boolean
     showLabel?: boolean
     name?: 'search' | 'horizontal';

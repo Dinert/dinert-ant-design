@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return */
-import React from 'react'
+import React, { useState } from 'react'
 import { Form, Input, InputNumber, Radio, Select, RadioProps, Row, Col} from 'antd'
 
 import { CustomFormItemProps, RewriteFormProps} from '@packages/components/form/types/index'
@@ -104,11 +104,17 @@ const mapComponents = (item: CustomFormItemProps) => {
 const FormItemC: React.FC<RewriteFormProps> = props => {
     const {formItem, ...reset} = props
     const formItemMap = objToArr(formItem, reset as RewriteFormProps)
-    const values = reset.form?.getFieldsValue()
+
+    const values = Form.useWatch(values => {
+        return {...reset.initialValues, ...reset.form?.getFieldsValue(), ...values}
+    }, reset.form) || {}
+
     return (
-        <Row {...{gutter: 24, ...reset.row}} className="dinert-form-row">
+        <Row {...{gutter: reset.name === 'search' ? 0 : 24, ...reset.row}} className="dinert-form-row">
             {
                 formItemMap.map((item: CustomFormItemProps) => {
+
+
                     const {slot, showLabel, vif, ...rest} = item
                     let slotformItem = typeof slot === 'function' ? slot({...rest, initialValues: values}) : slot
                     if (!slotformItem && !showLabel) {

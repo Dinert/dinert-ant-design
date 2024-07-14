@@ -14,13 +14,14 @@ Form/basic/index
 Form/basic/dialog
 :::
 
-<!--
+
 ## 显示值
-// :::demo
+:::demo
 
 Form/basic/show-value
 :::
 
+<!--
 ## 显示组件
 // :::demo
 
