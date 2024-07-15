@@ -78,7 +78,7 @@ const App = () => {
                 options: {
                     options: [
                         {value: 1, label: '显示'},
-                        {value: 2, label: '禁用'},
+                        {value: 2, label: '隐藏'},
                     ]
                 },
             },

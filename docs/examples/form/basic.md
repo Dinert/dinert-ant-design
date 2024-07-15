@@ -21,18 +21,15 @@ Form/basic/dialog
 Form/basic/show-value
 :::
 
-<!--
-## 显示组件
-// :::demo
 
-Form/basic/linkage
-:::
 
 ## 禁用组件
-// :::demo
+:::demo
 
 Form/basic/disabled
 :::
+
+<!--
 
 ## 组件排序
 // :::demo
