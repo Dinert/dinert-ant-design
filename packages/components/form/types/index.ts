@@ -43,7 +43,7 @@ export interface CustomFormItemProps<D = any, O = any[], N extends keyof Rewrite
     key?: any;
     tempKey?: any;
     type?: N extends keyof RewriteFormItemPropsMap ? N : keyof RewriteFormItemPropsMap;
-    vif?: boolean | ((model: D) => boolean);
+    vif?: boolean | ((initialValues: D) => boolean);
     sort?: number;
     options?: RewriteFormItemPropsMap[N];
     showLabel?: boolean;
