@@ -47,6 +47,9 @@ const App = () => {
             name3: {
                 type: 'input',
                 label: '显示值',
+                slot(formItem) {
+                    return <div>{formItem.initialValues && formItem.initialValues[formItem.key]}</div>
+                },
                 options: {
                 },
                 showLabel: true
@@ -77,11 +80,10 @@ const App = () => {
         }
     })
     setTimeout(() => {
-        setDinertForm({
-            ...dinertForm,
-        })
+
         dinertForm.form?.setFieldsValue({
             status: 2,
+            name3: '11111111111111'
         })
     }, 3000)
 

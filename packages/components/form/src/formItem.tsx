@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return */
-import React, { useState } from 'react'
+import React from 'react'
 import { Form, Input, InputNumber, Radio, Select, RadioProps, Row, Col} from 'antd'
 
 import { CustomFormItemProps, RewriteFormProps} from '@packages/components/form/types/index'
@@ -44,6 +44,7 @@ const objToArr = (formItem: CustomFormItemProps, form: RewriteFormProps) => {
             rules,
             key: key,
             sort: typeof value.sort === 'undefined' ? index : value.sort,
+            name: key
         })
         index += 10
     })
@@ -104,7 +105,6 @@ const mapComponents = (item: CustomFormItemProps) => {
 const FormItemC: React.FC<RewriteFormProps> = props => {
     const {formItem, ...reset} = props
     const formItemMap = objToArr(formItem, reset as RewriteFormProps)
-
     const values = Form.useWatch(values => values, reset.form) || {}
 
     return (
@@ -114,13 +114,11 @@ const FormItemC: React.FC<RewriteFormProps> = props => {
 
 
                     const {slot, showLabel, vif, ...rest} = item
-                    let slotformItem = typeof slot === 'function' ? slot({...rest, initialValues: values}) : slot
-                    if (!slotformItem && !showLabel) {
-                        rest.name = rest.key
-                    }
 
-                    if (showLabel) {
-                        slotformItem = dataTransformRod(values && values[item.key])
+                    let slotformItem = typeof slot === 'function' ? <div className="ant-form-item-control-input-content-text">{slot({...rest, initialValues: values})}</div> : slot
+
+                    if (showLabel && !slotformItem) {
+                        slotformItem = <div className="ant-form-item-control-input-content-text">{dataTransformRod(values && values[item.key])}</div>
                     }
 
                     slotformItem = slotformItem ? slotformItem : mapComponents(rest)
@@ -131,6 +129,7 @@ const FormItemC: React.FC<RewriteFormProps> = props => {
                     if (vif2) {
                         return (
                             <Col {...{span: reset.name !== 'search' ? 24 : undefined, ...reset.col, ...item.col}} key={item.key} className="dinert-form-row-col">
+
                                 <Form.Item className={[item.type, item.key] as any} {...rest} key={item.key}>
                                     {slotformItem}
                                 </Form.Item>
