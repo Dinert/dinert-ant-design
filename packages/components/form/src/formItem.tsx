@@ -19,7 +19,7 @@ const mapPlaceholder = (type: string = 'input', label: string = '') => {
 
     return placeholder[type] + label || ''
 }
-const objToArr = (formItem: CustomFormItemProps, form: RewriteFormProps) => {
+const objToArr = <D, >(formItem: CustomFormItemProps, form: RewriteFormProps, values: D) => {
     let index = 0
     const result: any = []
     Object.keys(formItem).forEach(key => {
@@ -27,7 +27,7 @@ const objToArr = (formItem: CustomFormItemProps, form: RewriteFormProps) => {
         const value = (formItem as any)[key] as Partial<CustomFormItemProps>
 
         let rules = value.rules || []
-        const placeholderObj = {placeholder: mapPlaceholder(value.type, value.label as string)}
+        const placeholderObj = {placeholder: mapPlaceholder(value.type, typeof value.label === 'function' ? value.label({...value, initialValues: values}) : value.label)}
         const valueOptions = value.options ? {...placeholderObj, ...value.options} : placeholderObj
         let valueRequired = value.required === undefined ? value.required || form.required : value.required
         valueRequired = valueRequired === undefined ? valueRequired || form.required : valueRequired
@@ -65,10 +65,11 @@ const mapComponents = (item: CustomFormItemProps) => {
         'textarea': <Input.TextArea style={{height: '120px'}} {...options} allowClear key={key} ></Input.TextArea>,
         'input-number': <InputNumber style={{width: '100%'}} {...options} key={key} ></InputNumber>,
         'select': () => {
-            const {options: selectOptions, ...resetSelect} = options
+            const {...resetSelect} = options
+
             return (<Select {...resetSelect} allowClear key={key}>
                 {
-                    selectOptions.map((item2: any) => {
+                    resetSelect.options.map((item2: any) => {
                         return (
                             <Select.Option {...item2} key={item2[options.value || 'value']}></Select.Option>
                         )
@@ -104,8 +105,8 @@ const mapComponents = (item: CustomFormItemProps) => {
 
 const FormItemC: React.FC<RewriteFormProps> = props => {
     const {formItem, ...reset} = props
-    const formItemMap = objToArr(formItem, reset as RewriteFormProps)
     const values = Form.useWatch(values => values, reset.form) || {}
+    const formItemMap = objToArr(formItem, reset as RewriteFormProps, values)
 
     return (
         <Row {...{gutter: reset.name === 'search' ? 0 : 24, ...reset.row}} className="dinert-form-row">
@@ -127,10 +128,12 @@ const FormItemC: React.FC<RewriteFormProps> = props => {
                     vif2 = vif2 === undefined ? true : vif2
 
                     if (vif2) {
+                        const itemLabel = typeof rest.label === 'function' ? rest.label({...rest, initialValues: values}) : rest.label
+
                         return (
                             <Col {...{span: reset.name !== 'search' ? 24 : undefined, ...reset.col, ...item.col}} key={item.key} className="dinert-form-row-col">
 
-                                <Form.Item className={[item.type, item.key] as any} {...rest} key={item.key}>
+                                <Form.Item className={[item.type, item.key] as any} {...rest} label={itemLabel} key={item.key}>
                                     {slotformItem}
                                 </Form.Item>
                             </Col>

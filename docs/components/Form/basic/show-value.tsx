@@ -11,12 +11,16 @@ const App = () => {
         name2: string;
         name3: string;
         status: number;
+        name4: number;
+        name5: string;
     }
 
     interface FormItemProps{
         name: 'input';
         name2: 'input';
         name3: 'input';
+        name4: 'select';
+        name5: 'input';
         status: 'select';
         status2: 'input';
     }
@@ -33,7 +37,7 @@ const App = () => {
         formItem: {
             name: {
                 type: 'input',
-                label: '名称1',
+                label: '名称',
                 options: {
                 }
             },
@@ -54,13 +58,27 @@ const App = () => {
                 },
                 showLabel: true
             },
+            name4: {
+                type: 'select',
+                label: 'label联动',
+                options: {
+                    options: [
+                        {value: 1, label: 'label1'},
+                        {value: 2, label: 'label2'},
+                    ]
+                }
+            },
+            name5: {
+                type: 'input',
+                label: ({initialValues}) => {return initialValues?.name4 === 1 ? '动态切换' : '动态切换状态'},
+            },
             status: {
                 type: 'select',
                 label: '组件联动',
                 options: {
                     options: [
-                        {value: 1, label: '222'},
-                        {value: 2, label: '3333'},
+                        {value: 1, label: '显示'},
+                        {value: 2, label: '禁用'},
                     ]
                 },
             },
@@ -79,13 +97,7 @@ const App = () => {
             console.log('重置')
         }
     })
-    setTimeout(() => {
 
-        dinertForm.form?.setFieldsValue({
-            status: 2,
-            name3: '11111111111111'
-        })
-    }, 3000)
 
     return (
         <>

@@ -25,12 +25,6 @@ const App = () => {
         scrollToFirstError: true,
         packUp: false,
         initialValues: {},
-        col: {
-        },
-        labelCol: {
-        },
-        wrapperCol: {
-        },
         formItem: {
             name: {
                 type: 'input',
