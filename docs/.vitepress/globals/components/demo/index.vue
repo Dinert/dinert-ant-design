@@ -19,6 +19,10 @@ import {
 } from '@element-plus/icons-vue'
 import {getModule} from '../../../utils/module'
 import {$message} from '../../../utils/message'
+import * as veaury from 'veaury'
+import ZhComponentsReact from './zh-components'
+const {applyReactInVue} = veaury
+const ZhComponents = typeof applyReactInVue === 'function' && applyReactInVue(ZhComponentsReact)
 
 interface PropsType {
     description?: string
@@ -107,9 +111,10 @@ const copyCode = async () => {
                 <p text="dinertDemo-sm" v-html="decodedDescription"></p>
                 <div class="dinertDemo-example">
                     <div class="dinertDemo-example-component">
-                        <component :is="demoComponents" v-if="demoComponents"
-                            v-bind="$attrs"
-                        />
+                        <ZhComponents>
+                            <component :is="demoComponents" v-if="demoComponents" v-bind="$attrs"/>
+                        </ZhComponents>
+
                     </div>
                     <ElDivider class="m-0"/>
                     <div class="dinertDemo-example-operations">
