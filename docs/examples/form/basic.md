@@ -29,25 +29,27 @@ Form/basic/show-value
 Form/basic/disabled
 :::
 
-<!--
 
 ## 组件排序
-// :::demo
+:::demo
 
 Form/basic/sort
 :::
 
+
 ## 自定义组件
-// :::demo
+:::demo
 
 Form/basic/custom
 :::
 
+
+
 ## 验证
-// :::demo
+:::demo
 
 Form/basic/vaildate
-::: -->
+:::
 
 <!-- @include: ./explain.md -->
 

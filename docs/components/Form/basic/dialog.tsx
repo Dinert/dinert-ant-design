@@ -63,12 +63,6 @@ const App = () => {
                     span: 24
                 }
             }
-        },
-        onSearch() {
-            console.log('查询')
-        },
-        onReset() {
-            console.log('重置')
         }
     })
 

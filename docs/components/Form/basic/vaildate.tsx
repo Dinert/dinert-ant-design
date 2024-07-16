@@ -2,7 +2,7 @@ import {DinertForm, RewriteFormProps} from '../../../../packages'
 
 import React, { forwardRef, useState } from 'react'
 
-import {Form } from 'antd'
+import {Button, Col, Form } from 'antd'
 
 const App = () => {
 
@@ -25,30 +25,25 @@ const App = () => {
         scrollToFirstError: true,
         packUp: false,
         initialValues: {},
-        disabled: true,
+        required: true,
         formItem: {
             name: {
                 type: 'input',
                 label: '名称1',
                 options: {
-                    disabled: false
                 },
+                required: false
             },
             name2: {
                 type: 'input',
                 label: '名称2',
                 options: {
-                },
-                col: {
                 }
             },
             name3: {
                 type: 'input',
                 label: '名称3',
                 options: {
-                },
-                col: {
-                    span: 12
                 }
             },
             status: {
@@ -59,17 +54,33 @@ const App = () => {
                         {value: 1, label: '222'},
                         {value: 2, label: '3333'},
                     ]
-                },
-                col: {
-                    span: 12
                 }
             }
-        }
+        },
+        onReset() {
+            console.log('取消')
+        },
+
+        onSearch() {
+            console.log('提交')
+
+            dinertForm.form?.validateFields().then(() => {
+                console.log('验证成功')
+            }).catch(() => {
+                console.log('验证失败')
+            })
+        },
     })
 
     return (
-        <DinertForm {...dinertForm}>
-        </DinertForm>
+        <>
+            <DinertForm {...dinertForm}>
+            </DinertForm>
+            <Col style={{textAlign: 'center', marginBottom: '24px'}}>
+                <Button style={{marginRight: '20px'}} onClick={dinertForm.onReset}>取消</Button>
+                <Button type="primary" onClick={dinertForm.onSearch}>提交</Button>
+            </Col>
+        </>
     )
 }
 

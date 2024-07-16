@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import React from 'react'
-import { Form, Input, InputNumber, Radio, Select, RadioProps, Row, Col} from 'antd'
+import { Form, Input, InputNumber, Radio, Select, RadioProps, Row, Col, Space, Button} from 'antd'
 
 import { CustomFormItemProps, RewriteFormProps} from '@packages/components/form/types/index'
 import { dataTransformRod } from '@packages/utils/tools'
@@ -113,7 +113,6 @@ const FormItemC: React.FC<RewriteFormProps> = props => {
             {
                 formItemMap.map((item: CustomFormItemProps) => {
 
-
                     const {slot, showLabel, vif, ...rest} = item
 
                     let slotformItem = typeof slot === 'function' ? <div className="ant-form-item-control-input-content-text">{slot({...rest, initialValues: values})}</div> : slot
@@ -132,7 +131,6 @@ const FormItemC: React.FC<RewriteFormProps> = props => {
 
                         return (
                             <Col {...{span: reset.name !== 'search' ? 24 : undefined, ...reset.col, ...item.col}} key={item.key} className="dinert-form-row-col">
-
                                 <Form.Item className={[item.type, item.key] as any} {...rest} label={itemLabel} key={item.key}>
                                     {slotformItem}
                                 </Form.Item>

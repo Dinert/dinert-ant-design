@@ -25,30 +25,25 @@ const App = () => {
         scrollToFirstError: true,
         packUp: false,
         initialValues: {},
-        disabled: true,
         formItem: {
             name: {
                 type: 'input',
                 label: '名称1',
                 options: {
-                    disabled: false
                 },
             },
             name2: {
                 type: 'input',
-                label: '名称2',
+                label: '排第一',
+                sort: -10,
                 options: {
                 },
-                col: {
-                }
             },
             name3: {
                 type: 'input',
-                label: '名称3',
+                label: '排第二',
+                sort: -1,
                 options: {
-                },
-                col: {
-                    span: 12
                 }
             },
             status: {
@@ -59,9 +54,6 @@ const App = () => {
                         {value: 1, label: '222'},
                         {value: 2, label: '3333'},
                     ]
-                },
-                col: {
-                    span: 12
                 }
             }
         }

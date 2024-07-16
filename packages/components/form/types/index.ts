@@ -50,7 +50,7 @@ export interface CustomFormItemProps<D = any, O = any[], N extends keyof Rewrite
     required?: boolean;
     initialValues?: D
     col?: ColProps
-    slot?: string | ((formItem: CustomFormItemProps<D, O, N>) => any)
+    slot?: any | ((formItem: CustomFormItemProps<D, O, N>) => any)
     label?: string | ((formItem: CustomFormItemProps<D, O, N>) => any)
 }
 
