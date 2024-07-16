@@ -6,8 +6,6 @@ import {RewriteFormProps} from '@packages/components/form/types/index'
 import { Form, Button } from 'antd'
 import TablePage from '@packages/hooks/TablePage'
 import {useImmer} from 'use-immer'
-import { myType } from '@packages/utils/tools'
-import { table } from 'console'
 
 
 interface Model{
@@ -20,7 +18,7 @@ interface Model{
     name7: string;
 }
 
-function App() {
+const App = () => {
 
 
     const [dinertForm, setDinertForm] = useState<RewriteFormProps<Model>>({

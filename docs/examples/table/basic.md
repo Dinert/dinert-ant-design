@@ -3,11 +3,13 @@
 # 表格
 
 ## 基础用法
-// :::demo
 
+:::demo
 table/basic/index
 :::
 
+
+<!--
 ## 多级表头
 // :::demo
 
@@ -36,7 +38,7 @@ table/basic/show-operations
 // :::demo
 
 table/basic/pagination
-:::
+::: -->
 
 
 <!-- @include: ./explain.md -->

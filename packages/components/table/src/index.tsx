@@ -38,9 +38,8 @@ const DinertTable = forwardRef<TableResultProps, RewriteTableProps>((props: Rewr
         }
     })
 
-
     return (
-        <Table {...{...reset, scroll: {...reset.scroll, y: scrollY || '100%'}}} className={tableClass} ref={tableRef}>
+        <Table {...{...reset, scroll: {...reset.scroll, y: scrollY || '100%' }}} className={tableClass} ref={tableRef}>
             {RecuveTableColumn(props)}
         </Table>
     )

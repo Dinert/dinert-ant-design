@@ -110,7 +110,8 @@ const copyCode = async () => {
             <div class="dinertDemo">
                 <p text="dinertDemo-sm" v-html="decodedDescription"></p>
                 <div class="dinertDemo-example">
-                    <div class="dinertDemo-example-component">
+                    <div class="dinertDemo-example-component vp-raw">
+
                         <ZhComponents>
                             <component :is="demoComponents" v-if="demoComponents" v-bind="$attrs"/>
                         </ZhComponents>
@@ -259,6 +260,16 @@ const copyCode = async () => {
     &-example {
         &-component {
             padding: 0 16px;
+
+            & > div {
+                width: 100%;
+                & > div{
+                    width: 100%;
+                    & > div{
+                        width: 100%;
+                    }
+                }
+            }
         }
 
         .el-divider {

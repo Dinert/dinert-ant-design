@@ -118,26 +118,26 @@ export default defineConfig({
 
                             ]
                         },
-                        // {
-                        //     text: 'Table（表格）',
-                        //     target: '/examples/table/basic',
-                        //     collapsed: true,
-                        //     base: '/examples/table/',
-                        //     items: [
-                        //         {
-                        //             text: '基础用法',
-                        //             link: 'basic',
-                        //         },
-                        //         {
-                        //             text: '高级用法',
-                        //             link: 'advanced',
-                        //         },
-                        //         {
-                        //             text: '属性',
-                        //             link: 'explain',
-                        //         }
-                        //     ]
-                        // },
+                        {
+                            text: 'Table（表格）',
+                            target: '/examples/table/basic',
+                            collapsed: true,
+                            base: '/examples/table/',
+                            items: [
+                                {
+                                    text: '基础用法',
+                                    link: 'basic',
+                                },
+                                // {
+                                //     text: '高级用法',
+                                //     link: 'advanced',
+                                // },
+                                // {
+                                //     text: '属性',
+                                //     link: 'explain',
+                                // }
+                            ]
+                        },
                         // {
                         //     text: 'TablePage（表格查询）',
                         //     target: '/examples/table-page/basic',
