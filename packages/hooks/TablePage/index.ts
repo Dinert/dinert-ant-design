@@ -97,7 +97,7 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
 
         this.form = useImmer<DinertTablePageProps<T, D, FI>['form']>(this.options.form)
         this.stateForm = this.form[0]
-        this.stateFormRef = useRef({formItem: {}})
+        this.stateFormRef = useRef({formItem: {}, initialValues: {}})
         this.updateForm = this.form[1]
 
         this.formInstance = Form.useForm()[0]

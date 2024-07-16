@@ -95,7 +95,7 @@ function App() {
         }
     })
 
-    const tablePage = new TablePage<Model, Model, any>({
+    const tablePage = new TablePage<any, Model, any>({
         form: {
             initialValues: {name: '1111'},
             scrollToFirstError: true,
