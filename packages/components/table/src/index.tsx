@@ -40,6 +40,16 @@ const DinertTable = forwardRef<TableResultProps, RewriteTableProps>((props: Rewr
 
     return (
         <Table {...{...reset, scroll: {...reset.scroll, y: scrollY || '100%' }}} className={tableClass} ref={tableRef}>
+            {
+                reset.rowIndex && <Table.Column {... {
+                    dataIndex: 'index',
+                    title: '序号',
+                    width: 80,
+                    align: 'center',
+                    render: (text, record, index) => `${index + 1}`,
+                    ...reset.rowIndex as any
+                }}></Table.Column>
+            }
             {RecuveTableColumn(props)}
         </Table>
     )

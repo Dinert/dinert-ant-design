@@ -9,13 +9,14 @@ table/basic/index
 :::
 
 
-<!--
+
 ## 多级表头
-// :::demo
+:::demo
 
 table/basic/multiple-header
 :::
 
+<!--
 ## 插槽
 // :::demo
 

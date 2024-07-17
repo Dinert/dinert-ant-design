@@ -21,10 +21,7 @@ export interface OperationsProps<T = any> extends Partial<ButtonProps>{
 }
 
 export interface RewriteTableColumnCtx<T=any> extends Omit<Partial<TableColumnProps<T>>, 'children'>{
-    type?: 'default' | 'selection' | 'index' | 'expand';
-    checked?: boolean;
     show?: boolean | ((column: RewriteTableColumnCtx<T>) => boolean);
-    setting?: boolean;
     maxOperations?: number;
     operations?: Record<string, OperationsProps<T>>;
     sort?: number;
@@ -45,6 +42,7 @@ export interface RewriteTableProps<T = any> extends TableProps<T> {
     errData?: string;
     setting?: boolean;
     key?: any;
+    rowIndex?: Partial<RewriteTableColumnCtx<T>>;
     class?: string;
 }
 

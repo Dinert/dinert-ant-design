@@ -259,17 +259,8 @@ const copyCode = async () => {
 
     &-example {
         &-component {
-            padding: 0 16px;
+            padding: 0 16px 16px;
 
-            & > div {
-                width: 100%;
-                & > div{
-                    width: 100%;
-                    & > div{
-                        width: 100%;
-                    }
-                }
-            }
         }
 
         .el-divider {

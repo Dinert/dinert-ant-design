@@ -2,7 +2,7 @@ import { ConfigProvider } from 'antd'
 import zhCN from 'antd/locale/zh_CN'
 // for date-picker i18n
 import 'dayjs/locale/zh-cn'
-import React, { forwardRef } from 'react'
+import React from 'react'
 
 const App = (props: any) => {
     return (
@@ -12,4 +12,4 @@ const App = (props: any) => {
     )
 }
 
-export default forwardRef<any, any>(App)
+export default App
