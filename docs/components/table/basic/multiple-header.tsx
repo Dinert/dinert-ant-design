@@ -43,13 +43,6 @@ function App() {
             },
         ],
         tableColumns: [
-            // {
-            //     dataIndex: 'index',
-            //     title: '序号',
-            //     width: 80,
-            //     align: 'center',
-            //     render: (text, record, index) => `${index + 1}`
-            // },
             {
                 dataIndex: 'date',
                 title: '时间',
