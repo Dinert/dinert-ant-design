@@ -16,12 +16,13 @@ table/basic/index
 table/basic/multiple-header
 :::
 
-<!--
 ## 插槽
-// :::demo
+:::demo
 
 table/basic/slot-use
 :::
+
+<!--
 
 ## 头部操作栏
 // :::demo
