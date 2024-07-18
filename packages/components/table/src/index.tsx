@@ -9,6 +9,7 @@ import { getUuid } from '@packages/utils/tools'
 import { resizeTaleHeight } from '../hooks'
 import useWindowResize from '@packages/hooks/useWindowResize'
 import { TableRef } from 'antd/es/table'
+import './table.scss'
 
 export interface TableResultProps {
     resizeTable:() => void,
@@ -39,7 +40,7 @@ const DinertTable = forwardRef<TableResultProps, RewriteTableProps>((props: Rewr
     })
 
     return (
-        <Table {...{...reset, scroll: {...reset.scroll, y: scrollY || '100%' }}} className={tableClass} ref={tableRef}>
+        <Table {...{...reset, scroll: {...reset.scroll, y: scrollY || '100%' }}} className={[tableClass, 'dinert-table'].join(' ')} ref={tableRef}>
             {
                 reset.rowIndex && <Table.Column {... {
                     dataIndex: 'index',

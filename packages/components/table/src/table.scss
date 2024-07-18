@@ -1,0 +1,9 @@
+.dinert-table.ant-table-wrapper{
+    .ant-table-cell{
+        &.operations{
+            button{
+                padding: 0 6px;
+            }
+        }
+    }
+}

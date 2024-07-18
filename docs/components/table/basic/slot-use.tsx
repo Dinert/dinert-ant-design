@@ -54,11 +54,13 @@ function App() {
                 width: 200,
                 operations: {
                     add: {
+                        message: '增加',
                         onClick() {
-                            console.log('aaaa')
+                            console.log('addd')
                         }
                     },
-                    edit: {}
+                    edit: {
+                    }
                 }
             }
         ]

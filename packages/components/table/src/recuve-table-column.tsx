@@ -2,10 +2,10 @@
 
 import React from 'react'
 import type {RewriteTableProps} from '@packages/components/table/types/index'
-import {Button, message, Table} from 'antd'
+import {Button, Table} from 'antd'
+
 
 const mapMessage: {[key: string]: string} = {
-    add: '新增',
     edit: '编辑',
 }
 
@@ -24,8 +24,8 @@ const RecuveTableColumn: React.FC<RewriteTableProps> = props => {
                         for (const prop in operations) {
                             const {message, ...operationsReset} = operations[prop]
                             let tempMessage = typeof message === 'function' ? message({...reset, key: prop}) : message
-                            tempMessage = mapMessage[prop] || tempMessage
-                            operationsDom.push(<Button type="link" key={prop} {...operationsReset}>{tempMessage}</Button>)
+                            tempMessage = mapMessage[prop] || tempMessage as string
+                            operationsDom.push(<Button type="link" key={prop} onClick={() => operationsReset.onClick && operationsReset.onClick(reset as any)} {...operationsReset}>{tempMessage}</Button>)
                         }
                         reset.render = () => <>{operationsDom}</>
                     }
@@ -38,7 +38,7 @@ const RecuveTableColumn: React.FC<RewriteTableProps> = props => {
                         )
                     } else {
 
-                        return (<Table.Column {...{...reset}} key={reset.dataIndex}></Table.Column>)
+                        return (<Table.Column {...{...reset, className: reset.dataIndex + ' ' + reset.className}} key={reset.dataIndex}></Table.Column>)
                     }
 
                 })

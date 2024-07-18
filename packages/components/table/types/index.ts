@@ -23,6 +23,7 @@ export interface OperationsProps<T = any> extends Partial<ButtonProps>{
 export interface RewriteTableColumnCtx<T=any> extends Omit<Partial<TableColumnProps<T>>, 'children'>{
     checked?: boolean;
     show?: boolean | ((column: RewriteTableColumnCtx<T>) => boolean);
+    onClick?: (column: RewriteTableColumnCtx<T>) => void
     setting?: boolean;
     maxOperations?: number;
     operations?: Record<string, OperationsProps<T>>;

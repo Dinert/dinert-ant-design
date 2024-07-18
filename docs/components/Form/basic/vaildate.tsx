@@ -59,6 +59,7 @@ const App = () => {
         },
         onReset() {
             console.log('取消')
+            dinertForm.form?.resetFields()
         },
 
         onSearch() {
