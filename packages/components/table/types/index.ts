@@ -12,19 +12,21 @@ export interface ScopeProps<T = any> {
     _self: any;
 }
 
-export interface OperationsProps<T = any> extends Partial<ButtonProps>{
-    message?: string | ((column: RewriteTableColumnCtx<T>) => void);
-    show?: boolean | ((scope: ScopeProps<T>, column: RewriteTableColumnCtx<T>, item: OperationsProps<T>) => boolean);
-    click?: (scope: ScopeProps<T>, column: RewriteTableColumnCtx<T>, item: OperationsProps<T>) => void;
+export interface OperationsProps<T = any> extends Partial<Omit<ButtonProps, 'onClick'>>{
+    message?: string | ((column: RewriteTableColumnCtx<T>, value: any, rows: T, index: number) => void);
+    onClick?: (column: RewriteTableColumnCtx<T> & {event: React.MouseEvent<HTMLElement, MouseEvent>, button?: OperationsProps<T>}, value: any, rows: T, index: number) => any
     sort?: number;
+    second?: boolean | 'messageBox';
     confirm?: Partial<PopconfirmProps>;
+    // messageBox?: Partial<ElMessageBoxOptions>;
 }
 
 export interface RewriteTableColumnCtx<T=any> extends Omit<Partial<TableColumnProps<T>>, 'children'>{
     checked?: boolean;
     show?: boolean | ((column: RewriteTableColumnCtx<T>) => boolean);
+    // hidden?: boolean | ((column: RewriteTableColumnCtx<T>, value: any, rows: T, index: number) => boolean)
     onClick?: (column: RewriteTableColumnCtx<T>) => void
-    setting?: boolean;
+    // setting?: boolean;
     maxOperations?: number;
     operations?: Record<string, OperationsProps<T>>;
     sort?: number;

@@ -10,6 +10,12 @@ table/basic/index
 
 
 
+## 序号
+:::demo
+
+table/basic/serial
+:::
+
 ## 多级表头
 :::demo
 

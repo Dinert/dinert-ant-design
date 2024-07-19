@@ -3,8 +3,14 @@ import React, { useState } from 'react'
 import {DinertTable, RewriteTableProps} from '../../../../packages'
 import { Button } from 'antd'
 
+interface Model {
+    date: string;
+    name: string;
+    address: string;
+  }
+
 function App() {
-    const [stateTable] = useState<RewriteTableProps>({
+    const [stateTable] = useState<RewriteTableProps<Model>>({
         rowSelection: {
         },
         tableLayout: 'fixed',
@@ -40,7 +46,7 @@ function App() {
             {
                 dataIndex: 'name',
                 title: '名称',
-                render(value, record, index) {
+                render(value) {
                     return <Button type="primary">{value}</Button>
                 },
             },
@@ -53,13 +59,27 @@ function App() {
                 title: '操作',
                 width: 200,
                 operations: {
-                    add: {
-                        message: '增加',
-                        onClick() {
-                            console.log('addd')
-                        }
+                    view: {
+                        message: '查看',
+                        onClick(column) {
+                            console.log(column, 'columnnnnnnn')
+                        },
+
                     },
                     edit: {
+                        onClick(column) {
+                            console.log(column, 'columnnnnnn')
+                        },
+                    },
+                    delete: {
+                        onClick() {
+                            console.log('删除')
+                        },
+                        confirm: {
+                            onCancel() {
+                                console.log('取消')
+                            },
+                        }
                     }
                 }
             }

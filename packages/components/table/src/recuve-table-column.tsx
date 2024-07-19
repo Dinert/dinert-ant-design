@@ -2,11 +2,20 @@
 
 import React from 'react'
 import type {RewriteTableProps} from '@packages/components/table/types/index'
-import {Button, Table} from 'antd'
+import {Button, Table, Popconfirm} from 'antd'
+import { dataTransformRod } from '@packages/utils/tools'
 
 
-const mapMessage: {[key: string]: string} = {
+const mapButtonText: Record<string, string> = {
+    view: '查看',
     edit: '编辑',
+    delete: '删除',
+    remove: '删除'
+}
+
+const mapStatus: Record<string, any> = {
+    delete: true,
+    remove: true
 }
 
 const RecuveTableColumn: React.FC<RewriteTableProps> = props => {
@@ -18,16 +27,40 @@ const RecuveTableColumn: React.FC<RewriteTableProps> = props => {
                     const {children, ...reset} = item
                     const dataIndex = reset.dataIndex
                     const operations = reset.operations
-                    const operationsDom: any[] = []
+                    let columnRender: typeof reset.render
 
                     if (dataIndex === 'operations' && operations) {
-                        for (const prop in operations) {
-                            const {message, ...operationsReset} = operations[prop]
-                            let tempMessage = typeof message === 'function' ? message({...reset, key: prop}) : message
-                            tempMessage = mapMessage[prop] || tempMessage as string
-                            operationsDom.push(<Button type="link" key={prop} onClick={() => operationsReset.onClick && operationsReset.onClick(reset as any)} {...operationsReset}>{tempMessage}</Button>)
+                        columnRender = (value, record, index) => {
+                            const operationsDom: any[] = []
+
+                            for (const prop in operations) {
+                                const {message: originButtonText, onClick, ...operationsReset} = operations[prop]
+                                let buttonText = typeof originButtonText === 'function' ? originButtonText({...item}, value, record, index) : originButtonText
+                                buttonText = mapButtonText[prop] || buttonText as string
+
+
+                                let second = operationsReset.second
+                                second = prop === 'delete' ? second || true : second
+
+                                const butttonDom = <Button type="link" key={prop}
+                                    onClick={event => !second && onClick && onClick({...item, event, button: operations[prop]}, value, record, index)}
+                                    {...{...operationsReset, danger: mapStatus[prop]}}
+                                >{buttonText}</Button>
+
+                                const popConfirmDom = <Popconfirm
+                                    description={`确定要${buttonText}该条数据吗？`}
+                                    title="警告"
+                                    onConfirm={event => onClick && onClick({...item, button: operations[prop], event: event as React.MouseEvent<HTMLElement, MouseEvent>}, value, record, index)}
+                                    {...operationsReset.confirm} key={prop}>{butttonDom}</Popconfirm>
+
+                                operationsDom.push(second ? popConfirmDom : butttonDom)
+                            }
+                            return <>{operationsDom}</>
                         }
-                        reset.render = () => <>{operationsDom}</>
+                    } else {
+                        columnRender = value => {
+                            return dataTransformRod(value)
+                        }
                     }
 
                     if (children && children.length) {
@@ -38,7 +71,12 @@ const RecuveTableColumn: React.FC<RewriteTableProps> = props => {
                         )
                     } else {
 
-                        return (<Table.Column {...{...reset, className: reset.dataIndex + ' ' + reset.className}} key={reset.dataIndex}></Table.Column>)
+                        return (<Table.Column {...{
+                            ...reset,
+                            className: reset.dataIndex + ' ' + reset.className,
+                            render: reset.render || columnRender
+                        }}
+                        key={reset.dataIndex}></Table.Column>)
                     }
 
                 })
