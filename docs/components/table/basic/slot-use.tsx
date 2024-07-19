@@ -72,8 +72,8 @@ function App() {
                         },
                     },
                     delete: {
-                        onClick() {
-                            console.log('删除')
+                        onClick(column) {
+                            console.log(column, '删除')
                         },
                         confirm: {
                             onCancel() {
