@@ -1,7 +1,7 @@
 
 
 import React from 'react'
-import type {RewriteTableProps} from '@packages/components/table/types/index'
+import type {OperationsProps, RewriteTableProps} from '@packages/components/table/types/index'
 import {Button, Table, Popconfirm} from 'antd'
 import { dataTransformRod } from '@packages/utils/tools'
 
@@ -26,35 +26,48 @@ const RecuveTableColumn: React.FC<RewriteTableProps> = props => {
                 tableColumns.map(item => {
                     const {children, ...reset} = item
                     const dataIndex = reset.dataIndex
-                    const operations = reset.operations
+                    const operations: OperationsProps[] = []
                     let columnRender: typeof reset.render
+                    for (const prop in reset.operations) {
+                        operations.push({
+                            ...reset.operations[prop],
+                            key: prop as any
+                        })
+                    }
 
                     if (dataIndex === 'operations' && operations) {
                         columnRender = (value, record, index) => {
                             const operationsDom: any[] = []
-
-                            for (const prop in operations) {
-                                const {message: originButtonText, onClick, ...operationsReset} = operations[prop]
+                            operations.forEach(operationItem => {
+                                const {message: originButtonText, key: operationItemKey, onClick, ...operationsReset} = operationItem
                                 let buttonText = typeof originButtonText === 'function' ? originButtonText({...item}, value, record, index) : originButtonText
-                                buttonText = mapButtonText[prop] || buttonText as string
+                                buttonText = mapButtonText[operationItem.key] || buttonText as string
 
 
                                 let second = operationsReset.second
-                                second = prop === 'delete' ? second || true : second
+                                second = operationItem.key === 'delete' ? second || true : second
 
-                                const butttonDom = <Button type="link" key={prop}
-                                    onClick={event => !second && onClick && onClick({...item, event, button: operations[prop]}, value, record, index)}
-                                    {...{...operationsReset, danger: mapStatus[prop]}}
+                                const butttonDom = <Button
+                                    type="link"
+                                    key={operationItemKey}
+                                    onClick={event => !second && onClick && onClick({...item, event, button: operationItem}, value, record, index)}
+                                    {...{...operationsReset, danger: mapStatus[operationItem.key]}}
                                 >{buttonText}</Button>
 
                                 const popConfirmDom = <Popconfirm
+                                    key={operationItemKey}
                                     description={`确定要${buttonText}该条数据吗？`}
                                     title="警告"
-                                    onConfirm={event => onClick && onClick({...item, button: operations[prop], event: event as React.MouseEvent<HTMLElement, MouseEvent>}, value, record, index)}
-                                    {...operationsReset.confirm} key={prop}>{butttonDom}</Popconfirm>
+                                    onConfirm={event => onClick && onClick({...item, button: operationItem, event: event as React.MouseEvent<HTMLElement, MouseEvent>}, value, record, index)}
+                                    {...operationsReset.confirm}>{butttonDom}</Popconfirm>
 
                                 operationsDom.push(second ? popConfirmDom : butttonDom)
-                            }
+                            })
+
+                            operations.sort((a: any, b: any) => {
+                                return a.sort - b.sort
+                            })
+
                             return <>{operationsDom}</>
                         }
                     } else {

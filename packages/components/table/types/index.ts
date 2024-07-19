@@ -18,6 +18,7 @@ export interface OperationsProps<T = any> extends Partial<Omit<ButtonProps, 'onC
     sort?: number;
     second?: boolean | 'messageBox';
     confirm?: Partial<PopconfirmProps>;
+    key?: any;
     // messageBox?: Partial<ElMessageBoxOptions>;
 }
 
