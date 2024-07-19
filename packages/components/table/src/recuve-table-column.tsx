@@ -50,7 +50,7 @@ const RecuveTableColumn: React.FC<RewriteTableProps> = props => {
                                 const butttonDom = <Button
                                     type="link"
                                     key={operationItemKey}
-                                    onClick={event => !second && onClick && onClick({...item, event, button: operationItem}, value, record, index)}
+                                    onClick={event => !second && onClick && onClick({...item, event, button: {message: buttonText, ...operationItem}}, value, record, index)}
                                     {...{...operationsReset, danger: mapStatus[operationItem.key]}}
                                 >{buttonText}</Button>
 
@@ -58,7 +58,7 @@ const RecuveTableColumn: React.FC<RewriteTableProps> = props => {
                                     key={operationItemKey}
                                     description={`确定要${buttonText}该条数据吗？`}
                                     title="警告"
-                                    onConfirm={event => onClick && onClick({...item, button: operationItem, event: event as React.MouseEvent<HTMLElement, MouseEvent>}, value, record, index)}
+                                    onConfirm={event => onClick && onClick({...item, button: {message: buttonText, ...operationItem}, event: event as React.MouseEvent<HTMLElement, MouseEvent>}, value, record, index)}
                                     {...operationsReset.confirm}>{butttonDom}</Popconfirm>
 
                                 operationsDom.push(second ? popConfirmDom : butttonDom)
