@@ -61,12 +61,14 @@ function App() {
                 operations: {
                     view: {
                         message: '查看',
+                        second: true,
                         onClick(column) {
                             console.log(column, 'columnnnnnnn')
                         },
 
                     },
                     edit: {
+                        second: 'messageBox',
                         onClick(column) {
                             console.log(column, 'columnnnnnn')
                         },
@@ -79,6 +81,16 @@ function App() {
                             onCancel() {
                                 console.log('取消')
                             },
+                        }
+                    },
+                    below: {
+                        message: '下发指令'
+                    },
+                    below2: {
+                        message: '停止下发指令',
+                        second: 'messageBox',
+                        onClick() {
+
                         }
                     }
                 }

@@ -1,4 +1,4 @@
-import type {TableProps, TableColumnProps, ButtonProps, PopconfirmProps} from 'antd'
+import type {TableProps, TableColumnProps, ButtonProps, PopconfirmProps, MenuProps, ModalProps} from 'antd'
 
 export type Mutable<T> = {
     -readonly [K in keyof T]: T[K];
@@ -19,7 +19,7 @@ export interface OperationsProps<T = any> extends Partial<Omit<ButtonProps, 'onC
     second?: boolean | 'messageBox';
     confirm?: Partial<PopconfirmProps>;
     key?: any;
-    // messageBox?: Partial<ElMessageBoxOptions>;
+    modal?: Partial<ModalProps>;
 }
 
 export interface RewriteTableColumnCtx<T=any> extends Omit<Partial<TableColumnProps<T>>, 'children'>{

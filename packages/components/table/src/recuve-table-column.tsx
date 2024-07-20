@@ -2,8 +2,9 @@
 
 import React from 'react'
 import type {OperationsProps, RewriteTableProps} from '@packages/components/table/types/index'
-import {Button, Table, Popconfirm} from 'antd'
+import {Button, Table, Popconfirm, Space, Typography, Popover, Modal} from 'antd'
 import { dataTransformRod } from '@packages/utils/tools'
+import { DownOutlined } from '@ant-design/icons'
 
 
 const mapButtonText: Record<string, string> = {
@@ -20,6 +21,7 @@ const mapStatus: Record<string, any> = {
 
 const RecuveTableColumn: React.FC<RewriteTableProps> = props => {
     const {tableColumns, ...tableReset} = props
+
     return (
         <>
             {
@@ -27,7 +29,10 @@ const RecuveTableColumn: React.FC<RewriteTableProps> = props => {
                     const {children, ...reset} = item
                     const dataIndex = reset.dataIndex
                     const operations: OperationsProps[] = []
+                    let maxOperations = reset.maxOperations || 3
+
                     let columnRender: typeof reset.render
+
                     for (const prop in reset.operations) {
                         operations.push({
                             ...reset.operations[prop],
@@ -35,38 +40,104 @@ const RecuveTableColumn: React.FC<RewriteTableProps> = props => {
                         })
                     }
 
+                    const operationsLen = operations.length
+                    maxOperations = operationsLen > maxOperations ? maxOperations - 1 : maxOperations
+
+
+                    operations.sort((a: any, b: any) => {
+                        return a.sort - b.sort
+                    })
                     if (dataIndex === 'operations' && operations) {
                         columnRender = (value, record, index) => {
                             const operationsDom: any[] = []
-                            operations.forEach(operationItem => {
-                                const {message: originButtonText, key: operationItemKey, onClick, ...operationsReset} = operationItem
+                            const defaultOperations = operations.slice(0, maxOperations)
+                            const moreOperations = operations.slice(maxOperations, operations.length)
+
+                            defaultOperations.forEach(operationItem => {
+                                const {message: originButtonText, second: operationItemSecond, key: operationItemKey, onClick, ...operationsReset} = operationItem
                                 let buttonText = typeof originButtonText === 'function' ? originButtonText({...item}, value, record, index) : originButtonText
                                 buttonText = mapButtonText[operationItem.key] || buttonText as string
 
-
-                                let second = operationsReset.second
-                                second = operationItem.key === 'delete' ? second || true : second
+                                let second = operationItemSecond
+                                second = mapStatus[operationItem.key] ? second || true : second
 
                                 const butttonDom = <Button
                                     type="link"
                                     key={operationItemKey}
-                                    onClick={event => !second && onClick && onClick({...item, event, button: {message: buttonText, ...operationItem}}, value, record, index)}
+                                    onClick={event => {
+                                        if (second === 'messageBox') {
+                                            Modal.confirm({
+                                                title: '警告',
+                                                content: `确定要${buttonText}该条数据吗？`,
+                                                onOk() {
+                                                    onClick && onClick({...item, event, button: {message: buttonText, ...operationItem}}, value, record, index)
+                                                },
+                                                ...operationItem.modal
+                                            })
+                                        } else {
+                                            onClick && onClick({...item, event, button: {message: buttonText, ...operationItem}}, value, record, index)
+                                        }
+                                    }
+                                    }
                                     {...{...operationsReset, danger: mapStatus[operationItem.key]}}
                                 >{buttonText}</Button>
 
-                                const popConfirmDom = <Popconfirm
+                                const popconfirmDom = <Popconfirm
                                     key={operationItemKey}
                                     description={`确定要${buttonText}该条数据吗？`}
                                     title="警告"
                                     onConfirm={event => onClick && onClick({...item, button: {message: buttonText, ...operationItem}, event: event as React.MouseEvent<HTMLElement, MouseEvent>}, value, record, index)}
                                     {...operationsReset.confirm}>{butttonDom}</Popconfirm>
 
-                                operationsDom.push(second ? popConfirmDom : butttonDom)
+
+                                operationsDom.push(typeof second === 'boolean' && second ? popconfirmDom : butttonDom)
                             })
 
-                            operations.sort((a: any, b: any) => {
-                                return a.sort - b.sort
-                            })
+                            if (moreOperations && moreOperations.length) {
+                                const moreOperationsDom: any[] = []
+                                moreOperations.forEach(operationItem => {
+                                    const {key: operationItemKey, second: operationItemSecond, onClick, ...operationsReset} = operationItem
+
+                                    let buttonText = typeof operationItem.message === 'function' ? operationItem.message({...item}, value, record, index) : operationItem.message
+                                    buttonText = mapButtonText[operationItem.key] || buttonText as string
+
+                                    let second = operationItemSecond
+                                    second = operationItem.key === 'delete' ? second || true : second
+
+                                    const butttonDom = <Typography key={operationItemKey}>
+                                        <Button
+                                            style={{padding: '0'}}
+                                            type="link"
+                                            onClick={event => {
+                                                if (second) {
+                                                    Modal.confirm({
+                                                        title: '警告',
+                                                        content: `确定要${buttonText}该条数据吗？`,
+                                                        onOk() {
+                                                            onClick && onClick({...item, event, button: {message: buttonText, ...operationItem}}, value, record, index)
+                                                        },
+                                                        ...operationItem.modal
+                                                    })
+                                                } else {
+                                                    onClick && onClick({...item, event, button: {message: buttonText, ...operationItem}}, value, record, index)
+                                                }
+                                            }}
+                                            {...{...operationsReset, danger: mapStatus[operationItem.key]}}
+                                        >{buttonText}</Button></Typography>
+
+                                    moreOperationsDom.push(butttonDom)
+                                })
+
+                                operationsDom.push(
+                                    <Popover content={moreOperationsDom} key={'allReset'} placement="bottom">
+                                        <Typography.Link>
+                                            <Space>
+                                            更多<DownOutlined />
+                                            </Space>
+                                        </Typography.Link>
+                                    </Popover>
+                                )
+                            }
 
                             return <>{operationsDom}</>
                         }

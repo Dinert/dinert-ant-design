@@ -1,8 +1,13 @@
 .dinert-table.ant-table-wrapper{
     .ant-table-cell{
         &.operations{
-            button{
+           & > button, & > a{
                 padding: 0 6px;
+            }
+            & > a{
+                .ant-space-gap-col-small{
+                    column-gap: 4px;
+                }
             }
         }
     }
