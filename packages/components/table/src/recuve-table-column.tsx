@@ -2,7 +2,7 @@
 
 import React from 'react'
 import type {OperationsProps, RewriteTableProps} from '@packages/components/table/types/index'
-import {Button, Table, Popconfirm, Space, Typography, Popover, Modal, Flex} from 'antd'
+import {Button, Table, Popconfirm, Space, Popover, Modal, Flex} from 'antd'
 import { dataTransformRod } from '@packages/utils/tools'
 import { DownOutlined } from '@ant-design/icons'
 
