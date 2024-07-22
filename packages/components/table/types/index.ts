@@ -49,7 +49,7 @@ export interface TableTitleProps<T> extends Partial<Omit<ButtonProps, 'slot'>>{
 }
 
 export interface RewriteTableProps<T = any> extends Omit<TableProps<T>, 'title'> {
-    title: Record<string, TableTitleProps<T>> | TableProps<T>['title'],
+    title?: Record<string, TableTitleProps<T>> | TableProps<T>['title'],
     tableColumns: Array<RewriteTableColumnCtx<T>>;
     errData?: string;
     setting?: boolean;
