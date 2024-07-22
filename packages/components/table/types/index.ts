@@ -24,7 +24,7 @@ export interface OperationsProps<T = any> extends Partial<Omit<ButtonProps, 'onC
 
 export interface RewriteTableColumnCtx<T=any> extends Omit<Partial<TableColumnProps<T>>, 'children'>{
     checked?: boolean;
-    show?: boolean | ((column: RewriteTableColumnCtx<T>) => boolean);
+    // show?: boolean | ((column: RewriteTableColumnCtx<T>) => boolean);
     // hidden?: boolean | ((column: RewriteTableColumnCtx<T>, value: any, rows: T, index: number) => boolean)
     onClick?: (column: RewriteTableColumnCtx<T>) => void
     // setting?: boolean;
@@ -43,7 +43,13 @@ export interface RecuveTableColumnProps<T = any>{
     defaultCheckedKeys?: any[];
 }
 
-export interface RewriteTableProps<T = any> extends TableProps<T> {
+export interface TableTitleProps<T> extends Partial<Omit<ButtonProps, 'slot'>>{
+    message?: string
+    slot?: TableProps<T>['title']
+}
+
+export interface RewriteTableProps<T = any> extends Omit<TableProps<T>, 'title'> {
+    title: Record<string, TableTitleProps<T>> | TableProps<T>['title'],
     tableColumns: Array<RewriteTableColumnCtx<T>>;
     errData?: string;
     setting?: boolean;

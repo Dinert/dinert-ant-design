@@ -2,7 +2,7 @@
 
 import React from 'react'
 import type {OperationsProps, RewriteTableProps} from '@packages/components/table/types/index'
-import {Button, Table, Popconfirm, Space, Typography, Popover, Modal} from 'antd'
+import {Button, Table, Popconfirm, Space, Typography, Popover, Modal, Flex} from 'antd'
 import { dataTransformRod } from '@packages/utils/tools'
 import { DownOutlined } from '@ant-design/icons'
 
@@ -104,42 +104,44 @@ const RecuveTableColumn: React.FC<RewriteTableProps> = props => {
                                     let second = operationItemSecond
                                     second = operationItem.key === 'delete' ? second || true : second
 
-                                    const butttonDom = <Typography key={operationItemKey}>
-                                        <Button
-                                            style={{padding: '0'}}
-                                            type="link"
-                                            onClick={event => {
-                                                if (second) {
-                                                    Modal.confirm({
-                                                        title: '警告',
-                                                        content: `确定要${buttonText}该条数据吗？`,
-                                                        onOk() {
-                                                            onClick && onClick({...item, event, button: {message: buttonText, ...operationItem}}, value, record, index)
-                                                        },
-                                                        ...operationItem.modal
-                                                    })
-                                                } else {
-                                                    onClick && onClick({...item, event, button: {message: buttonText, ...operationItem}}, value, record, index)
-                                                }
-                                            }}
-                                            {...{...operationsReset, danger: mapStatus[operationItem.key]}}
-                                        >{buttonText}</Button></Typography>
+                                    const butttonDom = <Button key={operationItemKey}
+                                        style={{padding: '0'}}
+                                        type="link"
+                                        onClick={event => {
+                                            if (second) {
+                                                Modal.confirm({
+                                                    title: '警告',
+                                                    content: `确定要${buttonText}该条数据吗？`,
+                                                    onOk() {
+                                                        onClick && onClick({...item, event, button: {message: buttonText, ...operationItem}}, value, record, index)
+                                                    },
+                                                    ...operationItem.modal
+                                                })
+                                            } else {
+                                                onClick && onClick({...item, event, button: {message: buttonText, ...operationItem}}, value, record, index)
+                                            }
+                                        }}
+                                        {...{...operationsReset, danger: mapStatus[operationItem.key]}}
+                                    >{buttonText}</Button>
 
                                     moreOperationsDom.push(butttonDom)
                                 })
 
                                 operationsDom.push(
-                                    <Popover content={moreOperationsDom} key={'allReset'} placement="bottom">
-                                        <Typography.Link>
-                                            <Space>
-                                            更多<DownOutlined />
-                                            </Space>
-                                        </Typography.Link>
+                                    <Popover
+                                        content={<Flex vertical align="flex-start">{moreOperationsDom}</Flex>}
+                                        key={'allReset'}
+                                        placement="bottom">
+                                        <Space>
+                                            <Button type="link" className="more">
+                                                更多<DownOutlined />
+                                            </Button>
+                                        </Space>
                                     </Popover>
                                 )
                             }
 
-                            return <>{operationsDom}</>
+                            return <Space>{operationsDom}</Space>
                         }
                     } else {
                         columnRender = value => {
@@ -157,7 +159,7 @@ const RecuveTableColumn: React.FC<RewriteTableProps> = props => {
 
                         return (<Table.Column {...{
                             ...reset,
-                            className: reset.dataIndex + ' ' + reset.className,
+                            className: reset.dataIndex + ' ' + (reset.className || ''),
                             render: reset.render || columnRender
                         }}
                         key={reset.dataIndex}></Table.Column>)

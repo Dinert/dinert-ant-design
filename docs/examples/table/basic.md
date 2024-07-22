@@ -28,13 +28,14 @@ table/basic/multiple-header
 table/basic/slot-use
 :::
 
-<!--
 
 ## 头部操作栏
-// :::demo
+:::demo
 
 table/basic/header
 :::
+
+<!--
 
 ## 显示操作栏
 // :::demo
