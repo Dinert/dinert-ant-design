@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {ref} from 'vue'
-import {DinertTablePageProps} from '../../../../packages'
+import {TablePageProps} from '../../../../packages'
 
 interface DataProps {
     date: string;
@@ -9,7 +9,7 @@ interface DataProps {
 }
 
 
-const tablePage = ref<DinertTablePageProps<DataProps, DataProps, DataProps>>({
+const tablePage = ref<TablePageProps<DataProps, DataProps, DataProps>>({
     table: {
         pagination: {
         },

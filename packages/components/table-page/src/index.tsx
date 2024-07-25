@@ -5,16 +5,13 @@ import {RewriteTableProps} from '@packages/components/table/types/index'
 import { DinertForm } from '@packages/components/form'
 import { DinertTable, TableResultProps } from '@packages/components/table'
 
-export interface TablePageProps {
-    form: RewriteFormProps
-    table: RewriteTableProps
+export interface TablePageProps<T = any, D = any, FI = any> {
+    form: RewriteFormProps<D, FI>
+    table: RewriteTableProps<T>
 }
 
-export interface TablePageResultProps extends TableResultProps{
 
-}
-
-const TablePageC = forwardRef<TablePageResultProps, TablePageProps>((props, ref) => {
+const TablePageC = forwardRef<TablePageProps, TablePageProps>((props, ref) => {
     const {form, table} = props
     const dinertTable = useRef<TableResultProps>(null)
     const onUnFold = () => {
