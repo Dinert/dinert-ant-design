@@ -10,7 +10,7 @@ import { resizeTaleHeight } from '../hooks'
 import useWindowResize from '@packages/hooks/useWindowResize'
 import { TableRef } from 'antd/es/table'
 import './table.scss'
-import { DeleteOutlined, DownloadOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons'
+import { CheckOutlined, CloseOutlined, DeleteOutlined, DownloadOutlined, DownOutlined, PlusOutlined, UploadOutlined, UpOutlined } from '@ant-design/icons'
 
 export interface TableResultProps {
     resizeTable:() => void,
@@ -21,7 +21,11 @@ const mapIcon: Record<string, any> = {
     add: <PlusOutlined/>,
     delete: <DeleteOutlined/>,
     upload: <UploadOutlined />,
-    download: <DownloadOutlined/>
+    download: <DownloadOutlined/>,
+    open: <DownOutlined />,
+    up: <UpOutlined />,
+    select: <CheckOutlined />,
+    close: <CloseOutlined />
 }
 
 const mapStatus: Record<string, any> = {
@@ -32,7 +36,11 @@ const mapMessage: Record<string, any> = {
     add: '新增',
     delete: '删除',
     upload: '上传',
-    download: '下载'
+    download: '下载',
+    open: '展开',
+    up: '收起',
+    select: '全选',
+    close: '取消全选'
 }
 
 
@@ -72,6 +80,7 @@ const DinertTable = forwardRef<TableResultProps, RewriteTableProps>((props: Rewr
                     {itemReset.message || mapMessage[prop]}
                 </Button>)
                 buttonDom = slot ? slot(data) as any : buttonDom
+                // if(itemReset.sh)
                 titleArr.push(buttonDom)
             }
         }

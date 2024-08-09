@@ -28,23 +28,23 @@
 
 ## Table 属性
 
-| 属性名       | 说明                                                                                     | 类型                                                                                               | 默认值 |
-| ------------ | ---------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ------ |
-| tableColumns | 表格头的数据配置项                                                                       | Array                                                                                              | 一     |
-| class        | 表格的类名                                                                               | String                                                                                             | 一     |
-| title        | 表格左上角的title                                                                        | <dinert-api-typing type="enmu" details="Record<string, TableTitleProps> \| TableProps['title']" /> | 一     |
-| rowIndex     | 表格序号                                                                                 | RewriteTableColumnCtx                                                                              | 一     |
-| errData      | 表格中无数据时显示的数据                                                                 | String                                                                                             | -      |
+| 属性名       | 说明                                                                          | 类型                                                                                               | 默认值 |
+| ------------ | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ------ |
+| tableColumns | 表格头的数据配置项                                                            | Array                                                                                              | 一     |
+| class        | 表格的类名                                                                    | String                                                                                             | 一     |
+| title        | 表格左上角的title                                                             | <dinert-api-typing type="enmu" details="Record<string, TableTitleProps> \| TableProps['title']" /> | 一     |
+| rowIndex     | 表格序号                                                                      | RewriteTableColumnCtx                                                                              | 一     |
+| errData      | 表格中无数据时显示的数据                                                      | String                                                                                             | -      |
 | ......       | [更多配置，请参考](https://ant-design.antgroup.com/components/table-cn#table) | 一                                                                                                 | 一     |
 
 
 ## TableColumns 属性
-| 属性名        | 说明                                                                                            | 类型                                                                                             | 默认值 |
-| ------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ------ |
-| maxOperations | 表格最大显示的操作按钮数，超出这个数显示更多，设置operations有效                                | Number                                                                                           | 3      |
-| operations    | [表格操作按钮列表，详情请参阅下表](#operations-属性)                                            | Object                                                                                           | 一     |
-| children      | 表格头下的数据配置项，多级表头                                                                  | Array                                                                                            | 一     |
-| ......        | [更多配置，请参考](https://element-plus.org/en-US/component/table.html#table-column-attributes) | 一                                                                                               | 一     |
+| 属性名        | 说明                                                                                            | 类型   | 默认值 |
+| ------------- | ----------------------------------------------------------------------------------------------- | ------ | ------ |
+| maxOperations | 表格最大显示的操作按钮数，超出这个数显示更多，设置operations有效                                | Number | 3      |
+| operations    | [表格操作按钮列表，详情请参阅下表](#operations-属性)                                            | Object | 一     |
+| children      | 表格头下的数据配置项，多级表头                                                                  | Array  | 一     |
+| ......        | [更多配置，请参考](https://element-plus.org/en-US/component/table.html#table-column-attributes) | 一     | 一     |
 
 ## Operations 属性
 | 属性名  | 说明                                                                              | 类型                                                       | 默认值 |
@@ -63,22 +63,11 @@
 | checked-change | 点击隐藏显示操作栏时触发 | <dinert-api-typing type="Function" details="(data: Node, checked: boolean, childChecked: boolean) => void"/> |
 
 
-## 插槽
-
-| 插槽名               | 说明                                                                                 |
-| -------------------- | ------------------------------------------------------------------------------------ |
-| column_[prop]        | column_是固定的，prop里面的值取决于tableColumns中的prop，自定义表格中的内容          |
-| column_header_[prop] | column_header_是固定的，prop里面的值取决于tableColumns中的prop，自定义表格头部的内容 |
-| header_left_[key]    | column_header_是固定的，prop里面的值取决于header中的key，自定义表格头部操作栏的左侧  |
-| header-footer        | 自定义表格头部操作栏的底部                                                           |
-
-## Header 属性
-| 属性名  | 说明                                                                                | 类型                                                        | 默认值 |
-| ------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------- | ------ |
-| message | 名称                                                                                | String                                                      | 一     |
-| click   | 点击事件                                                                            | Function                                                    | 一     |
-| show    | 是否显示                                                                            | <dinert-api-typing type="enmu" :details="HeaderListProps"/> |        | 一 |
-| sort    | 操作的排序，第一个组件为0，第二个为10，以此类推，数值越小按钮越靠前 前              | Number                                                      | 一     |
-| ......  | [更多配置，请参考](https://element-plus.org/zh-CN/component/button.html#attributes) | 一                                                          | 一     |
+## Title 属性
+| 属性名  | 说明                                                                                | 类型     | 默认值 |
+| ------- | ----------------------------------------------------------------------------------- | -------- | ------ |
+| message | 名称                                                                                | String   | 一     |
+| show    | 是否显示                                                                            | Boolean  |        | 一 |
+| ......  | [更多配置，请参考](https://ant-design.antgroup.com/components/button-cn#api) | 一       | 一     |
 
 

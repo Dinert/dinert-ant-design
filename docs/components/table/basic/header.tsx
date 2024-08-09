@@ -12,10 +12,21 @@ function App() {
         // },
         title: {
             add: {
+                onClick() {
+                    console.log('新增')
+                }
             },
-            delete: {},
+            delete: {
+                onClick() {
+                    console.log('删除')
+                }
+            },
             upload: {},
             download: {},
+            open: {},
+            up: {},
+            select: {},
+            // close: {},
             custom: {
                 message: '删除所有',
                 slot: data => {

@@ -30,7 +30,8 @@ export interface RewriteTableColumnCtx<T=any> extends Omit<Partial<TableColumnPr
 
 export interface TableTitleProps<T> extends Partial<Omit<ButtonProps, 'slot'>>{
     message?: string
-    slot?: TableProps<T>['title']
+    slot?: TableProps<T>['title'],
+    show?: boolean
 }
 
 export interface RewriteTableProps<T = any> extends Omit<TableProps<T>, 'title'> {
@@ -42,15 +43,6 @@ export interface RewriteTableProps<T = any> extends Omit<TableProps<T>, 'title'>
     rowIndex?: Partial<RewriteTableColumnCtx<T>>;
     class?: string;
 }
-
-
-export interface HeaderListProps extends Partial<ButtonProps>{
-    message?: string;
-    click?: (item: HeaderListProps) => void;
-    sort?: number;
-    show?: boolean | ((item: HeaderListProps) => boolean);
-}
-
 
 export type SelectTable = {setChecked: (num: any) => void, getCheckedKeys: () => void, setCheckedNodes: () => void} | null
 
