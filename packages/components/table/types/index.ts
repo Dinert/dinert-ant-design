@@ -23,24 +23,9 @@ export interface OperationsProps<T = any> extends Partial<Omit<ButtonProps, 'onC
 }
 
 export interface RewriteTableColumnCtx<T=any> extends Omit<Partial<TableColumnProps<T>>, 'children'>{
-    checked?: boolean;
-    // show?: boolean | ((column: RewriteTableColumnCtx<T>) => boolean);
-    // hidden?: boolean | ((column: RewriteTableColumnCtx<T>, value: any, rows: T, index: number) => boolean)
-    onClick?: (column: RewriteTableColumnCtx<T>) => void
-    // setting?: boolean;
     maxOperations?: number;
     operations?: Record<string, OperationsProps<T>>;
-    sort?: number;
     children?: Array<RewriteTableColumnCtx<T>>;
-}
-
-
-export interface RecuveTableColumnProps<T = any>{
-    onlyClass?: string;
-    popoverValue?: boolean;
-    table: RewriteTableProps;
-    children?: Array<RewriteTableColumnCtx<T>>;
-    defaultCheckedKeys?: any[];
 }
 
 export interface TableTitleProps<T> extends Partial<Omit<ButtonProps, 'slot'>>{
