@@ -6,9 +6,9 @@
 
 
 ## 基础用法
-// :::demo
+:::demo
 
-dialog/basic/index
+modal/basic/index
 :::
 
 ## 不同尺寸

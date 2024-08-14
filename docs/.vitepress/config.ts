@@ -154,22 +154,22 @@ export default defineConfig({
                                 },
                             ]
                         },
-                        // {
-                        //     text: 'dialog（弹窗）',
-                        //     target: '/examples/dialog/basic',
-                        //     collapsed: true,
-                        //     base: '/examples/dialog/',
-                        //     items: [
-                        //         {
-                        //             text: '基础用法',
-                        //             link: 'basic',
-                        //         },
-                        //         {
-                        //             text: '属性',
-                        //             link: 'explain',
-                        //         },
-                        //     ]
-                        // }
+                        {
+                            text: 'modal（对话框）',
+                            target: '/examples/modal/basic',
+                            collapsed: true,
+                            base: '/examples/modal/',
+                            items: [
+                                {
+                                    text: '基础用法',
+                                    link: 'basic',
+                                },
+                                // {
+                                //     text: '属性',
+                                //     link: 'explain',
+                                // },
+                            ]
+                        }
                     ]
 
                 }
