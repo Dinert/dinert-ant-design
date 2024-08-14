@@ -80,7 +80,6 @@ const DinertTable = forwardRef<TableResultProps, RewriteTableProps>((props: Rewr
                     {itemReset.message || mapMessage[prop]}
                 </Button>)
                 buttonDom = slot ? slot(data) as any : buttonDom
-                // if(itemReset.sh)
                 titleArr.push(buttonDom)
             }
         }
@@ -90,7 +89,7 @@ const DinertTable = forwardRef<TableResultProps, RewriteTableProps>((props: Rewr
     return (
         <Table {...{
             ...reset,
-            title: typeof title !== 'function' ? objectTitle : title,
+            title: typeof title !== 'function' && title ? objectTitle : title,
             scroll: {...reset.scroll, y: scrollY || '100%' }
         }} className={[tableClass, 'dinert-table'].join(' ')} ref={tableRef}>
             {

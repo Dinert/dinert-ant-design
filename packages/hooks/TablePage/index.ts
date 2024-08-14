@@ -2,8 +2,9 @@
 import type {DinertTablePageProps, AjaxTableProps} from './types'
 import { MutableRefObject, useRef, useState, Dispatch, useEffect } from 'react'
 import lodash from 'lodash'
-import {TablePageResultProps} from '@packages/components/table-page/index'
 import {MergeProp} from '@packages/components/form/types/utils'
+import {DinertTablePage} from '@packages/components/table-page/index'
+
 import { useImmer, Updater } from 'use-immer'
 import {Form} from 'antd'
 
@@ -43,8 +44,7 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
     params: P | any
     oldParams: P | any
 
-    tablePageRef: MutableRefObject<TablePageResultProps | null> = useRef(null)
-
+    tablePageRef: MutableRefObject<typeof DinertTablePage | null> = useRef(null)
 
     private readonly defaultOptions: DinertTablePageProps<T, D, FI> = {
         table: {
@@ -116,14 +116,17 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
         this.oldParams = {}
 
         useEffect(() => {
+            console.log('stateTable')
             this.stateTableRef.current = this.stateTable
         }, [this.stateTable])
 
         useEffect(() => {
+            console.log('stateFormstateForm')
             this.stateFormRef.current = this.stateForm
         }, [this.stateForm])
 
         useEffect(() => {
+            console.log('stateIds')
             this.stateIdsRef.current = this.stateIds
         }, [this.stateIds])
 
@@ -253,7 +256,7 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
 
     // 根据key获取表格中的数据
     getTableDataKeys(key: string) {
-        const ids = this.stateTable.dataSource?.map(item => (item as any)[key || (this.stateTable.rowKey as any)])
+        const ids = this.stateTableRef.current.dataSource?.map(item => (item as any)[key || (this.stateTableRef.current.rowKey as any)])
         return ids
     }
 }

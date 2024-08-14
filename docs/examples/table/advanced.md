@@ -8,7 +8,7 @@
     - ajaxTableData是获取你请求数据的参数
     - changeTableData改变自已的data数据还有分页的参数
 ```ts
-import {TablePage, DinertTablePageProps, AjaxTableProps} from '@dinert/ant-design'
+import {TablePage, TablePageProps, AjaxTableProps} from '@dinert/ant-design'
 import axios from 'axios'
 
 
@@ -36,7 +36,7 @@ interface TableParams<T = any> {
  * R 请求回来的数据格式
 */
 class RewriteTablePage<T, D, FI> extends TablePage<T, D, FI, Parameters<typeof axios.request>[0], TableParams<T>> {
-    constructor(options: DinertTablePageProps<T, D, FI>) {
+    constructor(options: TablePageProps<T, D, FI>) {
         super(options)
         this.options = options
     }
@@ -47,8 +47,10 @@ class RewriteTablePage<T, D, FI> extends TablePage<T, D, FI, Parameters<typeof a
     }
 
     changeTableData(res: TableParams<T>) {
-        this.table.value.data = res.data
-        this.table.value.pagination.total = res.total
+        this.updateTable(draft => {
+            draft.dataSource = res.data
+            draft.pagination.total = res.total
+        })
     }
 }
 
@@ -58,7 +60,7 @@ export default RewriteTablePage
 
 ## 配合TablePage使用
 - 当你调用tablePage.search这个方法后，一个表格查询页面就完成了，无需在分页时自已编写额外的逻辑
-// :::demo
+:::demo
 
 table/advanced/index
 

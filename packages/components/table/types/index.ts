@@ -1,15 +1,7 @@
-import type {TableProps, TableColumnProps, ButtonProps, PopconfirmProps, MenuProps, ModalProps} from 'antd'
+import type {TableProps, TableColumnProps, ButtonProps, PopconfirmProps, ModalProps} from 'antd'
 
 export type Mutable<T> = {
     -readonly [K in keyof T]: T[K];
-}
-
-export interface ScopeProps<T = any> {
-    $index: number;
-    cellIndex: number;
-    column: RewriteTableColumnCtx<T>;
-    row: T;
-    _self: any;
 }
 
 export interface OperationsProps<T = any> extends Partial<Omit<ButtonProps, 'onClick'>>{
