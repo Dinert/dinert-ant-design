@@ -16,9 +16,9 @@ function App() {
     const [dinertForm, setDinertForm] = useState<RewriteFormProps<Model>>({
         form: Form.useForm()[0],
         scrollToFirstError: true,
-        // initialValues: {
-        //     // name: 333
-        // },
+        initialValues: {
+            // name: 333
+        },
         packUp: true,
         layout: 'inline',
         name: 'search',

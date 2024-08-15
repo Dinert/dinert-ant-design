@@ -116,17 +116,14 @@ class TablePage<T, D = any, FI = any, P = object, R = any> {
         this.oldParams = {}
 
         useEffect(() => {
-            console.log('stateTable')
             this.stateTableRef.current = this.stateTable
         }, [this.stateTable])
 
         useEffect(() => {
-            console.log('stateFormstateForm')
             this.stateFormRef.current = this.stateForm
         }, [this.stateForm])
 
         useEffect(() => {
-            console.log('stateIds')
             this.stateIdsRef.current = this.stateIds
         }, [this.stateIds])
 
