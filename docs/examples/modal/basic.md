@@ -12,9 +12,9 @@ modal/basic/index
 :::
 
 ## 不同尺寸
-// :::demo
+:::demo
 
-dialog/basic/size
+modal/basic/size
 :::
 
 <!-- @include: ./explain.md -->
