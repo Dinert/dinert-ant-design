@@ -1,3 +1,5 @@
 export * from './components/index'
-import TablePage2 from './hooks/TablePage/index'
-export const TablePage = TablePage2
+import tablePage from './hooks/TablePage/index'
+import useModal from './hooks/useModal'
+export const TablePage = tablePage
+export const UseModal = useModal

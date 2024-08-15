@@ -164,10 +164,14 @@ export default defineConfig({
                                     text: '基础用法',
                                     link: 'basic',
                                 },
-                                // {
-                                //     text: '属性',
-                                //     link: 'explain',
-                                // },
+                                {
+                                    text: '高级用法',
+                                    link: 'advanced'
+                                },
+                                {
+                                    text: '属性',
+                                    link: 'explain',
+                                },
                             ]
                         }
                     ]
