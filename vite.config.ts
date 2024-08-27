@@ -14,7 +14,7 @@ export default defineConfig({
         // minify: false,
         rollupOptions: {
             // 忽略打包vue文件
-            external: ['react', 'antd', 'react-dom', 'react/jsx-runtime'],
+            external: ['react', 'antd', 'react-dom', 'react/jsx-runtime', 'lodash', '@ant-design/icons', 'immer', 'use-immer'],
             input: ['./packages/index.ts'],
 
             output: [
