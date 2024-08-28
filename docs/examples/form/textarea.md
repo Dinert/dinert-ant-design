@@ -2,10 +2,10 @@
 
 # 输入框
 
-## 基础用法
+## 文本域
 :::demo
 
-Form/input/index
+Form/textarea/index
 :::
 
 <!-- @include: ./explain.md -->

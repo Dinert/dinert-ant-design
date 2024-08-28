@@ -63,14 +63,23 @@ export default defineConfig({
                                     text: '基础用法',
                                     link: 'basic',
                                 },
-                                // {
-                                //     text: 'input 输入框',
-                                //     link: 'input',
-                                // },
-                                // {
-                                //     text: 'input-number 数字输入框',
-                                //     link: 'input-number',
-                                // },
+                                {
+                                    text: 'input 输入框',
+                                    link: 'input',
+                                },
+
+                                {
+                                    text: 'input-search 输入框查询',
+                                    link: 'input-search',
+                                },
+                                {
+                                    text: 'input-number 数字输入框',
+                                    link: 'input-number',
+                                },
+                                {
+                                    text: 'textarea 文本域',
+                                    link: 'textarea',
+                                },
                                 // {
                                 //     text: 'select 选择框',
                                 //     link: 'select',

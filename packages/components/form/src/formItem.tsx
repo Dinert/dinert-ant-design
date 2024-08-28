@@ -59,7 +59,7 @@ const mapComponents = (item: CustomFormItemProps) => {
     const obj: any = {
         'input': <Input {...options} allowClear key={key}></Input>,
         'input-search': <Input.Search {...options} allowClear key={key}></Input.Search>,
-        'textarea': <Input.TextArea style={{height: '120px'}} {...options} allowClear key={key} ></Input.TextArea>,
+        'textarea': <Input.TextArea style={{height: '120px'}} controls {...options} allowClear key={key} ></Input.TextArea>,
         'input-number': <InputNumber style={{width: '100%'}} {...options} key={key} ></InputNumber>,
         'select': () => {
             const {...resetSelect} = options

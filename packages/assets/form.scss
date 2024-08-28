@@ -11,6 +11,10 @@
     &.ant-form{
         &.ant-form-horizontal{
             width: 100%;
+
+            .dinert-form-row{
+                width: 100%;
+            }
         }
         .ant-col-24{
             display: flex;
