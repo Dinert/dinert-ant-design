@@ -45,7 +45,7 @@ const RecuveTableColumn: React.FC<RewriteTableProps> = props => {
 
 
                     operations.sort((a: any, b: any) => {
-                        return a.sort - b.sort
+                        return (a.sort || Infinity) - (b.sort || Infinity)
                     })
                     if (dataIndex === 'operations' && operations) {
                         columnRender = (value, record, index) => {

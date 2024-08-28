@@ -28,6 +28,12 @@ table/basic/multiple-header
 table/basic/slot-use
 :::
 
+## 操作排序
+:::demo
+
+table/basic/sort
+:::
+
 
 ## 头部操作栏
 :::demo

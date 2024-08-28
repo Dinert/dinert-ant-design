@@ -52,7 +52,7 @@
 | message | 名称                                                                              | String                                                     | 一     |
 | click   | 点击事件                                                                          | Function                                                   | 一     |
 | show    | 是否显示                                                                          | <dinert-api-typing type="enmu" :details="showOperations"/> |        | 一 |
-| sort    | 操作的排序，第一个组件为0，第二个为10，以此类推，数值越小列越靠前 前              | Number                                                     | 一     |
+| sort    | 操作的排序，数值越小列越靠前              | Number                                                     | 一     |
 | ......  | [更多配置，请参考](https://element-plus.org/zh-CN/component/link.html#attributes) | 一                                                         | 一     |
 
 ## 事件

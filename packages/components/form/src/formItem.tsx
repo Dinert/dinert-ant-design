@@ -20,7 +20,6 @@ const mapPlaceholder = (type: string = 'input', label: string = '') => {
     return placeholder[type] + label || ''
 }
 const objToArr = <D, >(formItem: CustomFormItemProps, form: RewriteFormProps, values: D) => {
-    let index = 0
     const result: any = []
     Object.keys(formItem).forEach(key => {
 
@@ -43,14 +42,12 @@ const objToArr = <D, >(formItem: CustomFormItemProps, form: RewriteFormProps, va
             required: valueRequired,
             rules,
             key: key,
-            sort: typeof value.sort === 'undefined' ? index : value.sort,
-            name: key
+            name: key,
         })
-        index += 10
     })
 
     result.sort((a: any, b: any) => {
-        return a.sort - b.sort
+        return (a.sort || Infinity) - (b.sort || Infinity)
     })
 
     return result

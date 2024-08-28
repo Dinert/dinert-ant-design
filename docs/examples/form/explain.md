@@ -42,7 +42,7 @@
 | type      | 表单组件类型                                                                  | <dinert-api-typing type="enmu" :details="arr"/>                                   | 一     |
 | label     | 表单组件的名称                                                                | <dinert-api-typing type="enmu" details="'string' \| (formItem) => any"/>          | 一     |
 | vif       | 是否渲染该表单组件                                                            | <dinert-api-typing type="enmu" details="boolean' \| (initialValues) => boolean"/> | 一     |
-| sort      | 表单组件的列的排序，第一个组件为0，第二个为10，以此类推，数值越小组件越靠前   | Number                                                                            | 一     |
+| sort      | 表单组件的列的排序，数值越小组件越靠前   | Number                                                                            | 一     |
 | options   | 组件的参数，比如组件类型type是input，那options里面的内容就是Input的属性和方法 | Object                                                                            | 一     |
 | showLabel | 是否直接显示表单组件的值                                                      | boolean                                                                           | 一     |
 | slot      | 自定义组件插槽                                                                | <dinert-api-typing type="enmu" details="'string' \| (formItem) => any"/>          | 一     |
