@@ -7,10 +7,11 @@ import {Form } from 'antd'
 const App = () => {
 
     interface Model{
-        name: string;
-        name2: string;
-        name3: string;
-        name4: string;
+        name: number;
+        name2: number;
+        name3: number;
+        name4: number;
+        name5: number;
     }
 
     interface FormItemProps{
@@ -18,6 +19,7 @@ const App = () => {
         name2: 'input-number',
         name3: 'input-number',
         name4: 'input-number',
+        name5: 'input-number',
     }
 
     const [dinertForm, setDinertForm] = useState<RewriteFormProps<Model, FormItemProps>>({
@@ -25,6 +27,7 @@ const App = () => {
         scrollToFirstError: true,
         packUp: false,
         initialValues: {
+            name5: 123.45
         },
         labelCol: {
             span: 3,
@@ -59,6 +62,14 @@ const App = () => {
                     status: 'error'
                 }
             },
+            name5: {
+                type: 'input-number',
+                label: '小数数字',
+                options: {
+                    precision: 2,
+                    step: 0.02
+                }
+            }
         },
     })
 

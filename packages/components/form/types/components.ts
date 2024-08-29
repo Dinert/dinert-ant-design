@@ -7,9 +7,11 @@ import {
     RadioGroupProps
 } from 'antd'
 import { SearchProps } from 'antd/es/input/Search'
+import { PasswordProps } from 'antd/es/input/Password'
 
 export type RewriteInputProps = Partial<InputProps>
 export type RewriteInputSearchProps = Partial<SearchProps>
+export type RewriteInputPasswordProps = Partial<PasswordProps>
 export type RewriteInputTextareaProps = Partial<InputProps>
 export type RewriteInputNumberProps = Partial<InputNumberProps>
 export type RewriteSelectPropsProps = Partial<SelectProps>

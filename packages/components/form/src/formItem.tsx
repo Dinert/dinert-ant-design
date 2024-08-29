@@ -12,6 +12,7 @@ const mapPlaceholder = (type: string = 'input', label: string = '') => {
     const placeholder: {[key: string]: string} = {
         'input': enterMsg,
         'input-search': enterMsg,
+        'input-password': enterMsg,
         'textarea': enterMsg,
         'input-number': enterMsg,
         'select': selectMsg
@@ -59,6 +60,7 @@ const mapComponents = (item: CustomFormItemProps) => {
     const obj: any = {
         'input': <Input {...options} allowClear key={key}></Input>,
         'input-search': <Input.Search {...options} allowClear key={key}></Input.Search>,
+        'input-password': <Input.Password {...options} allowClear key={key}></Input.Password>,
         'textarea': <Input.TextArea style={{height: '120px'}} controls {...options} allowClear key={key} ></Input.TextArea>,
         'input-number': <InputNumber style={{width: '100%'}} {...options} key={key} ></InputNumber>,
         'select': () => {

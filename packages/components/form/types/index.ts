@@ -6,13 +6,15 @@ import {
     RewriteInputTextareaProps,
     RewriteInputNumberProps,
     RewriteSelectPropsProps,
-    RewriteRadioGroupProps
+    RewriteRadioGroupProps,
+    RewriteInputPasswordProps
 } from './components'
 
 
 export interface RewriteFormItemPropsMap{
     input: RewriteInputProps
     'input-search': RewriteInputSearchProps
+    'input-password': RewriteInputPasswordProps
     textarea: RewriteInputTextareaProps
     select: RewriteSelectPropsProps;
     // 'select-v2': RewriteSelectProps<O>;

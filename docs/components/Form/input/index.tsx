@@ -13,6 +13,7 @@ const App = () => {
         name4: string;
         name5: string;
         name6: string;
+        name7: string;
     }
 
     interface FormItemProps{
@@ -22,6 +23,7 @@ const App = () => {
         name4: 'input',
         name5: 'input',
         name6: 'input',
+        name7: 'input-password',
     }
 
     const [dinertForm, setDinertForm] = useState<RewriteFormProps<Model, FormItemProps>>({
@@ -77,7 +79,13 @@ const App = () => {
                 options: {
                     disabled: true,
                 }
-            }
+            },
+            name7: {
+                type: 'input-password',
+                label: '密码框',
+                options: {
+                }
+            },
         },
     })
 

@@ -23,7 +23,7 @@ const App = () => {
         initialValues: {
         },
         labelCol: {
-            span: 3,
+            span: 4,
         },
         formItem: {
             name: {
@@ -34,7 +34,7 @@ const App = () => {
             },
             name2: {
                 type: 'textarea',
-                label: '限制文本域',
+                label: '限制字数文本域',
                 options: {
                     showCount: true,
                     maxLength: 200
