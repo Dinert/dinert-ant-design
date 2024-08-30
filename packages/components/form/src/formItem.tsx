@@ -68,7 +68,7 @@ const mapComponents = (item: CustomFormItemProps) => {
 
             return (<Select {...resetSelect} allowClear key={key}>
                 {
-                    resetSelect.options.map((item2: any) => {
+                    (resetSelect.options || []).map((item2: any) => {
                         return (
                             <Select.Option {...item2} key={item2[options.value || 'value']}></Select.Option>
                         )

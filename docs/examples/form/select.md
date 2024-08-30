@@ -3,7 +3,7 @@
 # 选择框
 
 ## 基础用法
-// :::demo
+:::demo
 
 Form/select/index
 :::

@@ -80,10 +80,10 @@ export default defineConfig({
                                     text: 'textarea 文本域',
                                     link: 'textarea',
                                 },
-                                // {
-                                //     text: 'select 选择框',
-                                //     link: 'select',
-                                // },
+                                {
+                                    text: 'select 选择框',
+                                    link: 'select',
+                                },
                                 // {
                                 //     text: 'select-v2 虚拟化选择框',
                                 //     link: 'select-v2',
