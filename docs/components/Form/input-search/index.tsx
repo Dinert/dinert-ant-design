@@ -23,7 +23,7 @@ const App = () => {
         initialValues: {
         },
         labelCol: {
-            span: 3,
+            span: 4,
         },
         formItem: {
             name: {
