@@ -84,6 +84,7 @@ const App = () => {
                 type: 'input-password',
                 label: '密码框',
                 options: {
+
                 }
             },
         },

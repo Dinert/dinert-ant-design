@@ -58,15 +58,15 @@ const mapComponents = (item: CustomFormItemProps) => {
     const {key, options} = item
 
     const obj: any = {
-        'input': <Input {...options} allowClear key={key}></Input>,
-        'input-search': <Input.Search {...options} allowClear key={key}></Input.Search>,
-        'input-password': <Input.Password {...options} allowClear key={key}></Input.Password>,
-        'textarea': <Input.TextArea style={{height: '120px'}} controls {...options} allowClear key={key} ></Input.TextArea>,
+        'input': <Input allowClear {...options} key={key}></Input>,
+        'input-search': <Input.Search allowClear {...options} key={key}></Input.Search>,
+        'input-password': <Input.Password allowClear autoComplete={'on'} {...options} key={key} ></Input.Password>,
+        'textarea': <Input.TextArea style={{height: '120px'}} allowClear controls {...options} key={key} ></Input.TextArea>,
         'input-number': <InputNumber style={{width: '100%'}} {...options} key={key} ></InputNumber>,
         'select': () => {
             const {...resetSelect} = options
 
-            return (<Select {...resetSelect} allowClear key={key}>
+            return (<Select allowClear {...resetSelect} key={key}>
                 {
                     (resetSelect.options || []).map((item2: any) => {
                         return (
