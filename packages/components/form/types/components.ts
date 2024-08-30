@@ -5,12 +5,14 @@ import {
     InputNumberProps,
     SelectProps,
     RadioGroupProps,
-    SpaceProps
+    SpaceProps,
+    AutoCompleteProps
 } from 'antd'
 import { SearchProps } from 'antd/es/input/Search'
 import { PasswordProps } from 'antd/es/input/Password'
 
 export type RewriteInputProps = Partial<InputProps>
+export type RewriteAutocompleteProps = Partial<AutoCompleteProps>
 export type RewriteInputSearchProps = Partial<SearchProps>
 export type RewriteInputPasswordProps = Partial<PasswordProps>
 export type RewriteInputTextareaProps = Partial<InputProps>

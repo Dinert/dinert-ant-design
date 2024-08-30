@@ -7,7 +7,8 @@ import {
     RewriteInputNumberProps,
     RewriteSelectPropsProps,
     RewriteRadioGroupProps,
-    RewriteInputPasswordProps
+    RewriteInputPasswordProps,
+    RewriteAutocompleteProps
 } from './components'
 
 
@@ -17,6 +18,7 @@ export interface RewriteFormItemPropsMap{
     'input-password': RewriteInputPasswordProps
     textarea: RewriteInputTextareaProps
     select: RewriteSelectPropsProps;
+    autocomplete: RewriteAutocompleteProps
     // 'select-v2': RewriteSelectProps<O>;
     // custom: RewriteInputProps;
     // cascader: RewriteCascaderProps<O>;

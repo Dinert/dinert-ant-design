@@ -67,6 +67,10 @@ export default defineConfig({
                                     text: 'input 输入框',
                                     link: 'input',
                                 },
+                                {
+                                    text: 'autocomplete 自动补全输入框',
+                                    link: 'autocomplete',
+                                },
 
                                 {
                                     text: 'input-search 输入框查询',

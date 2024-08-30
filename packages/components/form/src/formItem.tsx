@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import React from 'react'
-import { Form, Input, InputNumber, Radio, Select, RadioProps, Row, Col, Space} from 'antd'
+import { Form, Input, InputNumber, Radio, Select, RadioProps, Row, Col, Space, AutoComplete} from 'antd'
 
 import { CustomFormItemProps, RewriteFormProps} from '@packages/components/form/types/index'
 import { dataTransformRod } from '@packages/utils/tools'
@@ -17,10 +17,11 @@ const mapPlaceholder = (type: string = 'input', label: string = '') => {
         'input-number': enterMsg,
         'select': selectMsg,
         radio: selectMsg,
-        'radio-button': selectMsg
+        'radio-button': selectMsg,
+        'autocomplete': enterMsg
     }
 
-    return placeholder[type] + label || ''
+    return (placeholder[type] || '') + label || ''
 }
 const objToArr = <D, >(formItem: CustomFormItemProps, form: RewriteFormProps, values: D) => {
     const result: any = []
@@ -61,6 +62,7 @@ const mapComponents = (item: CustomFormItemProps) => {
 
     const obj: any = {
         'input': <Input allowClear {...options} key={key}></Input>,
+        'autocomplete': <AutoComplete allowClear {...options}></AutoComplete>,
         'input-search': <Input.Search allowClear {...options} key={key}></Input.Search>,
         'input-password': <Input.Password allowClear autoComplete={'on'} {...options} key={key} ></Input.Password>,
         'textarea': <Input.TextArea style={{height: '120px'}} allowClear controls {...options} key={key} ></Input.TextArea>,
