@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import React from 'react'
-import { Form, Input, InputNumber, Radio, Select, RadioProps, Row, Col} from 'antd'
+import { Form, Input, InputNumber, Radio, Select, RadioProps, Row, Col, Space} from 'antd'
 
 import { CustomFormItemProps, RewriteFormProps} from '@packages/components/form/types/index'
 import { dataTransformRod } from '@packages/utils/tools'
@@ -15,7 +15,9 @@ const mapPlaceholder = (type: string = 'input', label: string = '') => {
         'input-password': enterMsg,
         'textarea': enterMsg,
         'input-number': enterMsg,
-        'select': selectMsg
+        'select': selectMsg,
+        radio: selectMsg,
+        'radio-button': selectMsg
     }
 
     return placeholder[type] + label || ''
@@ -65,10 +67,11 @@ const mapComponents = (item: CustomFormItemProps) => {
         'input-number': <InputNumber style={{width: '100%'}} {...options} key={key} ></InputNumber>,
         'select': () => {
             const {...resetSelect} = options
+            const selectOptions = options.options || []
 
             return (<Select allowClear {...resetSelect} key={key}>
                 {
-                    (resetSelect.options || []).map((item2: any) => {
+                    selectOptions.map((item2: any) => {
                         return (
                             <Select.Option {...item2} key={item2[options.value || 'value']}></Select.Option>
                         )
@@ -78,11 +81,14 @@ const mapComponents = (item: CustomFormItemProps) => {
         },
         'radio': () => {
             const radioOptions: RadioProps[] = options.options || []
+
             return (
                 <Radio.Group {...options}>
-                    {radioOptions.map((item2: any) => {
-                        return <Radio {...item2} key={item2[options.value || 'value']}></Radio>
-                    })}
+                    <Space direction={options.direction}>
+                        {radioOptions.map((item2: any) => {
+                            return <Radio {...item2} key={item2[options.value || 'value']}></Radio>
+                        })}
+                    </Space>
                 </Radio.Group>
             )
         },
@@ -90,9 +96,11 @@ const mapComponents = (item: CustomFormItemProps) => {
             const radioOptions: RadioProps[] = options.options || []
             return (
                 <Radio.Group {...options} optionType={'button'}>
-                    {radioOptions.map((item2: any) => {
-                        return <Radio.Button {...item2} key={item2[options.value || 'value']}></Radio.Button>
-                    })}
+                    <Space direction={options.direction}>
+                        {radioOptions.map((item2: any) => {
+                            return <Radio.Button {...item2} key={item2[options.value || 'value']}></Radio.Button>
+                        })}
+                    </Space>
                 </Radio.Group>
             )
         }

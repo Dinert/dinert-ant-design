@@ -3,7 +3,7 @@
 # 单选按钮
 
 ## 基础用法
-// :::demo
+:::demo
 
 Form/radio/index
 :::

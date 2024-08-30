@@ -14,6 +14,7 @@ const App = () => {
         name5: string;
         name6: string;
         name7: string;
+        name8: string;
     }
 
     interface FormItemProps{
@@ -24,6 +25,7 @@ const App = () => {
         name5: 'input',
         name6: 'input',
         name7: 'input-password',
+        name8: 'input',
     }
 
     const [dinertForm, setDinertForm] = useState<RewriteFormProps<Model, FormItemProps>>({
@@ -31,6 +33,7 @@ const App = () => {
         scrollToFirstError: true,
         packUp: false,
         initialValues: {
+            name8: '11111'
         },
         labelCol: {
             span: 3,
@@ -85,6 +88,12 @@ const App = () => {
                 label: '密码框',
                 options: {
 
+                }
+            },
+            name8: {
+                type: 'input',
+                label: '默认值',
+                options: {
                 }
             },
         },

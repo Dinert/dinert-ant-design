@@ -84,10 +84,11 @@ export default defineConfig({
                                     text: 'select 选择框',
                                     link: 'select',
                                 },
-                                // {
-                                //     text: 'select-v2 虚拟化选择框',
-                                //     link: 'select-v2',
-                                // },
+                                {
+                                    text: 'radio 单选按钮',
+                                    link: 'radio',
+                                },
+
                                 // {
                                 //     text: 'tree-select 树形选择',
                                 //     link: 'tree-select',
@@ -104,10 +105,7 @@ export default defineConfig({
                                 //     text: 'date 时间选择器（时、日、周、月、年）',
                                 //     link: 'date',
                                 // },
-                                // {
-                                //     text: 'radio 单选按钮',
-                                //     link: 'radio',
-                                // },
+
                                 // {
                                 //     text: 'checkbox 多选框',
                                 //     link: 'checkbox',

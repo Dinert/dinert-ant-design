@@ -4,7 +4,8 @@ import {
     InputProps,
     InputNumberProps,
     SelectProps,
-    RadioGroupProps
+    RadioGroupProps,
+    SpaceProps
 } from 'antd'
 import { SearchProps } from 'antd/es/input/Search'
 import { PasswordProps } from 'antd/es/input/Password'
@@ -15,7 +16,7 @@ export type RewriteInputPasswordProps = Partial<PasswordProps>
 export type RewriteInputTextareaProps = Partial<InputProps>
 export type RewriteInputNumberProps = Partial<InputNumberProps>
 export type RewriteSelectPropsProps = Partial<SelectProps>
-export type RewriteRadioGroupProps = Partial<RadioGroupProps>
+export type RewriteRadioGroupProps = Partial<RadioGroupProps & {direction: SpaceProps['direction']}>
 
 // export type RewriteTextareaProps = Partial<InputProps & Pick<typeof ElInput, 'onInput'| CommonFn>>
 
