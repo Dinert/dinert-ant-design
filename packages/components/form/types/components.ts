@@ -7,10 +7,13 @@ import {
     RadioGroupProps,
     SpaceProps,
     AutoCompleteProps,
+    SwitchProps,
+    SliderSingleProps,
 } from 'antd'
 import { SearchProps } from 'antd/es/input/Search'
 import { PasswordProps } from 'antd/es/input/Password'
 import { CheckboxGroupProps } from 'antd/es/checkbox'
+import { SliderRangeProps } from 'antd/es/slider'
 
 export type RewriteInputProps = Partial<InputProps>
 export type RewriteAutocompleteProps = Partial<AutoCompleteProps>
@@ -21,6 +24,8 @@ export type RewriteInputNumberProps = Partial<InputNumberProps>
 export type RewriteSelectPropsProps = Partial<SelectProps>
 export type RewriteRadioGroupProps = Partial<RadioGroupProps & {direction: SpaceProps['direction']}>
 export type RewriteCheckboxGroupProps = Partial<CheckboxGroupProps & {direction: SpaceProps['direction']}>
+export type RewriteSwitchProps = Partial<SwitchProps>
+export type RewriteSliderProps = Partial<Pick<SliderRangeProps, 'range'> & Omit<SliderSingleProps, 'range'>>
 
 // export type RewriteTextareaProps = Partial<InputProps & Pick<typeof ElInput, 'onInput'| CommonFn>>
 
@@ -34,7 +39,6 @@ export type RewriteCheckboxGroupProps = Partial<CheckboxGroupProps & {direction:
 
 // export type RewriteInputNumberProps = Partial<InputNumberProps & Pick<typeof ElInputNumber, CommonFn>>
 
-// export type RewriteSwitchProps = Partial<SwitchProps & Pick<typeof ElInputNumber, 'onChange'>>
 
 // export type RewriteDatePickerProps = Partial<DatePickerProps & Pick<typeof ElDatePicker, CommonFn | 'onVisible-change' | 'onCalendar-change' | 'onPanel-change'>>
 

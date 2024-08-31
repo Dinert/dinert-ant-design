@@ -1,11 +1,11 @@
 
 
-# 开关
+# 多选框
 
 ## 基础用法
 :::demo
 
-Form/switch/index
+Form/slider/index
 :::
 
 <!-- @include: ./explain.md -->

@@ -96,18 +96,17 @@ export default defineConfig({
                                     text: 'checkbox 多选框',
                                     link: 'checkbox',
                                 },
-
+                                {
+                                    text: 'switch 开关',
+                                    link: 'switch',
+                                },
+                                {
+                                    text: 'slider 滑动输入条',
+                                    link: 'slider',
+                                },
                                 // {
                                 //     text: 'tree-select 树形选择',
                                 //     link: 'tree-select',
-                                // },
-                                // {
-                                //     text: 'input-autocomplete 自动补全输入框',
-                                //     link: 'autocomplete',
-                                // },
-                                // {
-                                //     text: 'switch 开关',
-                                //     link: 'switch',
                                 // },
                                 // {
                                 //     text: 'date 时间选择器（时、日、周、月、年）',

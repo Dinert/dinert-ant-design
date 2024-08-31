@@ -9,7 +9,9 @@ import {
     RewriteRadioGroupProps,
     RewriteInputPasswordProps,
     RewriteAutocompleteProps,
-    RewriteCheckboxGroupProps
+    RewriteCheckboxGroupProps,
+    RewriteSwitchProps,
+    RewriteSliderProps
 } from './components'
 
 
@@ -20,12 +22,13 @@ export interface RewriteFormItemPropsMap{
     textarea: RewriteInputTextareaProps
     select: RewriteSelectPropsProps;
     autocomplete: RewriteAutocompleteProps
+    slider: RewriteSliderProps;
     // 'select-v2': RewriteSelectProps<O>;
     // custom: RewriteInputProps;
     // cascader: RewriteCascaderProps<O>;
     // 'input-autocomplete': RewriteAutocompleteProps;
     'input-number': RewriteInputNumberProps;
-    // switch: RewriteSwitchProps;
+    switch: RewriteSwitchProps;
     // datetime: RewriteDatePickerProps;
     // date: RewriteDatePickerProps;
     // dates: RewriteDatePickerProps;

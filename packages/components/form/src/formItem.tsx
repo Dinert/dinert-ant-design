@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import React from 'react'
-import { Form, Input, InputNumber, Radio, Select, RadioProps, Row, Col, Space, AutoComplete, Checkbox} from 'antd'
+import { Form, Input, InputNumber, Radio, Select, RadioProps, Row, Col, Space, AutoComplete, Checkbox, Switch, Slider} from 'antd'
 
 import { CustomFormItemProps, RewriteFormProps} from '@packages/components/form/types/index'
 import { dataTransformRod } from '@packages/utils/tools'
@@ -111,7 +111,9 @@ const mapComponents = (item: CustomFormItemProps) => {
             return (
                 <Checkbox.Group options={plainOptions} {...options} />
             )
-        }
+        },
+        switch: <Switch {...options} />,
+        slider: <Slider {...options} />,
     }
 
     const Com = typeof obj[item.type] === 'function' ? obj[item.type]() : obj[item.type]
