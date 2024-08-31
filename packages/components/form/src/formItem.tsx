@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import React from 'react'
-import { Form, Input, InputNumber, Radio, Select, RadioProps, Row, Col, Space, AutoComplete} from 'antd'
+import { Form, Input, InputNumber, Radio, Select, RadioProps, Row, Col, Space, AutoComplete, Checkbox} from 'antd'
 
 import { CustomFormItemProps, RewriteFormProps} from '@packages/components/form/types/index'
 import { dataTransformRod } from '@packages/utils/tools'
@@ -104,6 +104,12 @@ const mapComponents = (item: CustomFormItemProps) => {
                         })}
                     </Space>
                 </Radio.Group>
+            )
+        },
+        checkbox: () => {
+            const plainOptions: RadioProps[] = options.options || []
+            return (
+                <Checkbox.Group options={plainOptions} {...options} />
             )
         }
     }

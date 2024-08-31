@@ -92,6 +92,10 @@ export default defineConfig({
                                     text: 'radio 单选按钮',
                                     link: 'radio',
                                 },
+                                {
+                                    text: 'checkbox 多选框',
+                                    link: 'checkbox',
+                                },
 
                                 // {
                                 //     text: 'tree-select 树形选择',
@@ -110,10 +114,6 @@ export default defineConfig({
                                 //     link: 'date',
                                 // },
 
-                                // {
-                                //     text: 'checkbox 多选框',
-                                //     link: 'checkbox',
-                                // },
                                 // {
                                 //     text: 'rate 评分',
                                 //     link: 'rate',

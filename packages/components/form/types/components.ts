@@ -6,10 +6,11 @@ import {
     SelectProps,
     RadioGroupProps,
     SpaceProps,
-    AutoCompleteProps
+    AutoCompleteProps,
 } from 'antd'
 import { SearchProps } from 'antd/es/input/Search'
 import { PasswordProps } from 'antd/es/input/Password'
+import { CheckboxGroupProps } from 'antd/es/checkbox'
 
 export type RewriteInputProps = Partial<InputProps>
 export type RewriteAutocompleteProps = Partial<AutoCompleteProps>
@@ -19,6 +20,7 @@ export type RewriteInputTextareaProps = Partial<InputProps>
 export type RewriteInputNumberProps = Partial<InputNumberProps>
 export type RewriteSelectPropsProps = Partial<SelectProps>
 export type RewriteRadioGroupProps = Partial<RadioGroupProps & {direction: SpaceProps['direction']}>
+export type RewriteCheckboxGroupProps = Partial<CheckboxGroupProps & {direction: SpaceProps['direction']}>
 
 // export type RewriteTextareaProps = Partial<InputProps & Pick<typeof ElInput, 'onInput'| CommonFn>>
 
