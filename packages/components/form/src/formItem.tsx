@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import React from 'react'
-import { Form, Input, InputNumber, Radio, Select, RadioProps, Row, Col, Space, AutoComplete, Checkbox, Switch, Slider} from 'antd'
+import { Form, Input, InputNumber, Radio, Select, RadioProps, Row, Col, Space, AutoComplete, Checkbox, Switch, Slider, Rate, DatePicker} from 'antd'
 
 import { CustomFormItemProps, RewriteFormProps} from '@packages/components/form/types/index'
 import { dataTransformRod } from '@packages/utils/tools'
@@ -9,7 +9,7 @@ const mapPlaceholder = (type: string = 'input', label: string = '') => {
     const enterMsg = '请输入'
     const selectMsg = '请选择'
 
-    const placeholder: {[key: string]: string} = {
+    const placeholder: {[key: string]: string | string[]} = {
         'input': enterMsg,
         'input-search': enterMsg,
         'input-password': enterMsg,
@@ -18,10 +18,18 @@ const mapPlaceholder = (type: string = 'input', label: string = '') => {
         'select': selectMsg,
         radio: selectMsg,
         'radio-button': selectMsg,
-        'autocomplete': enterMsg
+        'autocomplete': enterMsg,
+        datetime: selectMsg,
+        datetimerange: [selectMsg + '开始时间', selectMsg + '结束时间'],
+        date: selectMsg,
+        daterange: [selectMsg + '开始时间', selectMsg + '结束时间'],
+        dates: selectMsg,
+        week: selectMsg,
+        weekange: [selectMsg + '开始周', selectMsg + '结束周'],
+        month: selectMsg,
     }
 
-    return (placeholder[type] || '') + label || ''
+    return typeof placeholder[type] === 'string' ? (placeholder[type] || '') + label || '' : placeholder[type]
 }
 const objToArr = <D, >(formItem: CustomFormItemProps, form: RewriteFormProps, values: D) => {
     const result: any = []
@@ -114,7 +122,22 @@ const mapComponents = (item: CustomFormItemProps) => {
         },
         switch: <Switch {...options} />,
         slider: <Slider {...options} />,
+        rate: <Rate {...options}></Rate>,
+        datetime: <DatePicker showTime allowClear {...options} />,
+        datetimerange: <DatePicker.RangePicker showTime allowClear {...options} />,
+        date: <DatePicker allowClear {...options} />,
+        daterange: <DatePicker.RangePicker allowClear {...options} />,
+        dates: <DatePicker allowClear {...options} />,
+        week: <DatePicker allowClear {...options} picker={'week'}/>,
+        weekrange: <DatePicker.RangePicker allowClear {...options} picker={'week'}/>,
+        month: <DatePicker allowClear {...options} picker={'month'}/>,
+        monthrange: <DatePicker.RangePicker allowClear {...options} picker={'month'}/>,
+        quarter: <DatePicker allowClear {...options} picker={'quarter'}/>,
+        quarterrange: <DatePicker.RangePicker allowClear {...options} picker={'quarter'}/>,
+        year: <DatePicker allowClear {...options} picker={'year'}/>,
+        yearrange: <DatePicker.RangePicker allowClear {...options} picker={'year'}/>
     }
+
 
     const Com = typeof obj[item.type] === 'function' ? obj[item.type]() : obj[item.type]
     return Com

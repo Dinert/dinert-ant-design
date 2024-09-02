@@ -89,6 +89,10 @@ export default defineConfig({
                                     link: 'select',
                                 },
                                 {
+                                    text: 'date 时间选择器（时、日、周、月、年）',
+                                    link: 'date',
+                                },
+                                {
                                     text: 'radio 单选按钮',
                                     link: 'radio',
                                 },
@@ -104,19 +108,16 @@ export default defineConfig({
                                     text: 'slider 滑动输入条',
                                     link: 'slider',
                                 },
+                                {
+                                    text: 'rate 评分',
+                                    link: 'rate',
+                                },
                                 // {
                                 //     text: 'tree-select 树形选择',
                                 //     link: 'tree-select',
                                 // },
-                                // {
-                                //     text: 'date 时间选择器（时、日、周、月、年）',
-                                //     link: 'date',
-                                // },
 
-                                // {
-                                //     text: 'rate 评分',
-                                //     link: 'rate',
-                                // },
+
                                 // {
                                 //     text: 'cascader 级联选择器',
                                 //     link: 'cascader',

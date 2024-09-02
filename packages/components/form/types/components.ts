@@ -9,6 +9,8 @@ import {
     AutoCompleteProps,
     SwitchProps,
     SliderSingleProps,
+    RateProps,
+    DatePickerProps
 } from 'antd'
 import { SearchProps } from 'antd/es/input/Search'
 import { PasswordProps } from 'antd/es/input/Password'
@@ -26,6 +28,8 @@ export type RewriteRadioGroupProps = Partial<RadioGroupProps & {direction: Space
 export type RewriteCheckboxGroupProps = Partial<CheckboxGroupProps & {direction: SpaceProps['direction']}>
 export type RewriteSwitchProps = Partial<SwitchProps>
 export type RewriteSliderProps = Partial<Pick<SliderRangeProps, 'range'> & Omit<SliderSingleProps, 'range'>>
+export type RewriteRateProps = Partial<RateProps>
+export type RewriteDatePickerProps = Partial<DatePickerProps>
 
 // export type RewriteTextareaProps = Partial<InputProps & Pick<typeof ElInput, 'onInput'| CommonFn>>
 

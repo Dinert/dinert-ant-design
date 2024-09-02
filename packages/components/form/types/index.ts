@@ -11,7 +11,9 @@ import {
     RewriteAutocompleteProps,
     RewriteCheckboxGroupProps,
     RewriteSwitchProps,
-    RewriteSliderProps
+    RewriteSliderProps,
+    RewriteRateProps,
+    RewriteDatePickerProps
 } from './components'
 
 
@@ -29,22 +31,25 @@ export interface RewriteFormItemPropsMap{
     // 'input-autocomplete': RewriteAutocompleteProps;
     'input-number': RewriteInputNumberProps;
     switch: RewriteSwitchProps;
-    // datetime: RewriteDatePickerProps;
-    // date: RewriteDatePickerProps;
-    // dates: RewriteDatePickerProps;
-    // week: RewriteDatePickerProps;
-    // month: RewriteDatePickerProps;
-    // year: RewriteDatePickerProps;
-    // years: RewriteDatePickerProps;
-    // datetimerange: RewriteDatePickerProps;
-    // daterange: RewriteDatePickerProps;
-    // monthrange: RewriteDatePickerProps;
+    datetime: RewriteDatePickerProps;
+    date: RewriteDatePickerProps;
+    dates: RewriteDatePickerProps;
+    week: RewriteDatePickerProps;
+    month: RewriteDatePickerProps;
+    quarter: RewriteDatePickerProps;
+    quarterrange: RewriteDatePickerProps;
+    year: RewriteDatePickerProps;
+    yearrange: RewriteDatePickerProps;
+    weekrange: RewriteDatePickerProps;
+    datetimerange: RewriteDatePickerProps;
+    daterange: RewriteDatePickerProps;
+    monthrange: RewriteDatePickerProps;
     radio: RewriteRadioGroupProps;
     'radio-button': RewriteRadioGroupProps;
     checkbox: RewriteCheckboxGroupProps;
     // 'checkbox-button': RewriteCheckboxGroupProps<O>;
     // 'tree-select': RewriteTreeSelectProps<O>;
-    // 'rate': RewriteRewriteRateProps<O>;
+    'rate': RewriteRateProps;
 }
 
 export interface CustomFormItemProps<D = any, O = any[], N extends keyof RewriteFormItemPropsMap = any> extends Partial<Omit<FormItemProps, 'label'>>{

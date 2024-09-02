@@ -8,9 +8,9 @@ const App = () => {
 
     interface Model{
         name: string;
-        name2: string;
+        name2: number;
         name3: string;
-        name4: string;
+        name4: number[];
     }
 
     interface FormItemProps{
@@ -25,9 +25,11 @@ const App = () => {
         scrollToFirstError: true,
         packUp: false,
         initialValues: {
+            name2: 30,
+            name4: [2, 3]
         },
         labelCol: {
-            span: 3,
+            span: 4,
         },
         formItem: {
             name: {
@@ -41,7 +43,6 @@ const App = () => {
                 type: 'slider',
                 label: '默认值滑动',
                 options: {
-                    defaultValue: 30
                 }
             },
             name3: {
@@ -59,7 +60,6 @@ const App = () => {
                     range: {
                         draggableTrack: true,
                     },
-                    defaultValue: [2, 3] as any,
                     min: 0,
                     max: 20,
                     tooltip: {
