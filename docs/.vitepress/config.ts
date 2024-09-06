@@ -117,11 +117,10 @@ export default defineConfig({
                                 //     link: 'tree-select',
                                 // },
 
-
-                                // {
-                                //     text: 'cascader 级联选择器',
-                                //     link: 'cascader',
-                                // },
+                                {
+                                    text: 'cascader 级联选择器',
+                                    link: 'cascader',
+                                },
                                 {
                                     text: '属性',
                                     link: 'explain',

@@ -10,7 +10,8 @@ import {
     SwitchProps,
     SliderSingleProps,
     RateProps,
-    DatePickerProps
+    DatePickerProps,
+    CascaderProps
 } from 'antd'
 import { SearchProps } from 'antd/es/input/Search'
 import { PasswordProps } from 'antd/es/input/Password'
@@ -30,6 +31,7 @@ export type RewriteSwitchProps = Partial<SwitchProps>
 export type RewriteSliderProps = Partial<Pick<SliderRangeProps, 'range'> & Omit<SliderSingleProps, 'range'>>
 export type RewriteRateProps = Partial<RateProps>
 export type RewriteDatePickerProps = Partial<DatePickerProps>
+export type RewriteCascaderProps = Partial<CascaderProps>
 
 // export type RewriteTextareaProps = Partial<InputProps & Pick<typeof ElInput, 'onInput'| CommonFn>>
 

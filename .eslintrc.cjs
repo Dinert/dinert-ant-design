@@ -312,6 +312,19 @@ module.exports = {
                 'args': 'after-used',
                 'ignoreRestSiblings': true
             }
+        ],
+        '@typescript-eslint/member-delimiter-style': [
+            'error',
+            {
+                multiline: {
+                    delimiter: 'none',
+                    requireLast: true,
+                },
+                singleline: {
+                    delimiter: 'comma',
+                    requireLast: false,
+                },
+            },
         ]
     },
 }

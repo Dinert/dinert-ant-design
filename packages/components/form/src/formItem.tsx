@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import React from 'react'
-import { Form, Input, InputNumber, Radio, Select, RadioProps, Row, Col, Space, AutoComplete, Checkbox, Switch, Slider, Rate, DatePicker} from 'antd'
+import { Form, Input, InputNumber, Radio, Select, RadioProps, Row, Col, Space, AutoComplete, Checkbox, Switch, Slider, Rate, DatePicker, Cascader} from 'antd'
 
 import { CustomFormItemProps, RewriteFormProps} from '@packages/components/form/types/index'
 import { dataTransformRod } from '@packages/utils/tools'
@@ -27,6 +27,8 @@ const mapPlaceholder = (type: string = 'input', label: string = '') => {
         week: selectMsg,
         weekange: [selectMsg + '开始周', selectMsg + '结束周'],
         month: selectMsg,
+        cascader: selectMsg,
+        'cascader-panel': selectMsg
     }
 
     return typeof placeholder[type] === 'string' ? (placeholder[type] || '') + label || '' : placeholder[type]
@@ -135,7 +137,9 @@ const mapComponents = (item: CustomFormItemProps) => {
         quarter: <DatePicker allowClear {...options} picker={'quarter'}/>,
         quarterrange: <DatePicker.RangePicker allowClear {...options} picker={'quarter'}/>,
         year: <DatePicker allowClear {...options} picker={'year'}/>,
-        yearrange: <DatePicker.RangePicker allowClear {...options} picker={'year'}/>
+        yearrange: <DatePicker.RangePicker allowClear {...options} picker={'year'}/>,
+        cascader: <Cascader allowClear {...options} />,
+        'cascader-panel': <Cascader.Panel allowClear {...options} />,
     }
 
 
