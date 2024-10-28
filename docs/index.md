@@ -19,7 +19,7 @@ hero:
 features:
   - icon: 💡
     title: 最新技术
-    details: 基于 Vue3 & TypeScript框架编写，使用 hooks 写法抽离部分逻辑，代码结构更加清晰。
+    details: 基于 React & TypeScript框架编写，使用 hooks 写法抽离部分逻辑，代码结构更加清晰。
   - icon: ⚡️
     title: 优异性能
     details: 多处性能优化，使用页面懒加载、组件动态注册、数据滚动加载等方式，提升页面渲染速度。
